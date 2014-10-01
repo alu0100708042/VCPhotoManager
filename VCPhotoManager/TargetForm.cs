@@ -27,5 +27,9 @@ namespace VCPhotoManager
             this.MaximumSize = this.Size;
         }
 
+        public Image getImage()
+        {
+            return this.m_imagen;
+        }
     }
 }

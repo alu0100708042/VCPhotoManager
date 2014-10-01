@@ -41,15 +41,17 @@ namespace VCPhotoManager
         private void GuardarImagen(object sender, EventArgs e)
         {
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            if (this.ActiveMdiChild != null)
+            if (this.ActiveMdiChild == m_SourceForm)
             {
-                // Averiguar como guardar la pestaña activa que puede ser source o target
                 m_SourceForm.getPicSource().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            
             }
-            else 
+            else if(this.ActiveMdiChild == m_TargetForm)
             {
-                MessageBox.Show("Tiene que clickar sobre el que quiere guardar");
+                m_TargetForm.getImage().Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+            else  
+            {
+                MessageBox.Show("Para almacenar una imagen hay que hacer click sobre la misma");
             }
         }
 
