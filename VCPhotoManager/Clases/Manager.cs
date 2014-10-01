@@ -29,6 +29,5 @@ namespace VCPhotoManager.Clases
             result = aux;
             return result;
         }
-    }
-    
+    }   
 }

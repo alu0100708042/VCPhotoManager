@@ -32,8 +32,6 @@ namespace VCPhotoManager
         {
             this.picSource.Image = Image.FromFile(m_PhotoPath);
             this.ClientSize = this.picSource.Image.Size;
-
-
             this.MaximumSize = this.Size;
 
 

@@ -27,9 +27,9 @@ namespace VCPhotoManager
             this.MaximumSize = this.Size;
         }
 
-        public Image getImage()
+        public PictureBox getPicTarget()
         {
-            return this.m_imagen;
+            return this.picTarget;
         }
     }
 }

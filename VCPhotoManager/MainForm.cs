@@ -24,7 +24,7 @@ namespace VCPhotoManager
         private void AbrirImagen(object sender, EventArgs e) 
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "Imágenes sin pérdida (*.bmp,*.tiff)|*.bmp;*.tiff|Imágenes con pérdida(*.jpg,*.giff)|*.jpg,*.gif";
+            o.Filter = "Imágenes sin pérdida (*.bmp, *.tiff)|*.bmp;*.tiff|Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg";
             
             if (o.ShowDialog() == DialogResult.OK)
             {
@@ -47,7 +47,7 @@ namespace VCPhotoManager
             }
             else if(this.ActiveMdiChild == m_TargetForm)
             {
-                m_TargetForm.getImage().Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                m_TargetForm.getPicTarget().Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             else  
             {
@@ -66,7 +66,6 @@ namespace VCPhotoManager
             m_TargetForm = new TargetForm(m.changeToGrayScale(this.m_SourceForm.getPictureBox().Image as Bitmap));
             m_TargetForm.MdiParent = this;
             m_TargetForm.Show();
-           
         }
 
         private void cerrarSource(object sender, FormClosedEventArgs e)
