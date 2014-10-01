@@ -13,6 +13,7 @@ namespace VCPhotoManager
     public partial class MainForm : Form
     {
         SourceForm m_SourceForm;
+        TargetForm m_TargetForm;
         Manager m_Manager;
         public MainForm()
         {
@@ -36,12 +37,22 @@ namespace VCPhotoManager
                 this.abrirToolStripMenuItem.Enabled = false;
             }
         }
+
         private void GuardarImagen(object sender, EventArgs e)
         {
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
-            m_SourceForm.getPicSource().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            if (this.ActiveMdiChild != null)
+            {
+                // Averiguar como guardar la pestaña activa que puede ser source o target
+                m_SourceForm.getPicSource().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            
+            }
+            else 
+            {
+                MessageBox.Show("Tiene que clickar sobre el que quiere guardar");
+            }
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
 
@@ -50,9 +61,9 @@ namespace VCPhotoManager
         public void CambiaraEscalaDeGrises(object sender, EventArgs e) 
         {
             Manager m = new Manager();
-            TargetForm f = new TargetForm(m.changeToGrayScale(this.m_SourceForm.getPictureBox().Image as Bitmap));
-            f.MdiParent = this;
-            f.Show();
+            m_TargetForm = new TargetForm(m.changeToGrayScale(this.m_SourceForm.getPictureBox().Image as Bitmap));
+            m_TargetForm.MdiParent = this;
+            m_TargetForm.Show();
            
         }
 

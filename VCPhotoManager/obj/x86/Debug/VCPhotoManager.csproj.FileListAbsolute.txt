@@ -7,3 +7,4 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\V
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.TargetForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache

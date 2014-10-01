@@ -26,5 +26,6 @@ namespace VCPhotoManager
 
             this.MaximumSize = this.Size;
         }
+
     }
 }
