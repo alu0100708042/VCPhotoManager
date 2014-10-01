@@ -53,6 +53,7 @@
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarAEscalaDeGrisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,9 +71,22 @@
             this.pegarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.cambiarAEscalaDeGrisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbX = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbY = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbR = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,7 +98,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(487, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(570, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -263,14 +277,21 @@
             // personalizarToolStripMenuItem
             // 
             this.personalizarToolStripMenuItem.Name = "personalizarToolStripMenuItem";
-            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.personalizarToolStripMenuItem.Text = "&Personalizar";
             // 
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.opcionesToolStripMenuItem.Text = "&Opciones";
+            // 
+            // cambiarAEscalaDeGrisesToolStripMenuItem
+            // 
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Name = "cambiarAEscalaDeGrisesToolStripMenuItem";
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Text = "&Cambiar a escala de grises";
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Click += new System.EventHandler(this.CambiaraEscalaDeGrises);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -328,7 +349,7 @@
             this.ayudaToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(487, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(570, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -416,18 +437,105 @@
             this.ayudaToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ayudaToolStripButton.Text = "Ay&uda";
             // 
-            // cambiarAEscalaDeGrisesToolStripMenuItem
+            // statusStrip1
             // 
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Name = "cambiarAEscalaDeGrisesToolStripMenuItem";
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Text = "&Cambiar a escala de grises";
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Click += new System.EventHandler(this.CambiaraEscalaDeGrises);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel7,
+            this.toolStripStatusLabel1,
+            this.lbX,
+            this.toolStripStatusLabel2,
+            this.lbY,
+            this.toolStripStatusLabel6,
+            this.toolStripStatusLabel3,
+            this.lbR,
+            this.toolStripStatusLabel4,
+            this.lbG,
+            this.toolStripStatusLabel5,
+            this.lbB});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 358);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(570, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(17, 17);
+            this.toolStripStatusLabel1.Text = "X:";
+            // 
+            // lbX
+            // 
+            this.lbX.Name = "lbX";
+            this.lbX.Size = new System.Drawing.Size(13, 17);
+            this.lbX.Text = "0";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(17, 17);
+            this.toolStripStatusLabel2.Text = "Y:";
+            // 
+            // lbY
+            // 
+            this.lbY.Name = "lbY";
+            this.lbY.Size = new System.Drawing.Size(13, 17);
+            this.lbY.Text = "0";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(17, 17);
+            this.toolStripStatusLabel3.Text = "R:";
+            // 
+            // lbR
+            // 
+            this.lbR.Name = "lbR";
+            this.lbR.Size = new System.Drawing.Size(13, 17);
+            this.lbR.Text = "0";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(18, 17);
+            this.toolStripStatusLabel4.Text = "G:";
+            // 
+            // lbG
+            // 
+            this.lbG.Name = "lbG";
+            this.lbG.Size = new System.Drawing.Size(13, 17);
+            this.lbG.Text = "0";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(17, 17);
+            this.toolStripStatusLabel5.Text = "B:";
+            // 
+            // lbB
+            // 
+            this.lbB.Name = "lbB";
+            this.lbB.Size = new System.Drawing.Size(13, 17);
+            this.lbB.Text = "0";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(25, 17);
+            this.toolStripStatusLabel6.Text = "      ";
+            // 
+            // toolStripStatusLabel7
+            // 
+            this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
+            this.toolStripStatusLabel7.Size = new System.Drawing.Size(25, 17);
+            this.toolStripStatusLabel7.Text = "      ";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 338);
+            this.ClientSize = new System.Drawing.Size(570, 380);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
@@ -440,6 +548,8 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,6 +599,19 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton ayudaToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem cambiarAEscalaDeGrisesToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel lbX;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel lbY;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lbR;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripStatusLabel lbG;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel lbB;
     }
 }
 
