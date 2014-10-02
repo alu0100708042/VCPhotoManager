@@ -11,25 +11,34 @@ namespace VCPhotoManager
 {
     public partial class TargetForm : Form
     {
-        private Image m_imagen;
+        
+        private List<Bitmap> m_Mapas;
+
         public TargetForm(Image imagen)
         {
             InitializeComponent();
-            m_imagen = imagen;
+            m_Mapas = new List<Bitmap>();
+            m_Mapas.Add(imagen as Bitmap);
+            
         }
 
         private void TargetForm_Load(object sender, EventArgs e)
         {
-            this.picTarget.Image = m_imagen;
+            this.picTarget.Image = m_Mapas[0];
             this.ClientSize = this.picTarget.Image.Size;
-
-
             this.MaximumSize = this.Size;
         }
 
-        public PictureBox getPicTarget()
+        public List<Bitmap> Historico
         {
-            return this.picTarget;
+            get { return m_Mapas; }
+            set { m_Mapas = value; }
+        }
+        
+        public PictureBox getPicTarget
+        {
+            get { return this.picTarget; }
+            set { this.picTarget = value; }
         }
     }
 }

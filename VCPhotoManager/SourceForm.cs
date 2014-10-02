@@ -28,11 +28,12 @@ namespace VCPhotoManager
 
             m_Parent = this.MdiParent as MainForm;
             
+
             /* Para trabajar con arrays cast
              * Bitmap mapa = this.picsourceImage.Image as Bitmap;
              * mapa.getPixel(x,y)*/
         }
-
+                
         public PictureBox getPictureBox()
         {
             return this.picSource;

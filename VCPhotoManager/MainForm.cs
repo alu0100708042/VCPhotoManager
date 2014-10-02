@@ -80,7 +80,7 @@ namespace VCPhotoManager
             }
             else if(this.ActiveMdiChild == m_TargetForm)
             {
-                m_TargetForm.getPicTarget().Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                m_TargetForm.getPicTarget.Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             else  
             {
@@ -105,6 +105,12 @@ namespace VCPhotoManager
         {
             this.abrirToolStripButton.Enabled = true;
             this.abrirToolStripMenuItem.Enabled = true;
+        }
+
+        private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_TargetForm.Historico.RemoveAt(m_TargetForm.Historico.Count - 1);
+            m_TargetForm.getPicTarget.Image = m_TargetForm.Historico[m_TargetForm.Historico.Count - 1];
         }
     }
 }
