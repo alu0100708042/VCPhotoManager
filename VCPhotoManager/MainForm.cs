@@ -15,12 +15,45 @@ namespace VCPhotoManager
         SourceForm m_SourceForm;
         TargetForm m_TargetForm;
         Manager m_Manager;
+        
         public MainForm()
         {
             InitializeComponent();
             m_Manager = new Manager();
         }
 
+        // Propiedad X para tener acceso a la etiqueta y mostrar su valor
+        public Int32 X
+        {
+            get { return Int32.Parse(this.lbX.Text); }
+            set { this.lbX.Text = value.ToString(); }
+        }
+
+        // Propiedad Y para tener acceso a la etiqueta y mostrar su valor
+        public Int32 Y
+        {
+            get { return Int32.Parse(this.lbY.Text); }
+            set { this.lbY.Text = value.ToString(); }
+        }
+
+        public Int32 R
+        {
+            get { return Int32.Parse(this.lbR.Text); }
+            set { this.lbR.Text = value.ToString(); }
+        }
+
+        public Int32 G
+        {
+            get { return Int32.Parse(this.lbG.Text); }
+            set { this.lbG.Text = value.ToString(); }
+        }
+
+        public Int32 B
+        {
+            get { return Int32.Parse(this.lbB.Text); }
+            set { this.lbB.Text = value.ToString(); }
+        }
+        
         private void AbrirImagen(object sender, EventArgs e) 
         {
             OpenFileDialog o = new OpenFileDialog();
@@ -43,11 +76,11 @@ namespace VCPhotoManager
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             if (this.ActiveMdiChild == m_SourceForm)
             {
-                m_SourceForm.getPicSource().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                m_SourceForm.getPictureBox().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             else if(this.ActiveMdiChild == m_TargetForm)
             {
-                m_TargetForm.getPicTarget().Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                m_TargetForm.getPicTarget.Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             else  
             {
@@ -72,6 +105,12 @@ namespace VCPhotoManager
         {
             this.abrirToolStripButton.Enabled = true;
             this.abrirToolStripMenuItem.Enabled = true;
+        }
+
+        private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_TargetForm.Historico.RemoveAt(m_TargetForm.Historico.Count - 1);
+            m_TargetForm.getPicTarget.Image = m_TargetForm.Historico[m_TargetForm.Historico.Count - 1];
         }
     }
 }
