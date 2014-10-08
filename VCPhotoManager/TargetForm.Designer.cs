@@ -40,6 +40,7 @@
             this.picTarget.Size = new System.Drawing.Size(199, 28);
             this.picTarget.TabIndex = 0;
             this.picTarget.TabStop = false;
+            this.picTarget.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picTarget_MouseMove);
             // 
             // TargetForm
             // 

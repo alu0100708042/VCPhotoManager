@@ -13,6 +13,7 @@ namespace VCPhotoManager
     {
         
         private List<Bitmap> m_Mapas;
+        private MainForm m_Parent;
 
         public TargetForm(Image imagen)
         {
@@ -22,11 +23,23 @@ namespace VCPhotoManager
             
         }
 
+        private void picTarget_MouseMove(object sender, MouseEventArgs e)
+        {
+            Bitmap mapa = this.picTarget.Image as Bitmap;
+            Color color = mapa.GetPixel(e.X, e.Y);
+            m_Parent.X = e.X;
+            m_Parent.Y = e.Y;
+            m_Parent.R = color.R;
+            m_Parent.G = color.G;
+            m_Parent.B = color.B;
+        }
+
         private void TargetForm_Load(object sender, EventArgs e)
         {
             this.picTarget.Image = m_Mapas[0];
             this.ClientSize = this.picTarget.Image.Size;
             this.MaximumSize = this.Size;
+            m_Parent = this.MdiParent as MainForm;
         }
 
         public List<Bitmap> Historico
@@ -40,5 +53,6 @@ namespace VCPhotoManager
             get { return this.picTarget; }
             set { this.picTarget = value; }
         }
+
     }
 }
