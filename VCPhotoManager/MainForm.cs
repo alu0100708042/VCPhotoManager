@@ -101,6 +101,12 @@ namespace VCPhotoManager
             m_TargetForm.Show();
         }
 
+        public void EntropiaDeImagen(object sender, EventArgs e)
+        {
+            Double entropy;
+            entropy = m_Manager.Entropia(this.m_SourceForm.getPictureBox().Image as Bitmap);
+            MessageBox.Show("La entropía de la imagen es de: " + entropy.ToString());
+        }
         private void cerrarSource(object sender, FormClosedEventArgs e)
         {
             this.abrirToolStripButton.Enabled = true;
