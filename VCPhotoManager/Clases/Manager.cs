@@ -33,7 +33,7 @@ namespace VCPhotoManager.Clases
         public Double Entropia(Bitmap image)
         {
             int[] bitsColor = new int[256];
-            double entropy= 0.0000, probability;
+            Double entropy= 0.0,probability;
             for (int i = 0; i < 256; i++)
             {
                 bitsColor[i] = 0;
@@ -50,9 +50,8 @@ namespace VCPhotoManager.Clases
 
             for (int i = 0; i < 256; i++)
             {
-                //Funcion para calcular entropia  E = -Sum(P(i)*log(P(i))))
-                
-                probability = bitsColor[i] / (image.Width * image.Height);
+                //Funcion para calcular entropia  E = -Sum(P(i)*log(P(i))))   
+                probability = bitsColor[i] / (Double)(image.Width * image.Height);
                 entropy += probability * Math.Log(probability, 2);
             }
             entropy = -entropy;
