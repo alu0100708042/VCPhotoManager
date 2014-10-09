@@ -90,7 +90,7 @@ namespace VCPhotoManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+         
         }
 
         public void CambiaraEscalaDeGrises(object sender, EventArgs e) 
