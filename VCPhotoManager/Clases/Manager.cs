@@ -52,7 +52,8 @@ namespace VCPhotoManager.Clases
             {
                 //Funcion para calcular entropia  E = -Sum(P(i)*log(P(i))))   
                 probability = bitsColor[i] / (Double)(image.Width * image.Height);
-                entropy += probability * Math.Log(probability, 2);
+                if(probability != 0) // La probabilidad tiene que ser distinta de 0 para poder hacer el logaritmo
+                    entropy += probability * Math.Log(probability, 2);
             }
             entropy = -entropy;
             return entropy;
