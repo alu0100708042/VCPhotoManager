@@ -5,8 +5,16 @@ using System.Text;
 using System.Drawing;
 namespace VCPhotoManager.Clases
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Manager
     {
+        /// <summary>
+        /// Funcio que recibe un Bitmap y lo convierte en escala de grises.
+        /// </summary>
+        /// <param name="image">Imagen original que se va a convertir en escala de grises.</param>
+        /// <returns>Bitmap convertido en escala de grises</returns>
         public Image changeToGrayScale(Bitmap image)
         {
             Image result = image;
