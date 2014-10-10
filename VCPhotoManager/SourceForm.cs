@@ -39,6 +39,11 @@ namespace VCPhotoManager
             return this.picSource;
         }
 
+        public String getPhotoPath()
+        {
+            return m_PhotoPath;
+        }
+
         // Controlador de evento para el movimiento del raton sobre la imagen.
         private void picSource_MouseMove(object sender, MouseEventArgs e)
         {

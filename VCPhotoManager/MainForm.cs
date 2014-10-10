@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using VCPhotoManager.Clases;
-
+using System.Text.RegularExpressions;
 namespace VCPhotoManager
 {
     public partial class MainForm : Form
@@ -74,13 +74,26 @@ namespace VCPhotoManager
         private void GuardarImagen(object sender, EventArgs e)
         {
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            if (this.ActiveMdiChild == m_SourceForm)
+            String formats = "(.jpg|.gif |.bmp|.tiff)";
+           
+            if(this.ActiveMdiChild is TargetForm)
             {
-                m_SourceForm.getPictureBox().Image.Save(ruta + @"\cocot.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-            else if(this.ActiveMdiChild == m_TargetForm)
-            {
-                m_TargetForm.getPicTarget.Image.Save(ruta + @"\gatogris.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                String path = m_SourceForm.getPhotoPath();
+                String[] subStrings = Regex.Split(path, formats);
+                String format = "";
+                Int16 cont = 0;
+                foreach (String aux in subStrings)
+                {
+                    if (cont == 1)
+                    {
+                        format = aux;
+                    }
+                    cont++;
+                }
+                TargetForm t = this.ActiveMdiChild as TargetForm;
+                String imageName = Regex.Replace(path,formats, String.Empty);
+                
+                t.getPicTarget.Image.Save(imageName + "-copia" + format);
             }
             else  
             {
