@@ -15,6 +15,7 @@ namespace VCPhotoManager
         SourceForm m_SourceForm;
         TargetForm m_TargetForm;
         Manager m_Manager;
+        HistogramaGraficsForm m_HistogramaForm;
         
         public MainForm()
         {
@@ -103,7 +104,14 @@ namespace VCPhotoManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-         
+            this.MaximizeBox = false;
+            //m_Manager = new Manager();
+            //m_SourceForm = new SourceForm(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\imagenprueba.jpg");
+            //m_SourceForm.Show();
+            //System.Threading.Thread.Sleep(500);
+            ///*m_TargetForm = new TargetForm(m_Manager.changeToGrayScale((m_SourceForm.getPictureBox().Image as Bitmap)));
+            //m_TargetForm.Show();*/
+
         }
 
         public void CambiaraEscalaDeGrises(object sender, EventArgs e) 
@@ -120,6 +128,7 @@ namespace VCPhotoManager
             entropy = m_Manager.Entropia(this.m_SourceForm.getPictureBox().Image as Bitmap);
             MessageBox.Show("La entropía de la imagen es de: " + entropy.ToString());
         }
+
         private void cerrarSource(object sender, FormClosedEventArgs e)
         {
             this.abrirToolStripButton.Enabled = true;
@@ -130,6 +139,31 @@ namespace VCPhotoManager
         {
             m_TargetForm.Historico.RemoveAt(m_TargetForm.Historico.Count - 1);
             m_TargetForm.getPicTarget.Image = m_TargetForm.Historico[m_TargetForm.Historico.Count - 1];
+        }
+
+        private void interactivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Int32[] vector = new Int32[256];
+            Bitmap Imagen;
+            for (int i = 0; i < 256; i++) 
+            {
+                vector[i] = 0;
+            }
+            Imagen = m_TargetForm.getPicTarget.Image as Bitmap;
+            for (int i = 0; i < Imagen.Width; i++) 
+            {
+                for (int j = 0; j < Imagen.Height; j++)
+                {
+                    Color c = Imagen.GetPixel(i, j);
+                    vector[c.R] = vector[c.R] + 1;
+                }
+            }
+            
+            m_HistogramaForm = new HistogramaGraficsForm(vector);
+           // m_HistogramaForm.MdiParent = this;
+            m_HistogramaForm.Show();
+            m_HistogramaForm.Histograma();
+            
         }
     }
 }

@@ -86,6 +86,8 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.histogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interactivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -101,7 +103,7 @@
             this.verToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(570, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(664, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -273,7 +275,8 @@
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personalizarToolStripMenuItem,
             this.opcionesToolStripMenuItem,
-            this.cambiarAEscalaDeGrisesToolStripMenuItem});
+            this.cambiarAEscalaDeGrisesToolStripMenuItem,
+            this.histogramaToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -368,7 +371,7 @@
             this.ayudaToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(570, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(664, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -473,7 +476,7 @@
             this.lbB});
             this.statusStrip1.Location = new System.Drawing.Point(0, 358);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(570, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(664, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -549,17 +552,31 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
+            // histogramaToolStripMenuItem
+            // 
+            this.histogramaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.interactivoToolStripMenuItem});
+            this.histogramaToolStripMenuItem.Name = "histogramaToolStripMenuItem";
+            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.histogramaToolStripMenuItem.Text = "Histograma";
+            // 
+            // interactivoToolStripMenuItem
+            // 
+            this.interactivoToolStripMenuItem.Name = "interactivoToolStripMenuItem";
+            this.interactivoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.interactivoToolStripMenuItem.Text = "Interactivo";
+            this.interactivoToolStripMenuItem.Click += new System.EventHandler(this.interactivoToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 380);
+            this.ClientSize = new System.Drawing.Size(664, 380);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VC Photo Manager";
@@ -635,6 +652,8 @@
         private System.Windows.Forms.ToolStripStatusLabel lbB;
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem entropíaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem interactivoToolStripMenuItem;
     }
 }
 

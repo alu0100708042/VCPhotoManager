@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Manager.cs" />
+    <Compile Include="HistogramaGraficsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistogramaGraficsForm.Designer.cs">
+      <DependentUpon>HistogramaGraficsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="TargetForm.Designer.cs">
       <DependentUpon>TargetForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HistogramaGraficsForm.resx">
+      <DependentUpon>HistogramaGraficsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
