@@ -50,9 +50,9 @@ namespace VCPhotoManager
             m_Pen.Width = 2;
             for (int i = 0; i < 256; i++)
             {
-                p1.X = 50 + i * 2;
+                p1.X = 47 + i * 2;
                 p1.Y = 349;
-                p2.X = 50 + i * 2;
+                p2.X = 47 + i * 2;
                 p2.Y = (349 - m_Vector[i] % 300);
                 formGraphics.DrawLine(m_Pen, p1, p2);
             }

@@ -15,9 +15,9 @@ namespace VCPhotoManager.Clases
         /// </summary>
         /// <param name="image">Imagen original que se va a convertir en escala de grises.</param>
         /// <returns>Bitmap convertido en escala de grises</returns>
-        public Image changeToGrayScale(Bitmap image)
+        public Bitmap changeToGrayScale(Bitmap image)
         {
-            Image result = image;
+            
             Bitmap aux = new Bitmap(image.Width, image.Height);
             for (int x = 0; x < image.Width; x++) 
             {
@@ -34,8 +34,8 @@ namespace VCPhotoManager.Clases
                     aux.SetPixel(x, y, c);
                 }
             }
-            result = aux;
-            return result;
+            return aux;
+            
         }
 
         public Double Entropia(Bitmap image)

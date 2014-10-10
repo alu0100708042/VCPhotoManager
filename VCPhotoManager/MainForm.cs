@@ -13,7 +13,6 @@ namespace VCPhotoManager
     public partial class MainForm : Form
     {
         SourceForm m_SourceForm;
-        TargetForm m_TargetForm;
         Manager m_Manager;
         HistogramaGraficsForm m_HistogramaForm;
         
@@ -65,10 +64,7 @@ namespace VCPhotoManager
                 String path = o.FileName;
                 m_SourceForm = new SourceForm(o.FileName);
                 m_SourceForm.MdiParent = this;
-                m_SourceForm.Show(); // Sin cortar la ejecucion para poder usar los controles del primario
-                // Para abrir una imagen nueva tendrás que deshabilitar el abrir otra.
-                this.abrirToolStripButton.Enabled = false;
-                this.abrirToolStripMenuItem.Enabled = false;
+                m_SourceForm.Show();
             }
         }
 
@@ -77,7 +73,7 @@ namespace VCPhotoManager
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             String formats = "(.jpg|.gif |.bmp|.tiff)";
            
-            if(this.ActiveMdiChild is TargetForm)
+            if(this.ActiveMdiChild is SourceForm)
             {
                 String path = m_SourceForm.getPhotoPath();
                 String[] subStrings = Regex.Split(path, formats);
@@ -91,10 +87,10 @@ namespace VCPhotoManager
                     }
                     cont++;
                 }
-                TargetForm t = this.ActiveMdiChild as TargetForm;
+                SourceForm  s= this.ActiveMdiChild as SourceForm;
                 String imageName = Regex.Replace(path,formats, String.Empty);
                 
-                t.getPicTarget.Image.Save(imageName + "-copia" + format);
+                s.getPictureBox().Image.Save(imageName + "-copia" + format);
             }
             else  
             {
@@ -117,47 +113,55 @@ namespace VCPhotoManager
         public void CambiaraEscalaDeGrises(object sender, EventArgs e) 
         {
             Manager m = new Manager();
-            m_TargetForm = new TargetForm(m.changeToGrayScale(this.m_SourceForm.getPictureBox().Image as Bitmap));
-            m_TargetForm.MdiParent = this;
-            m_TargetForm.Show();
+            Bitmap b = new Bitmap(this.m_SourceForm.getPictureBox().Image as Bitmap);
+            SourceForm s= new SourceForm(m.changeToGrayScale(b));
+            s.MdiParent = this;
+            s.Show();
         }
 
         public void EntropiaDeImagen(object sender, EventArgs e)
         {
             Double entropy;
-            entropy = m_Manager.Entropia(this.m_SourceForm.getPictureBox().Image as Bitmap);
-            MessageBox.Show("La entropía de la imagen es de: " + entropy.ToString());
-        }
+            
+            if (this.ActiveMdiChild is SourceForm)
+            {
+                SourceForm f = this.ActiveMdiChild as SourceForm;
+                entropy = m_Manager.Entropia(f.getPictureBox().Image as Bitmap);
+                MessageBox.Show("La entropía de la imagen es de: " + Math.Round(entropy, 2).ToString());
+            }
 
-        private void cerrarSource(object sender, FormClosedEventArgs e)
-        {
-            this.abrirToolStripButton.Enabled = true;
-            this.abrirToolStripMenuItem.Enabled = true;
         }
 
         private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_TargetForm.Historico.RemoveAt(m_TargetForm.Historico.Count - 1);
-            m_TargetForm.getPicTarget.Image = m_TargetForm.Historico[m_TargetForm.Historico.Count - 1];
+            m_SourceForm.Historico.RemoveAt(m_SourceForm.Historico.Count - 1);
+            m_SourceForm.getPictureBox().Image = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
         }
 
         private void interactivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Int32[] vector = new Int32[256];
             Bitmap Imagen;
-            for (int i = 0; i < 256; i++) 
+            for (int i = 0; i < 256; i++)
             {
                 vector[i] = 0;
             }
-            Imagen = m_TargetForm.getPicTarget.Image as Bitmap;
-            for (int i = 0; i < Imagen.Width; i++) 
+            if (this.ActiveMdiChild is SourceForm)
             {
-                for (int j = 0; j < Imagen.Height; j++)
+                SourceForm f = this.ActiveMdiChild as SourceForm;
+                Imagen = f.getPictureBox().Image as Bitmap;
+                for (int i = 0; i < Imagen.Width; i++)
                 {
-                    Color c = Imagen.GetPixel(i, j);
-                    vector[c.R] = vector[c.R] + 1;
+                    for (int j = 0; j < Imagen.Height; j++)
+                    {
+                        Color c = Imagen.GetPixel(i, j);
+                        vector[c.R] = vector[c.R] + 1;
+                    }
                 }
+
             }
+            
+
             
             m_HistogramaForm = new HistogramaGraficsForm(vector);
            // m_HistogramaForm.MdiParent = this;

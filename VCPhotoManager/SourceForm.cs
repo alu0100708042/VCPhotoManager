@@ -13,16 +13,30 @@ namespace VCPhotoManager
     {
         private String m_PhotoPath;
         private MainForm m_Parent;
+        private List<Bitmap> m_Mapas;
 
         public SourceForm(String path)
         {
             InitializeComponent();
             m_PhotoPath = path;
+            m_Mapas = new List<Bitmap>();
+            this.picSource.Image = Image.FromFile(m_PhotoPath);
+           
+        }
+
+        public SourceForm(Bitmap imagen)
+        {
+            InitializeComponent();
+            m_Mapas = new List<Bitmap>();
+            m_Mapas.Add(imagen as Bitmap);
+            this.picSource.Image = imagen;
+
         }
         
         private void SourceForm_Load(object sender, EventArgs e)
         {
-            this.picSource.Image = Image.FromFile(m_PhotoPath);
+            
+            
             this.ClientSize = this.picSource.Image.Size;
             this.MaximumSize = this.Size;
 
@@ -55,6 +69,13 @@ namespace VCPhotoManager
             m_Parent.G = color.G;
             m_Parent.B = color.B;
         }
+
+        public List<Bitmap> Historico
+        {
+            get { return m_Mapas; }
+            set { m_Mapas = value; }
+        }
+        
 
     }
 }
