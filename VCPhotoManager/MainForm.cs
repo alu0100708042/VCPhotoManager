@@ -100,6 +100,7 @@ namespace VCPhotoManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             this.MaximizeBox = false;
             //m_Manager = new Manager();
             //m_SourceForm = new SourceForm(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\imagenprueba.jpg");
@@ -178,7 +179,5 @@ namespace VCPhotoManager
         {
 
         }
-
-        
     }
 }

@@ -1,12 +1,10 @@
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.MainForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.Properties.Resources.resources
-C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.SourceForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csproj.GenerateResource.Cache
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.exe
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.pdb
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
-C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.HistogramaGraficsForm.resources
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.exe
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.pdb
@@ -17,3 +15,4 @@ C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoMana
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csproj.GenerateResource.Cache
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.ImageForm.resources
