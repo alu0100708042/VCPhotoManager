@@ -54,6 +54,9 @@
             this.personalizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarAEscalaDeGrisesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interactivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acumulativoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,8 +89,6 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.histogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.interactivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -249,6 +250,7 @@
             this.copiarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copiarToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.copiarToolStripMenuItem.Text = "&Copiar";
+            this.copiarToolStripMenuItem.Click += new System.EventHandler(this.copiarToolStripButton_Click);
             // 
             // pegarToolStripMenuItem
             // 
@@ -299,6 +301,29 @@
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Text = "&Cambiar a escala de grises";
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Click += new System.EventHandler(this.CambiaraEscalaDeGrises);
+            // 
+            // histogramaToolStripMenuItem
+            // 
+            this.histogramaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.interactivoToolStripMenuItem,
+            this.acumulativoToolStripMenuItem});
+            this.histogramaToolStripMenuItem.Name = "histogramaToolStripMenuItem";
+            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.histogramaToolStripMenuItem.Text = "Histograma";
+            // 
+            // interactivoToolStripMenuItem
+            // 
+            this.interactivoToolStripMenuItem.Name = "interactivoToolStripMenuItem";
+            this.interactivoToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.interactivoToolStripMenuItem.Text = "Interactivo";
+            this.interactivoToolStripMenuItem.Click += new System.EventHandler(this.interactivoToolStripMenuItem_Click);
+            // 
+            // acumulativoToolStripMenuItem
+            // 
+            this.acumulativoToolStripMenuItem.Name = "acumulativoToolStripMenuItem";
+            this.acumulativoToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.acumulativoToolStripMenuItem.Text = "Acumulativo";
+            this.acumulativoToolStripMenuItem.Click += new System.EventHandler(this.acumulativoToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -435,6 +460,7 @@
             this.copiarToolStripButton.Name = "copiarToolStripButton";
             this.copiarToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copiarToolStripButton.Text = "&Copiar";
+            this.copiarToolStripButton.Click += new System.EventHandler(this.copiarToolStripButton_Click);
             // 
             // pegarToolStripButton
             // 
@@ -552,21 +578,6 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
-            // histogramaToolStripMenuItem
-            // 
-            this.histogramaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.interactivoToolStripMenuItem});
-            this.histogramaToolStripMenuItem.Name = "histogramaToolStripMenuItem";
-            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.histogramaToolStripMenuItem.Text = "Histograma";
-            // 
-            // interactivoToolStripMenuItem
-            // 
-            this.interactivoToolStripMenuItem.Name = "interactivoToolStripMenuItem";
-            this.interactivoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.interactivoToolStripMenuItem.Text = "Interactivo";
-            this.interactivoToolStripMenuItem.Click += new System.EventHandler(this.interactivoToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,6 +586,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -654,6 +666,7 @@
         private System.Windows.Forms.ToolStripMenuItem entropíaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem interactivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acumulativoToolStripMenuItem;
     }
 }
 

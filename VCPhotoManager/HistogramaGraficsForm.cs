@@ -11,72 +11,66 @@ namespace VCPhotoManager
 {
     public partial class HistogramaGraficsForm : Form
     {
-        Int32[] m_Vector;
-        System.Drawing.Pen m_Pen = new System.Drawing.Pen(System.Drawing.Color.Black);
-        
-        
-
-        public HistogramaGraficsForm(Int32[] vector)
+        private Int32[] m_Vector;
+        private Pen m_Pen; 
+                
+        public HistogramaGraficsForm(Int32[] vector, String titulo)
         {
-            m_Vector = new Int32[256];
-            m_Pen.Width = 3;
             if (vector != null)
             {
                 InitializeComponent();
                 this.MaximumSize = this.Size;
                 m_Vector = vector;
+                if(!String.IsNullOrEmpty(titulo))
+                {
+                    this.lbTitulo.Text = titulo;
+                }
+                else
+                {
+                    this.lbTitulo.Text = "Histograma";
+                }
             }
+        }
+        
+        private void HistogramaGraficsForm_Load(object sender, EventArgs e)
+        {
+            //paintHistogram(this.CreateGraphics());
+        }
+        
+        private void paintHistogram(Graphics g)
+        {
             
-        }
-
-        public void HistogramaAculativo() 
-        {
-
-        }
-
-
-
-        public void Histograma() 
-        {
-            //this.SuspendLayout();
             Point p1 = new Point();
             Point p2 = new Point();
 
-            System.Drawing.Graphics formGraphics = this.CreateGraphics();
+            m_Pen = new Pen(Color.Black);
+            m_Pen.Width = 3;
+
+            //m_FormGraphics = g;
             
-            formGraphics.DrawLine(m_Pen, 44, 350, 562, 350);
-            formGraphics.DrawLine(m_Pen, 44, 350, 44, 50);
+            g.DrawLine(m_Pen, 44, 350, 562, 350);
+            g.DrawLine(m_Pen, 44, 350, 44, 50);
             m_Pen.Color = Color.Blue;
             m_Pen.Width = 2;
-            for (int i = 0; i < 256; i++)
+            for(int i = 0; i < 256; i++)
             {
                 p1.X = 47 + i * 2;
                 p1.Y = 349;
                 p2.X = 47 + i * 2;
                 p2.Y = (349 - m_Vector[i] % 300);
-                formGraphics.DrawLine(m_Pen, p1, p2);
+                g.DrawLine(m_Pen, p1, p2);
             }
-            m_Pen.Dispose();
-            formGraphics.Dispose();
-
-
-
-
-          /*  Label l = new Label();
-            l.Text = "Histograma";
-            l.Location = new Point(172, 0);
-            this.Controls.Add(l);
-            this.ResumeLayout();
-            this.Refresh();*/
-        }
-        
-        private void HistogramaGraficsForm_Load(object sender, EventArgs e)
-        {
+            // ================= CHORIZO ESTO NO SE PUEDE DISPOSAR ==================
+            // ============ PORQUE SINO YA NO SE PUEDEN VOLVER A USAR ===============
+            //m_Pen.Dispose();
+            //m_FormGraphics.Dispose();
             
-            //this.Refresh();
         }
 
-        
+        private void HistogramaGraficsForm_Paint(object sender, PaintEventArgs e)
+        {
+            paintHistogram(this.CreateGraphics());
+        }
 
     }
 }

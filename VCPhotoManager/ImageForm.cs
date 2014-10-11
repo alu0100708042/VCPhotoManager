@@ -7,36 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using VCPhotoManager.Clases;
 namespace VCPhotoManager
 {
-    public partial class SourceForm : Form
+    public partial class ImageForm : Form
     {
         private String m_PhotoPath;
-        private MainForm m_Parent;
-        private List<Bitmap> m_Mapas;
+        private MainForm m_Parent = null;
+        private List<Bitmap> m_Historico;
+        private Int32[] m_Histograma;
 
-        public SourceForm(String path)
+        private ImageForm()
         {
             InitializeComponent();
-            m_PhotoPath = path;
-            m_Mapas = new List<Bitmap>();
-            this.picSource.Image = Image.FromFile(m_PhotoPath);
-           
+            m_Historico = new List<Bitmap>();
         }
 
-        public SourceForm(Bitmap imagen)
+        public ImageForm(String path) : this()
         {
-            InitializeComponent();
-            m_Mapas = new List<Bitmap>();
-            m_Mapas.Add(imagen as Bitmap);
-            this.picSource.Image = imagen;
+            if(!String.IsNullOrEmpty(path))
+            {
+                m_PhotoPath = path;
+                this.picSource.Image = Image.FromFile(m_PhotoPath);
+                m_Histograma = getDatosHistograma();
+            }
+        }
 
+        public ImageForm(Bitmap imagen) : this()
+        {
+            if(imagen != null)
+            {
+                this.picSource.Image = imagen;
+                m_Histograma = getDatosHistograma();
+            }
         }
         
         private void SourceForm_Load(object sender, EventArgs e)
         {
-            
-            
+                        
             this.ClientSize = this.picSource.Image.Size;
             this.MaximumSize = this.Size;
 
@@ -53,9 +61,22 @@ namespace VCPhotoManager
             return this.picSource;
         }
 
-        public String getPhotoPath()
+        public String PhotoPath
         {
-            return m_PhotoPath;
+            get{ return m_PhotoPath; }
+            set{ m_PhotoPath = value; }
+        }
+
+        public List<Bitmap> Historico
+        {
+            get { return m_Historico; }
+            set { m_Historico = value; }
+        }
+
+        public Int32[] Histograma
+        {
+            get { return m_Histograma; }
+            set { m_Histograma = value; }
         }
 
         // Controlador de evento para el movimiento del raton sobre la imagen.
@@ -70,10 +91,9 @@ namespace VCPhotoManager
             m_Parent.B = color.B;
         }
 
-        public List<Bitmap> Historico
+        private Int32[] getDatosHistograma()
         {
-            get { return m_Mapas; }
-            set { m_Mapas = value; }
+            return new Manager().getHistogram(this.picSource.Image as Bitmap);
         }
         
 

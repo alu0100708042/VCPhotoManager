@@ -1,6 +1,6 @@
 ﻿namespace VCPhotoManager
 {
-    partial class SourceForm
+    partial class ImageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageForm));
             this.picSource = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSource)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(124, 20);
             this.Controls.Add(this.picSource);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SourceForm";
+            this.ShowInTaskbar = false;
             this.Text = "VC Photo Manager - Imagen original";
             this.Load += new System.EventHandler(this.SourceForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picSource)).EndInit();

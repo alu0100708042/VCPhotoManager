@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+
 namespace VCPhotoManager.Clases
 {
     /// <summary>
@@ -65,6 +66,60 @@ namespace VCPhotoManager.Clases
             }
             entropy = -entropy;
             return entropy;
+        }
+
+        public Int32[] getHistogram(Bitmap mapa)
+        {
+            Int32[] result = new Int32[256];
+            for(int i = 0; i < 256; i++)
+            {
+                result[i] = 0;
+            }
+
+            for(int i = 0; i < mapa.Width; i++)
+            {
+                for(int j = 0; j < mapa.Height; j++)
+                {
+                    Color pixel = mapa.GetPixel(i, j);
+                    result[pixel.R] = result[pixel.R] + 1;
+                }
+            }
+            return result;
+        }
+
+        public Int32[] getCumulativeHistogram(Int32[] histograma)
+        {
+            Decimal acumulado = 0;
+            Int32[] result = new Int32[256];
+            Decimal[] histNormal = new Decimal[256];
+
+            for(int i = 0; i < 256; i++)
+            {
+                result[i] = histograma[i];
+                histNormal[i] = 0;
+                acumulado += result[i];
+            }
+
+            // Normalizar el vector
+            for(int i = 0; i < 256; i++)
+            {
+                histNormal[i] = histograma[i] / acumulado;
+            }
+
+            acumulado = 0;
+
+            for(int i = 0; i < 256; i++)
+            {
+                acumulado += histNormal[i]*300;
+                result[i] = (Int32)acumulado;
+            }
+            
+            return result;
+        }
+
+        public void copy(Bitmap mapa)
+        {
+            System.Windows.Forms.Clipboard.SetImage(mapa);
         }
     }   
 }

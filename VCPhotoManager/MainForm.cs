@@ -12,7 +12,7 @@ namespace VCPhotoManager
 {
     public partial class MainForm : Form
     {
-        SourceForm m_SourceForm;
+        ImageForm m_SourceForm;
         Manager m_Manager;
         HistogramaGraficsForm m_HistogramaForm;
         
@@ -57,12 +57,12 @@ namespace VCPhotoManager
         private void AbrirImagen(object sender, EventArgs e) 
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "Imágenes sin pérdida (*.bmp, *.tiff)|*.bmp;*.tiff|Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg";
-            
+            o.Filter = "Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg|Imágenes sin pérdida (*.bmp, *.tiff)|*.bmp;*.tiff";
+
             if (o.ShowDialog() == DialogResult.OK)
             {
                 String path = o.FileName;
-                m_SourceForm = new SourceForm(o.FileName);
+                m_SourceForm = new ImageForm(o.FileName);
                 m_SourceForm.MdiParent = this;
                 m_SourceForm.Show();
             }
@@ -73,9 +73,9 @@ namespace VCPhotoManager
             String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             String formats = "(.jpg|.gif |.bmp|.tiff)";
            
-            if(this.ActiveMdiChild is SourceForm)
+            if(this.ActiveMdiChild is ImageForm)
             {
-                String path = m_SourceForm.getPhotoPath();
+                String path = m_SourceForm.PhotoPath;
                 String[] subStrings = Regex.Split(path, formats);
                 String format = "";
                 Int16 cont = 0;
@@ -87,7 +87,7 @@ namespace VCPhotoManager
                     }
                     cont++;
                 }
-                SourceForm  s= this.ActiveMdiChild as SourceForm;
+                ImageForm  s= this.ActiveMdiChild as ImageForm;
                 String imageName = Regex.Replace(path,formats, String.Empty);
                 
                 s.getPictureBox().Image.Save(imageName + "-copia" + format);
@@ -114,7 +114,7 @@ namespace VCPhotoManager
         {
             Manager m = new Manager();
             Bitmap b = new Bitmap(this.m_SourceForm.getPictureBox().Image as Bitmap);
-            SourceForm s= new SourceForm(m.changeToGrayScale(b));
+            ImageForm s= new ImageForm(m.changeToGrayScale(b));
             s.MdiParent = this;
             s.Show();
         }
@@ -123,11 +123,12 @@ namespace VCPhotoManager
         {
             Double entropy;
             
-            if (this.ActiveMdiChild is SourceForm)
+            if (this.ActiveMdiChild is ImageForm)
             {
-                SourceForm f = this.ActiveMdiChild as SourceForm;
+                ImageForm f = this.ActiveMdiChild as ImageForm;
                 entropy = m_Manager.Entropia(f.getPictureBox().Image as Bitmap);
-                MessageBox.Show("La entropía de la imagen es de: " + Math.Round(entropy, 2).ToString());
+                MessageBox.Show("El valor de la entropía de la imagen es: " + Math.Round(entropy, 2).ToString(), 
+                    "Entropia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -140,34 +141,44 @@ namespace VCPhotoManager
 
         private void interactivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Int32[] vector = new Int32[256];
-            Bitmap Imagen;
-            for (int i = 0; i < 256; i++)
+            if(this.ActiveMdiChild is ImageForm)
             {
-                vector[i] = 0;
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                Int32[] vector = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, null);
+                m_HistogramaForm.MdiParent = this;
+                m_HistogramaForm.Show();
             }
-            if (this.ActiveMdiChild is SourceForm)
+            else
             {
-                SourceForm f = this.ActiveMdiChild as SourceForm;
-                Imagen = f.getPictureBox().Image as Bitmap;
-                for (int i = 0; i < Imagen.Width; i++)
-                {
-                    for (int j = 0; j < Imagen.Height; j++)
-                    {
-                        Color c = Imagen.GetPixel(i, j);
-                        vector[c.R] = vector[c.R] + 1;
-                    }
-                }
-
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+        }
 
-            
-            m_HistogramaForm = new HistogramaGraficsForm(vector);
-           // m_HistogramaForm.MdiParent = this;
-            m_HistogramaForm.Show();
-            m_HistogramaForm.Histograma();
+        private void acumulativoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo");
+                m_HistogramaForm.MdiParent = this;
+                m_HistogramaForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             
         }
+
+        private void copiarToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
