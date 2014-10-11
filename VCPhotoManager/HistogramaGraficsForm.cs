@@ -46,7 +46,7 @@ namespace VCPhotoManager
             m_Pen = new Pen(Color.Black);
             m_Pen.Width = 3;
 
-            //m_FormGraphics = g;
+
             
             g.DrawLine(m_Pen, 44, 350, 562, 350);
             g.DrawLine(m_Pen, 44, 350, 44, 50);
@@ -57,13 +57,10 @@ namespace VCPhotoManager
                 p1.X = 47 + i * 2;
                 p1.Y = 349;
                 p2.X = 47 + i * 2;
-                p2.Y = (349 - m_Vector[i] % 300);
+                p2.Y = (349 - m_Vector[i]);
                 g.DrawLine(m_Pen, p1, p2);
             }
-            // ================= CHORIZO ESTO NO SE PUEDE DISPOSAR ==================
-            // ============ PORQUE SINO YA NO SE PUEDEN VOLVER A USAR ===============
-            //m_Pen.Dispose();
-            //m_FormGraphics.Dispose();
+
             
         }
 

@@ -17,3 +17,4 @@ C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoMana
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csproj.GenerateResource.Cache
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
