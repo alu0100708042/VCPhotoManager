@@ -12,7 +12,7 @@ namespace VCPhotoManager.Clases
     public class Manager
     {
         /// <summary>
-        /// Funcio que recibe un Bitmap y lo convierte en escala de grises.
+        /// Función que recibe un Bitmap y lo convierte en escala de grises.
         /// </summary>
         /// <param name="image">Imagen original que se va a convertir en escala de grises.</param>
         /// <returns>Bitmap convertido en escala de grises</returns>
@@ -38,7 +38,11 @@ namespace VCPhotoManager.Clases
             return aux;
             
         }
-
+        /// <summary>
+        /// Función que recibe un BitMap y calcula su entropía
+        /// </summary>
+        /// <param name="image">Imagen de la cual se calculará su entropía</param>
+        /// <returns>Double con el cálculo matemático de la entropía</returns>
         public Double Entropia(Bitmap image)
         {
             int[] bitsColor = new int[256];
@@ -68,6 +72,7 @@ namespace VCPhotoManager.Clases
             return entropy;
         }
 
+<<<<<<< HEAD
         public Int32[] getNormalizeHistogram(Int32[] histograma)
         {
             //Decimal acumulado = 0;
@@ -106,6 +111,39 @@ namespace VCPhotoManager.Clases
             return result;
         }
 
+=======
+        /// <summary>
+        /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
+        /// </summary>
+        /// <param name="histograma"> Vector que contiene el histograma de frecuencias de una imagen</param>
+        /// <returns>Devuelve un vector de histograma normalizado para su altura de 300 pixels</returns>
+        public Int32[] getNormalizeHistogram(Int32[] histograma)
+        {
+
+            Decimal acumulado = 0;
+            Int32[] result = new Int32[256];
+            
+            for (int i = 0; i < 256; i++)
+            {
+                if (acumulado < histograma[i])
+                    acumulado = histograma[i];
+            }
+            //Chorizo lo puse en 299 porque empiezo a pintar un bit mas arriba en y para que cuadre justo, y no se sobreescriba
+            //El pixel de la linea negra de abajo con las azules
+            for (int i = 0; i < 256; i++)
+            {
+                result[i] = (Int32)((histograma[i]*299)/acumulado);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Función que recibe un BitMap y devolverá el cálculo matemático de su Histograma
+        /// </summary>
+        /// <param name="mapa"> Imagen de la cual calcularemos su Histograma</param>
+        /// <returns>Vector de enteros con el cálculo del Histograma</returns>
+>>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
         public Int32[] getHistogram(Bitmap mapa)
         {
             Int32[] result = new Int32[256];
@@ -126,37 +164,43 @@ namespace VCPhotoManager.Clases
 
             return result;
         }
-
+        /// <summary>
+        /// Función que devuelve el Histograma Acumulativo
+        /// </summary>
+        /// <param name="histograma">Vector con el histograma para calcular su acumulativo</param>
+        /// <returns>Vector con el cálculo del Histograma acumulativo</returns>
         public Int32[] getCumulativeHistogram(Int32[] histograma)
         {
             Decimal acumulado = 0;
             Int32[] result = new Int32[256];
-            Decimal[] histNormal = new Decimal[256];
+            Decimal[] histNormal = new Decimal[256]; 
+                for(int i = 0; i < 256; i++)
+                {
+                    result[i] = histograma[i];
+                    histNormal[i] = 0;
+                    acumulado += result[i];
+                }
 
-            for(int i = 0; i < 256; i++)
-            {
-                result[i] = histograma[i];
-                histNormal[i] = 0;
-                acumulado += result[i];
-            }
+                // Normalizar el vector
+                for(int i = 0; i < 256; i++)
+                {
+                    histNormal[i] = histograma[i] / acumulado;
+                }
 
-            // Normalizar el vector
-            for(int i = 0; i < 256; i++)
-            {
-                histNormal[i] = histograma[i] / acumulado;
-            }
+                acumulado = 0;
 
-            acumulado = 0;
-
-            for(int i = 0; i < 256; i++)
-            {
-                acumulado += histNormal[i]*300;
-                result[i] = (Int32)acumulado;
-            }
-            
-            return result;
+                for(int i = 0; i < 256; i++)
+                {
+                    acumulado += histNormal[i]*300;
+                    result[i] = (Int32)acumulado;
+                }
+                
+                return result;
         }
-
+        /// <summary>
+        /// Función que copia en el portapapeles una Imagen
+        /// </summary>
+        /// <param name="mapa">Imagen que se copiará en el portapapeles</param>
         public void copy(Bitmap mapa)
         {
             System.Windows.Forms.Clipboard.SetImage(mapa);

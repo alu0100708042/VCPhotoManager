@@ -100,6 +100,7 @@ namespace VCPhotoManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             this.MaximizeBox = false;
             //m_Manager = new Manager();
             //m_SourceForm = new SourceForm(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\imagenprueba.jpg");
@@ -144,8 +145,20 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
+<<<<<<< HEAD
                 Int32[] vector = m_Manager.getNormalizeHistogram(m_Manager.getHistogram(f.getPictureBox().Image as Bitmap));
                 m_HistogramaForm = new HistogramaGraficsForm(vector, null);
+=======
+                Int32 max = -99999; 
+                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                for (int i = 0; i < 256; i++)
+                {
+                    if (max < aux[i])
+                        max = aux[i];
+                }
+                Int32[] vector = m_Manager.getNormalizeHistogram(aux);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, null,max);
+>>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
             }
@@ -161,8 +174,15 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
+                Int32 max = -9999;
+                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                for (int i = 0; i < 256; i++)
+                {
+                    if (max < aux[i])
+                        max = aux[i];
+                }
                 Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo");
+                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo",max);
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
             }
@@ -178,7 +198,5 @@ namespace VCPhotoManager
         {
 
         }
-
-        
     }
 }
