@@ -140,9 +140,38 @@ namespace VCPhotoManager
             m_SourceForm.getPictureBox().Image = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
         }
 
-        private void interactivoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void copiarToolStripButton_Click(object sender, EventArgs e)
         {
-            if(this.ActiveMdiChild is ImageForm)
+
+        }
+
+        private void acumulativoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                Int32 max = -9999;
+                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                for (int i = 0; i < 256; i++)
+                {
+                    if (max < aux[i])
+                        max = aux[i];
+                }
+                Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo", max);
+                m_HistogramaForm.MdiParent = this;
+                m_HistogramaForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void frecuenciasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+               if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
                 Int32 max = -99999; 
@@ -162,36 +191,6 @@ namespace VCPhotoManager
                 MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void acumulativoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(this.ActiveMdiChild is ImageForm)
-            {
-                ImageForm f = this.ActiveMdiChild as ImageForm;
-                Int32 max = -9999;
-                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
-                for (int i = 0; i < 256; i++)
-                {
-                    if (max < aux[i])
-                        max = aux[i];
-                }
-                Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo",max);
-                m_HistogramaForm.MdiParent = this;
-                m_HistogramaForm.Show();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            
-        }
-
-        private void copiarToolStripButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
