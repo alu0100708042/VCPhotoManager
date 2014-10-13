@@ -43,14 +43,15 @@
             this.picSource.TabStop = false;
             this.picSource.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picSource_MouseMove);
             // 
-            // SourceForm
+            // ImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(124, 20);
             this.Controls.Add(this.picSource);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "SourceForm";
+            this.MaximizeBox = false;
+            this.Name = "ImageForm";
             this.ShowInTaskbar = false;
             this.Text = "VC Photo Manager - Imagen original";
             this.Load += new System.EventHandler(this.SourceForm_Load);

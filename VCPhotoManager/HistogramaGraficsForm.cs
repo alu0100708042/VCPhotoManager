@@ -14,7 +14,7 @@ namespace VCPhotoManager
         private Int32[] m_Vector;
         private Pen m_Pen; 
                 
-        public HistogramaGraficsForm(Int32[] vector, String titulo)
+        public HistogramaGraficsForm(Int32[] vector, String titulo, Int32 maximo)
         {
             if (vector != null)
             {
@@ -24,10 +24,12 @@ namespace VCPhotoManager
                 if(!String.IsNullOrEmpty(titulo))
                 {
                     this.lbTitulo.Text = titulo;
+                    this.lbMaximo.Text = maximo.ToString();
                 }
                 else
                 {
                     this.lbTitulo.Text = "Histograma";
+                    this.lbMaximo.Text = maximo.ToString();
                 }
             }
         }

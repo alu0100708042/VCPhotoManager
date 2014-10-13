@@ -72,6 +72,11 @@ namespace VCPhotoManager.Clases
             return entropy;
         }
 
+        /// <summary>
+        /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
+        /// </summary>
+        /// <param name="histograma"> Vector que contiene el histograma de frecuencias de una imagen</param>
+        /// <returns>Devuelve un vector de histograma normalizado para su altura de 300 pixels</returns>
         public Int32[] getNormalizeHistogram(Int32[] histograma)
         {
 
