@@ -145,7 +145,7 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                Int32[] vector = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                Int32[] vector = m_Manager.getNormalizeHistogram(m_Manager.getHistogram(f.getPictureBox().Image as Bitmap));
                 m_HistogramaForm = new HistogramaGraficsForm(vector, null);
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();

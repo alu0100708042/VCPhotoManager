@@ -71,6 +71,28 @@ namespace VCPhotoManager.Clases
             entropy = -entropy;
             return entropy;
         }
+
+        public Int32[] getNormalizeHistogram(Int32[] histograma)
+        {
+
+            Decimal acumulado = 0;
+            Int32[] result = new Int32[256];
+            
+            for (int i = 0; i < 256; i++)
+            {
+                if (acumulado < histograma[i])
+                    acumulado = histograma[i];
+            }
+            //Chorizo lo puse en 299 porque empiezo a pintar un bit mas arriba en y para que cuadre justo, y no se sobreescriba
+            //El pixel de la linea negra de abajo con las azules
+            for (int i = 0; i < 256; i++)
+            {
+                result[i] = (Int32)((histograma[i]*299)/acumulado);
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Función que recibe un BitMap y devolverá el cálculo matemático de su Histograma
         /// </summary>
