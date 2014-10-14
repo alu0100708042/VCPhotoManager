@@ -196,9 +196,10 @@ namespace VCPhotoManager
         private void transformacionesLinealesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImageForm f = this.ActiveMdiChild as ImageForm;
-            Point[] a = new Point[2];
-            a[0]= new Point(0,255);
-            a[1] = new Point(255,0);
+            Point[] a = new Point[3];
+            a[0]= new Point(0,0);
+            a[1] = new Point(127,0);
+            a[2] = new Point(128, 255);
             ImageForm s = new ImageForm(m_Manager.linearTransformation(a,f.getPictureBox().Image as Bitmap));
             s.MdiParent = this;
             s.Show();

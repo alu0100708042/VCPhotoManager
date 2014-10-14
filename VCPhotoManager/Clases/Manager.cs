@@ -51,9 +51,13 @@ namespace VCPhotoManager.Clases
                     for (int y = 0; y < Image.Height; y++)
                     {
                         Color aux = Image.GetPixel(x, y);
-                        byte transcolor = (byte)(a * aux.R + b);
-                        Color newaux = Color.FromArgb(transcolor,transcolor,transcolor);
-                        result.SetPixel(x,y,newaux);
+                        if (aux.R >= coords[i - 1].X && aux.R <= coords[i].X)
+                        {
+                            byte transcolor = (byte)(a * aux.R + b);
+                            Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                            result.SetPixel(x, y, newaux);                        
+                        }
+
                     }
                 }
             }
