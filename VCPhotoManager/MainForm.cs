@@ -192,5 +192,16 @@ namespace VCPhotoManager
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void transformacionesLinealesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageForm f = this.ActiveMdiChild as ImageForm;
+            Point[] a = new Point[2];
+            a[0]= new Point(0,255);
+            a[1] = new Point(255,0);
+            ImageForm s = new ImageForm(m_Manager.linearTransformation(a,f.getPictureBox().Image as Bitmap));
+            s.MdiParent = this;
+            s.Show();
+        }
     }
 }

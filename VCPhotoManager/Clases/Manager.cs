@@ -38,6 +38,27 @@ namespace VCPhotoManager.Clases
             return aux;
             
         }
+
+        public Bitmap linearTransformation(Point[] coords, Bitmap Image)
+        {
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            for (int i = 1; i < coords.Length; i++)
+            {
+                Int32 a = (coords[i].Y - coords[i-1].Y) / (coords[i].X - coords[i-1].X);
+                Int32 b = coords[i].Y - a*coords[i].X;
+                for (int x = 0; x < Image.Width; x++)
+                {
+                    for (int y = 0; y < Image.Height; y++)
+                    {
+                        Color aux = Image.GetPixel(x, y);
+                        byte transcolor = (byte)(a * aux.R + b);
+                        Color newaux = Color.FromArgb(transcolor,transcolor,transcolor);
+                        result.SetPixel(x,y,newaux);
+                    }
+                }
+            }
+            return result;
+        }
         /// <summary>
         /// Función que recibe un BitMap y calcula su entropía
         /// </summary>
@@ -121,6 +142,7 @@ namespace VCPhotoManager.Clases
             }
             return result;
         }
+
         /// <summary>
         /// Función que devuelve el Histograma Acumulativo
         /// </summary>
