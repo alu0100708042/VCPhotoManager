@@ -58,6 +58,7 @@
             this.frecuenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformacionesLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,7 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.transformacionesLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.negativizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -336,6 +337,15 @@
             this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.personalizarToolStripMenuItem.Text = "&Personalizar";
             // 
+            // transformacionesLinealesToolStripMenuItem
+            // 
+            this.transformacionesLinealesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.negativizarToolStripMenuItem});
+            this.transformacionesLinealesToolStripMenuItem.Name = "transformacionesLinealesToolStripMenuItem";
+            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.transformacionesLinealesToolStripMenuItem.Text = "Transformaciones Lineales";
+           
+            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -388,7 +398,7 @@
             // entropíaToolStripMenuItem
             // 
             this.entropíaToolStripMenuItem.Name = "entropíaToolStripMenuItem";
-            this.entropíaToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.entropíaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.entropíaToolStripMenuItem.Text = "Entropía";
             this.entropíaToolStripMenuItem.Click += new System.EventHandler(this.EntropiaDeImagen);
             // 
@@ -589,12 +599,12 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
-            // transformacionesLinealesToolStripMenuItem
+            // negativizarToolStripMenuItem
             // 
-            this.transformacionesLinealesToolStripMenuItem.Name = "transformacionesLinealesToolStripMenuItem";
-            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.transformacionesLinealesToolStripMenuItem.Text = "Transformaciones Lineales";
-            this.transformacionesLinealesToolStripMenuItem.Click += new System.EventHandler(this.transformacionesLinealesToolStripMenuItem_Click);
+            this.negativizarToolStripMenuItem.Name = "negativizarToolStripMenuItem";
+            this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.negativizarToolStripMenuItem.Text = "Negativizar";
+            this.negativizarToolStripMenuItem.Click += new System.EventHandler(this.negativizarToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -687,6 +697,7 @@
         private System.Windows.Forms.ToolStripMenuItem acumulativoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem frecuenciasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transformacionesLinealesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem negativizarToolStripMenuItem;
     }
 }
 
