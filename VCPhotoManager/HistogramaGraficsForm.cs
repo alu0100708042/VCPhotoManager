@@ -62,11 +62,7 @@ namespace VCPhotoManager
                 p2.Y = (349 - m_Vector[i]);
                 g.DrawLine(m_Pen, p1, p2);
             }
-<<<<<<< HEAD
 
-            
-=======
->>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
         }
 
         private void HistogramaGraficsForm_Paint(object sender, PaintEventArgs e)

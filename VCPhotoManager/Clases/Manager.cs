@@ -72,46 +72,46 @@ namespace VCPhotoManager.Clases
             return entropy;
         }
 
-<<<<<<< HEAD
-        public Int32[] getNormalizeHistogram(Int32[] histograma)
-        {
-            //Decimal acumulado = 0;
-            //Int32[] aux = new Int32[256];
-            Decimal acumulado = 0;
-            Int32[] result = new Int32[256];
-            Decimal[] histNormal = new Decimal[256];
-            for(int i = 0; i < 256; i++)
-            {
-                result[i] = histograma[i];
-                histNormal[i] = 0;
-                acumulado += result[i];
-            }
 
-            // Normalizar el vector
-            for(int i = 0; i < 256; i++)
-            {
-                histNormal[i] = histograma[i] /acumulado;
-            }
+        //public Int32[] getNormalizeHistogram(Int32[] histograma)
+        //{
+        //    //Decimal acumulado = 0;
+        //    //Int32[] aux = new Int32[256];
+        //    Decimal acumulado = 0;
+        //    Int32[] result = new Int32[256];
+        //    Decimal[] histNormal = new Decimal[256];
+        //    for(int i = 0; i < 256; i++)
+        //    {
+        //        result[i] = histograma[i];
+        //        histNormal[i] = 0;
+        //        acumulado += result[i];
+        //    }
+
+        //    // Normalizar el vector
+        //    for(int i = 0; i < 256; i++)
+        //    {
+        //        histNormal[i] = histograma[i] /acumulado;
+        //    }
 
 
 
-            for(int i = 0; i < 256; i++)
-            {
-                result[i] = (Int32)(histNormal[i] *300);
-            }
-         /*   for(int i = 0; i < 256; i++)
-            {
-                acumulado += values[i];
-            }
+        //    for(int i = 0; i < 256; i++)
+        //    {
+        //        result[i] = (Int32)(histNormal[i] *300);
+        //    }
+        // /*   for(int i = 0; i < 256; i++)
+        //    {
+        //        acumulado += values[i];
+        //    }
 
-            for(int i = 0; i < 256; i++)
-            {
-                aux[i] = (Int32)Math.Round((Decimal)(values[i] / acumulado),2) * 300;
-            }*/
-            return result;
-        }
+        //    for(int i = 0; i < 256; i++)
+        //    {
+        //        aux[i] = (Int32)Math.Round((Decimal)(values[i] / acumulado),2) * 300;
+        //    }*/
+        //    return result;
+        //}
 
-=======
+
         /// <summary>
         /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
         /// </summary>
@@ -143,7 +143,6 @@ namespace VCPhotoManager.Clases
         /// </summary>
         /// <param name="mapa"> Imagen de la cual calcularemos su Histograma</param>
         /// <returns>Vector de enteros con el cálculo del Histograma</returns>
->>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
         public Int32[] getHistogram(Bitmap mapa)
         {
             Int32[] result = new Int32[256];
