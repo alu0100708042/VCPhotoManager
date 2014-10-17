@@ -38,7 +38,32 @@ namespace VCPhotoManager.Clases
             return aux;
             
         }
-        
+
+        public Bitmap linearTransformation(Point[] coords, Bitmap Image)
+        {
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            for (int i = 1; i < coords.Length; i++)
+            {
+                Int32 a = (coords[i].Y - coords[i-1].Y) / (coords[i].X - coords[i-1].X);
+                Int32 b = coords[i].Y - a*coords[i].X;
+                for (int x = 0; x < Image.Width; x++)
+                {
+                    for (int y = 0; y < Image.Height; y++)
+                    {
+                        Color aux = Image.GetPixel(x, y);
+                        if (aux.R >= coords[i - 1].X && aux.R <= coords[i].X)
+                        {
+                            byte transcolor = (byte)(a * aux.R + b);
+                            Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                            result.SetPixel(x, y, newaux);                        
+                        }
+
+                    }
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// Función que recibe un BitMap y calcula su entropía
         /// </summary>
@@ -47,12 +72,14 @@ namespace VCPhotoManager.Clases
         public Double Entropia(Bitmap image)
         {
             int[] bitsColor = new int[256];
-            Double entropy= 0.0,probability;
+            Double entropy = 0.0, probability;
+            Color aux;
+
             for (int i = 0; i < 256; i++)
             {
                 bitsColor[i] = 0;
             }
-            Color aux;
+            
             for (int i = 0; i < image.Width; i++)
             {
                 for (int j = 0; j < image.Height; j++) 
@@ -64,10 +91,13 @@ namespace VCPhotoManager.Clases
 
             for (int i = 0; i < 256; i++)
             {
-                //Funcion para calcular entropia  E = -Sum(P(i)*log(P(i))))   
+                //Funcion para calcular entropia  E = -Sum(P(i)*log(P(i))))
+                // La probabilidad tiene que ser distinta de 0 para poder hacer el logaritmo
                 probability = bitsColor[i] / (Double)(image.Width * image.Height);
-                if(probability != 0) // La probabilidad tiene que ser distinta de 0 para poder hacer el logaritmo
+                if(probability != 0)
+                {
                     entropy += probability * Math.Log(probability, 2);
+                }
             }
             entropy = -entropy;
             return entropy;
@@ -141,9 +171,9 @@ namespace VCPhotoManager.Clases
         }
 
         /// <summary>
-        /// Función que recibe un BitMap y devolverá el cálculo matemático de su Histograma
+        /// Método que recibe un BitMap y devuelve el cálculo matemático de su Histograma
         /// </summary>
-        /// <param name="mapa"> Imagen de la cual calcularemos su Histograma</param>
+        /// <param name="mapa">Imagen de la cual calcularemos su Histograma</param>
         /// <returns>Vector de enteros con el cálculo del Histograma</returns>
         public Int32[] getHistogram(Bitmap mapa)
         {
@@ -208,5 +238,37 @@ namespace VCPhotoManager.Clases
         {
             System.Windows.Forms.Clipboard.SetImage(mapa);
         }
+
+        public Rectangle getRectangle(Point p1, Point p2)
+        {
+            Rectangle rect = new Rectangle(Math.Min(p1.X, p2.X), 
+                Math.Min(p1.Y, p2.Y), Math.Abs(p2.X - p1.X), Math.Abs(p2.Y - p1.Y));
+            return rect;
+        }
+
+        /// <summary>
+        /// Método que crea una imagen a partir de una imagen original y un rectangulo
+        /// que representa las dimensiones y posición de la imagen que se desea obtener
+        /// eto Bitmap con las dimensiones del rectángulo.
+        /// </summary>
+        /// <param name="imagen">Bitmap con la imagen original</param>
+        /// <param name="rect">Rectangle que contendrá la sub imagen</param>
+        /// <returns>Bitmap con las dimensiones del rectángulo</returns>
+        public Bitmap createSubBitmap(Bitmap imagen, Rectangle rect)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(rect.Width, rect.Height);
+                Graphics g = Graphics.FromImage(bmp);
+                g.DrawImage(imagen, 0, 0, rect, GraphicsUnit.Pixel);
+                g.Dispose();
+                return bmp;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
+        
     }   
 }
