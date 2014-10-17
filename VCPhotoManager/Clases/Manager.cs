@@ -258,11 +258,7 @@ namespace VCPhotoManager.Clases
         {
             try
             {
-                Bitmap bmp = new Bitmap(rect.Width, rect.Height);
-                Graphics g = Graphics.FromImage(bmp);
-                g.DrawImage(imagen, 0, 0, rect, GraphicsUnit.Pixel);
-                g.Dispose();
-                return bmp;
+                return imagen.Clone(rect, imagen.PixelFormat);
             }
             catch(Exception)
             {

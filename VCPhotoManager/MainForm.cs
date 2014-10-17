@@ -251,10 +251,13 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
+                
+
                 Bitmap imagen = f.getRecorte;
                 
                 if(imagen != null)
                 {
+                    
                     ImageForm target = new ImageForm(imagen);
                     target.MdiParent = this;
                     target.Show();
@@ -270,6 +273,11 @@ namespace VCPhotoManager
                 MessageBox.Show("Debe seleccionar una imagen.", "Selección",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void imprimirToolStripButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
