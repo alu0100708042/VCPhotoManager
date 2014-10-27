@@ -120,7 +120,7 @@ namespace VCPhotoManager
             }
 
         }
-
+         
         // Controlador de evento para el movimiento del raton sobre la imagen.
         private void picSource_MouseMove(object sender, MouseEventArgs e)
         {

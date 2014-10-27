@@ -279,5 +279,25 @@ namespace VCPhotoManager
         {
 
         }
+
+        private void brilloYContrasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                Int32[] brillo = m_Manager.brightnessAndContrast(f.getPictureBox().Image as Bitmap);
+                MessageBox.Show("El brillo de la imagen es:" + brillo[0] + " y el constraste:" + brillo[1]);
+                // Ojo el primer valor que pasamos a la funcion de brillo es la diferencia entre el nuevo y el actual
+                ImageForm s = new ImageForm(m_Manager.changeBrightnessAndContrast(200,69, f.getPictureBox().Image as Bitmap));
+                s.MdiParent = this;
+                s.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+           // MessageBox.Show("El brillo de la imagen es:" + brillo[0].ToString() + " y el contraste:" + brillo[1].ToString());
+        }
     }
 }

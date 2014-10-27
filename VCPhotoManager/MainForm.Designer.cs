@@ -93,6 +93,7 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.brilloYContrasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -358,7 +359,7 @@
             // negativizarToolStripMenuItem
             // 
             this.negativizarToolStripMenuItem.Name = "negativizarToolStripMenuItem";
-            this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.negativizarToolStripMenuItem.Text = "Negativizar";
             this.negativizarToolStripMenuItem.Click += new System.EventHandler(this.negativizarToolStripMenuItem_Click);
             // 
@@ -377,36 +378,37 @@
             // contenidoToolStripMenuItem
             // 
             this.contenidoToolStripMenuItem.Name = "contenidoToolStripMenuItem";
-            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.contenidoToolStripMenuItem.Text = "&Contenido";
             // 
             // índiceToolStripMenuItem
             // 
             this.índiceToolStripMenuItem.Name = "índiceToolStripMenuItem";
-            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.índiceToolStripMenuItem.Text = "Índic&e";
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.buscarToolStripMenuItem.Text = "&Buscar";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // acercadeToolStripMenuItem
             // 
             this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
             // verToolStripMenuItem
             // 
             this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.entropíaToolStripMenuItem});
+            this.entropíaToolStripMenuItem,
+            this.brilloYContrasteToolStripMenuItem});
             this.verToolStripMenuItem.Name = "verToolStripMenuItem";
             this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.verToolStripMenuItem.Text = "Ver";
@@ -414,7 +416,7 @@
             // entropíaToolStripMenuItem
             // 
             this.entropíaToolStripMenuItem.Name = "entropíaToolStripMenuItem";
-            this.entropíaToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.entropíaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.entropíaToolStripMenuItem.Text = "Entropía";
             this.entropíaToolStripMenuItem.Click += new System.EventHandler(this.EntropiaDeImagen);
             // 
@@ -617,6 +619,13 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
+            // brilloYContrasteToolStripMenuItem
+            // 
+            this.brilloYContrasteToolStripMenuItem.Name = "brilloYContrasteToolStripMenuItem";
+            this.brilloYContrasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.brilloYContrasteToolStripMenuItem.Text = "Brillo y Contraste";
+            this.brilloYContrasteToolStripMenuItem.Click += new System.EventHandler(this.brilloYContrasteToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -710,6 +719,7 @@
         private System.Windows.Forms.ToolStripMenuItem transformacionesLinealesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negativizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seleccionarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brilloYContrasteToolStripMenuItem;
     }
 }
 

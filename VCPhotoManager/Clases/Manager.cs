@@ -103,46 +103,75 @@ namespace VCPhotoManager.Clases
             return entropy;
         }
 
+        public Int32[] brightnessAndContrast(Bitmap Image) 
+        {
+            Int32[] bac = new Int32[2];
+            bac[0] = 0;
+            bac[1] = 1;
+            Int32[] n_pixels = getHistogram(Image);
+            //Brillo
+            for (int i = 0; i < 256; i++) 
+            {
+                bac[0] += n_pixels[i] * i;
+            }
+            bac[0] = (Int32)(bac[0]/(Image.Width * Image.Height));
+            //Contraste
+            for (int i = 0; i < 256; i++) 
+            {
+                bac[1] += (Int32)(n_pixels[i] * Math.Pow((bac[0]-i),2));
+            }
+            bac[1] = (Int32)(Math.Sqrt(bac[1]/(Image.Width*Image.Height)));
+            return bac;
+        }
 
-        //public Int32[] getNormalizeHistogram(Int32[] histograma)
-        //{
-        //    //Decimal acumulado = 0;
-        //    //Int32[] aux = new Int32[256];
-        //    Decimal acumulado = 0;
-        //    Int32[] result = new Int32[256];
-        //    Decimal[] histNormal = new Decimal[256];
-        //    for(int i = 0; i < 256; i++)
-        //    {
-        //        result[i] = histograma[i];
-        //        histNormal[i] = 0;
-        //        acumulado += result[i];
-        //    }
-
-        //    // Normalizar el vector
-        //    for(int i = 0; i < 256; i++)
-        //    {
-        //        histNormal[i] = histograma[i] /acumulado;
-        //    }
-
-
-
-        //    for(int i = 0; i < 256; i++)
-        //    {
-        //        result[i] = (Int32)(histNormal[i] *300);
-        //    }
-        // /*   for(int i = 0; i < 256; i++)
-        //    {
-        //        acumulado += values[i];
-        //    }
-
-        //    for(int i = 0; i < 256; i++)
-        //    {
-        //        aux[i] = (Int32)Math.Round((Decimal)(values[i] / acumulado),2) * 300;
-        //    }*/
-        //    return result;
-        //}
+        public Bitmap changeBrightnessAndContrast(Int32 nBrillo, Int32 nContraste,Bitmap Image)
+        {
+            Int32[] byc = brightnessAndContrast(Image);
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            Double a, b;
+            Int32[] h_aux = new Int32[256];
+            a = (Double)(nContraste) / (Double)(byc[1]); // o' = a * o
+            b = nBrillo-a * byc[0]; // u' =a*u + b 
+            for (int i = 0; i < 256; i++) 
+            {
+                h_aux[i] = (Int32)(a * i + b);
+                if (h_aux[i] > 255)
+                    h_aux[i] = 255;
+                if (h_aux[i] < 0)
+                    h_aux[i] = 0;
+            }
+                for (int i = 0; i < Image.Width; i++)
+                {
+                    for (int j = 0; j < Image.Height; j++)
+                    {
+                        Color aux = Image.GetPixel(i, j);
+                        byte transcolor = (byte)(h_aux[aux.R]);
+                        Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                        result.SetPixel(i, j, newaux);
+                    }
+                }
 
 
+            /*for (int i = 0; i < Image.Width; i++)
+            {
+
+                for (int j = 0; j < Image.Height; j++)
+                {
+                    Color aux = Image.GetPixel(i, j);
+                    int n_byte = aux.R + a;
+                    if (n_byte > 255)
+                        n_byte = 255;
+                    if (n_byte < 0)
+                        n_byte = 0;
+
+                    byte transcolor = (byte)(n_byte);
+                    Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                    result.SetPixel(i, j, newaux);
+                }
+            }*/
+
+          return result;
+        }
         /// <summary>
         /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
         /// </summary>
