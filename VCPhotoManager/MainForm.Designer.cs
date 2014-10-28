@@ -69,6 +69,7 @@
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entropíaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brilloYContrasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.nuevoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.abrirToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -93,7 +94,7 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.brilloYContrasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformacionesNoLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -293,7 +294,8 @@
             this.histogramaToolStripMenuItem,
             this.opcionesToolStripMenuItem,
             this.personalizarToolStripMenuItem,
-            this.transformacionesLinealesToolStripMenuItem});
+            this.transformacionesLinealesToolStripMenuItem,
+            this.transformacionesNoLinealesToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -301,7 +303,7 @@
             // cambiarAEscalaDeGrisesToolStripMenuItem
             // 
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Name = "cambiarAEscalaDeGrisesToolStripMenuItem";
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Text = "&Cambiar a escala de grises";
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Click += new System.EventHandler(this.CambiaraEscalaDeGrises);
             // 
@@ -310,7 +312,7 @@
             this.histogramaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.interactivoToolStripMenuItem});
             this.histogramaToolStripMenuItem.Name = "histogramaToolStripMenuItem";
-            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.histogramaToolStripMenuItem.Text = "Histograma";
             // 
             // interactivoToolStripMenuItem
@@ -339,13 +341,13 @@
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.opcionesToolStripMenuItem.Text = "&Opciones";
             // 
             // personalizarToolStripMenuItem
             // 
             this.personalizarToolStripMenuItem.Name = "personalizarToolStripMenuItem";
-            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.personalizarToolStripMenuItem.Text = "&Personalizar";
             // 
             // transformacionesLinealesToolStripMenuItem
@@ -353,13 +355,13 @@
             this.transformacionesLinealesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.negativizarToolStripMenuItem});
             this.transformacionesLinealesToolStripMenuItem.Name = "transformacionesLinealesToolStripMenuItem";
-            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.transformacionesLinealesToolStripMenuItem.Text = "Transformaciones Lineales";
             // 
             // negativizarToolStripMenuItem
             // 
             this.negativizarToolStripMenuItem.Name = "negativizarToolStripMenuItem";
-            this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.negativizarToolStripMenuItem.Text = "Negativizar";
             this.negativizarToolStripMenuItem.Click += new System.EventHandler(this.negativizarToolStripMenuItem_Click);
             // 
@@ -378,30 +380,30 @@
             // contenidoToolStripMenuItem
             // 
             this.contenidoToolStripMenuItem.Name = "contenidoToolStripMenuItem";
-            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.contenidoToolStripMenuItem.Text = "&Contenido";
             // 
             // índiceToolStripMenuItem
             // 
             this.índiceToolStripMenuItem.Name = "índiceToolStripMenuItem";
-            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.índiceToolStripMenuItem.Text = "Índic&e";
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.buscarToolStripMenuItem.Text = "&Buscar";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
             // 
             // acercadeToolStripMenuItem
             // 
             this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
             // verToolStripMenuItem
@@ -419,6 +421,13 @@
             this.entropíaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.entropíaToolStripMenuItem.Text = "Entropía";
             this.entropíaToolStripMenuItem.Click += new System.EventHandler(this.EntropiaDeImagen);
+            // 
+            // brilloYContrasteToolStripMenuItem
+            // 
+            this.brilloYContrasteToolStripMenuItem.Name = "brilloYContrasteToolStripMenuItem";
+            this.brilloYContrasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.brilloYContrasteToolStripMenuItem.Text = "Brillo y Contraste";
+            this.brilloYContrasteToolStripMenuItem.Click += new System.EventHandler(this.brilloYContrasteToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -619,12 +628,12 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
-            // brilloYContrasteToolStripMenuItem
+            // transformacionesNoLinealesToolStripMenuItem
             // 
-            this.brilloYContrasteToolStripMenuItem.Name = "brilloYContrasteToolStripMenuItem";
-            this.brilloYContrasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.brilloYContrasteToolStripMenuItem.Text = "Brillo y Contraste";
-            this.brilloYContrasteToolStripMenuItem.Click += new System.EventHandler(this.brilloYContrasteToolStripMenuItem_Click);
+            this.transformacionesNoLinealesToolStripMenuItem.Name = "transformacionesNoLinealesToolStripMenuItem";
+            this.transformacionesNoLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.transformacionesNoLinealesToolStripMenuItem.Text = "Transformaciones no Lineales";
+            this.transformacionesNoLinealesToolStripMenuItem.Click += new System.EventHandler(this.transformacionesNoLinealesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -720,6 +729,7 @@
         private System.Windows.Forms.ToolStripMenuItem negativizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seleccionarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brilloYContrasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transformacionesNoLinealesToolStripMenuItem;
     }
 }
 

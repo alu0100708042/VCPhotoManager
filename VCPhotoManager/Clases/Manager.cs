@@ -64,6 +64,46 @@ namespace VCPhotoManager.Clases
             return result;
         }
 
+        public Bitmap noLinearTransformation(Bitmap Image, Double gamma)
+        {
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            Int32[] h_aux =getHistogram(Image);
+            Double[] h_aux_d = new Double[256];
+            Int32 acumulado = 0;
+            for (int i = 0; i < 256; i++)
+            {
+                h_aux_d[i] = h_aux[i];
+            }
+            // Normalizamos entre 0 y 1
+            for (int i = 0; i < 256; i++)
+            {
+                if (acumulado < h_aux[i])
+                {
+                    acumulado = h_aux[i];
+                }
+            }
+            for (int i = 0; i < 256; i++)
+            {
+                h_aux_d[i] = (Double)(i) / (Double)(255);
+            }
+            // Hacemos la transformación no lineal
+            for (int i = 0; i < 256; i++)
+            {
+                h_aux_d[i]=Math.Pow(h_aux_d[i],gamma);
+            }
+            for (int x = 0; x < Image.Width; x++)
+            {
+                for (int y = 0; y < Image.Height; y++)
+                {
+                    Color aux = Image.GetPixel(x, y);
+                    byte transcolor = (byte)aux.R;
+                    Color newaux = Color.FromArgb((byte)(h_aux_d[transcolor]*255), (byte)(h_aux_d[transcolor]*255), (byte)(h_aux_d[transcolor]*255));
+                    result.SetPixel(x, y, newaux);
+
+                }
+            }
+        return result;
+        }
         /// <summary>
         /// Función que recibe un BitMap y calcula su entropía
         /// </summary>

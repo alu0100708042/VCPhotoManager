@@ -101,6 +101,7 @@ namespace VCPhotoManager
         {
             
             this.MaximizeBox = false;
+            this.MinimumSize = this.Size;
             //m_Manager = new Manager();
             //m_SourceForm = new SourceForm(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\imagenprueba.jpg");
             //m_SourceForm.Show();
@@ -298,6 +299,22 @@ namespace VCPhotoManager
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
            // MessageBox.Show("El brillo de la imagen es:" + brillo[0].ToString() + " y el contraste:" + brillo[1].ToString());
+        }
+
+        private void transformacionesNoLinealesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                ImageForm s = new ImageForm(m_Manager.noLinearTransformation(f.getPictureBox().Image as Bitmap,.25));
+                s.MdiParent = this;
+                s.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
