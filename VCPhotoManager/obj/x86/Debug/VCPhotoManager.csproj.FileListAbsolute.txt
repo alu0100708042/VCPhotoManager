@@ -21,3 +21,4 @@ C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoMana
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.ImageForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
 >>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.BrilloContrasteForm.resources

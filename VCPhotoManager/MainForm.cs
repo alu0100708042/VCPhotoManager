@@ -15,6 +15,7 @@ namespace VCPhotoManager
         ImageForm m_SourceForm;
         Manager m_Manager;
         HistogramaGraficsForm m_HistogramaForm;
+
         
         public MainForm()
         {
@@ -286,12 +287,16 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
+                BrilloContrasteForm bcForm = new BrilloContrasteForm(f.getPictureBox().Image as Bitmap);
+                bcForm.Show();
+              /*  
                 Int32[] brillo = m_Manager.brightnessAndContrast(f.getPictureBox().Image as Bitmap);
                 MessageBox.Show("El brillo de la imagen es:" + brillo[0] + " y el constraste:" + brillo[1]);
                 // Ojo el primer valor que pasamos a la funcion de brillo es la diferencia entre el nuevo y el actual
                 ImageForm s = new ImageForm(m_Manager.changeBrightnessAndContrast(200,69, f.getPictureBox().Image as Bitmap));
                 s.MdiParent = this;
                 s.Show();
+               * */
             }
             else
             {

@@ -46,6 +46,7 @@ namespace VCPhotoManager.Clases
             {
                 Int32 a = (coords[i].Y - coords[i-1].Y) / (coords[i].X - coords[i-1].X);
                 Int32 b = coords[i].Y - a*coords[i].X;
+
                 for (int x = 0; x < Image.Width; x++)
                 {
                     for (int y = 0; y < Image.Height; y++)
@@ -54,8 +55,9 @@ namespace VCPhotoManager.Clases
                         if (aux.R >= coords[i - 1].X && aux.R <= coords[i].X)
                         {
                             byte transcolor = (byte)(a * aux.R + b);
+
                             Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
-                            result.SetPixel(x, y, newaux);                        
+                            result.SetPixel(x, y, newaux);
                         }
 
                     }
@@ -171,7 +173,7 @@ namespace VCPhotoManager.Clases
             Double a, b;
             Int32[] h_aux = new Int32[256];
             a = (Double)(nContraste) / (Double)(byc[1]); // o' = a * o
-            b = nBrillo-a * byc[0]; // u' =a*u + b 
+            b = nBrillo - (a * byc[0]); // u' =a*u + b 
             for (int i = 0; i < 256; i++) 
             {
                 h_aux[i] = (Int32)(a * i + b);
