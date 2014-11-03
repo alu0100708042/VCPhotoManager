@@ -100,9 +100,6 @@ namespace VCPhotoManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
-            this.MaximizeBox = false;
-            this.MinimumSize = this.Size;
             //m_Manager = new Manager();
             //m_SourceForm = new SourceForm(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\imagenprueba.jpg");
             //m_SourceForm.Show();
@@ -219,9 +216,9 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                Point[] point = new Point[2];
-                point[0] = new Point(0, 255);
-                point[1] = new Point(255, 0);
+                List<Point> point = new List<Point>();
+                point.Add(new Point(0, 255));
+                point.Add(new Point(255, 0));
                 ImageForm s = new ImageForm(m_Manager.linearTransformation(point, f.getPictureBox().Image as Bitmap));
                 s.MdiParent = this;
                 s.Show();
@@ -287,7 +284,8 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                BrilloContrasteForm bcForm = new BrilloContrasteForm(f.getPictureBox().Image as Bitmap);
+                BrilloContrasteForm bcForm = new BrilloContrasteForm(f.getPictureBox().Image as Bitmap,this);
+                bcForm.MdiParent = this;
                 bcForm.Show();
               /*  
                 Int32[] brillo = m_Manager.brightnessAndContrast(f.getPictureBox().Image as Bitmap);
@@ -311,15 +309,42 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                ImageForm s = new ImageForm(m_Manager.noLinearTransformation(f.getPictureBox().Image as Bitmap,.25));
-                s.MdiParent = this;
-                s.Show();
+                GammaForm g = new GammaForm(f.getPictureBox().Image as Bitmap, this);
+                g.MdiParent = this;
+                g.Show();
             }
             else
             {
                 MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void ayudaToolStripButton_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void porTramosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm s = this.ActiveMdiChild as ImageForm;
+                RangosForm f = new RangosForm(s.getPictureBox().Image as Bitmap, this);
+                f.MdiParent = this;
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void acercadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AcercaDeForm f = new AcercaDeForm();
+            f.Show();
         }
     }
 }

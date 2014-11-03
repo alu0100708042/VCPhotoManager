@@ -39,19 +39,19 @@ namespace VCPhotoManager.Clases
             
         }
 
-        public Bitmap linearTransformation(Point[] coords, Bitmap Image)
+        public Bitmap linearTransformation(List<Point> coords, Bitmap image)
         {
-            Bitmap result = new Bitmap(Image.Width, Image.Height);
-            for (int i = 1; i < coords.Length; i++)
+            Bitmap result = new Bitmap(image.Width, image.Height);
+            for (int i = 1; i < coords.Count; i++)
             {
                 Int32 a = (coords[i].Y - coords[i-1].Y) / (coords[i].X - coords[i-1].X);
                 Int32 b = coords[i].Y - a*coords[i].X;
 
-                for (int x = 0; x < Image.Width; x++)
+                for (int x = 0; x < image.Width; x++)
                 {
-                    for (int y = 0; y < Image.Height; y++)
+                    for (int y = 0; y < image.Height; y++)
                     {
-                        Color aux = Image.GetPixel(x, y);
+                        Color aux = image.GetPixel(x, y);
                         if (aux.R >= coords[i - 1].X && aux.R <= coords[i].X)
                         {
                             byte transcolor = (byte)(a * aux.R + b);

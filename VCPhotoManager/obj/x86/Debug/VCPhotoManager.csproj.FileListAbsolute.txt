@@ -22,3 +22,7 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\V
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
 >>>>>>> 54215e71bcebc5421b9d59b39a8ba38d2de9916d
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.BrilloContrasteForm.resources
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RangosForm.resources
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.AcercaDeForm.resources
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.GammaForm.resources
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DiferenciaForm.resources

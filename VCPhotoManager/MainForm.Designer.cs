@@ -61,6 +61,7 @@
             this.personalizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transformacionesLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negativizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformacionesNoLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +95,8 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.transformacionesNoLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.porTramosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diferenciaDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -295,7 +297,8 @@
             this.opcionesToolStripMenuItem,
             this.personalizarToolStripMenuItem,
             this.transformacionesLinealesToolStripMenuItem,
-            this.transformacionesNoLinealesToolStripMenuItem});
+            this.transformacionesNoLinealesToolStripMenuItem,
+            this.diferenciaDeImagenesToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -353,7 +356,8 @@
             // transformacionesLinealesToolStripMenuItem
             // 
             this.transformacionesLinealesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.negativizarToolStripMenuItem});
+            this.negativizarToolStripMenuItem,
+            this.porTramosToolStripMenuItem});
             this.transformacionesLinealesToolStripMenuItem.Name = "transformacionesLinealesToolStripMenuItem";
             this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.transformacionesLinealesToolStripMenuItem.Text = "Transformaciones Lineales";
@@ -364,6 +368,13 @@
             this.negativizarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.negativizarToolStripMenuItem.Text = "Negativizar";
             this.negativizarToolStripMenuItem.Click += new System.EventHandler(this.negativizarToolStripMenuItem_Click);
+            // 
+            // transformacionesNoLinealesToolStripMenuItem
+            // 
+            this.transformacionesNoLinealesToolStripMenuItem.Name = "transformacionesNoLinealesToolStripMenuItem";
+            this.transformacionesNoLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.transformacionesNoLinealesToolStripMenuItem.Text = "Transformaciones no Lineales";
+            this.transformacionesNoLinealesToolStripMenuItem.Click += new System.EventHandler(this.transformacionesNoLinealesToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -380,31 +391,32 @@
             // contenidoToolStripMenuItem
             // 
             this.contenidoToolStripMenuItem.Name = "contenidoToolStripMenuItem";
-            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.contenidoToolStripMenuItem.Text = "&Contenido";
             // 
             // índiceToolStripMenuItem
             // 
             this.índiceToolStripMenuItem.Name = "índiceToolStripMenuItem";
-            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.índiceToolStripMenuItem.Text = "Índic&e";
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.buscarToolStripMenuItem.Text = "&Buscar";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // acercadeToolStripMenuItem
             // 
             this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
+            this.acercadeToolStripMenuItem.Click += new System.EventHandler(this.acercadeToolStripMenuItem_Click);
             // 
             // verToolStripMenuItem
             // 
@@ -534,6 +546,7 @@
             this.ayudaToolStripButton.Name = "ayudaToolStripButton";
             this.ayudaToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ayudaToolStripButton.Text = "Ay&uda";
+            this.ayudaToolStripButton.Click += new System.EventHandler(this.ayudaToolStripButton_Click);
             // 
             // statusStrip1
             // 
@@ -628,12 +641,18 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
-            // transformacionesNoLinealesToolStripMenuItem
+            // porTramosToolStripMenuItem
             // 
-            this.transformacionesNoLinealesToolStripMenuItem.Name = "transformacionesNoLinealesToolStripMenuItem";
-            this.transformacionesNoLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.transformacionesNoLinealesToolStripMenuItem.Text = "Transformaciones no Lineales";
-            this.transformacionesNoLinealesToolStripMenuItem.Click += new System.EventHandler(this.transformacionesNoLinealesToolStripMenuItem_Click);
+            this.porTramosToolStripMenuItem.Name = "porTramosToolStripMenuItem";
+            this.porTramosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.porTramosToolStripMenuItem.Text = "Por tramos";
+            this.porTramosToolStripMenuItem.Click += new System.EventHandler(this.porTramosToolStripMenuItem_Click);
+            // 
+            // diferenciaDeImagenesToolStripMenuItem
+            // 
+            this.diferenciaDeImagenesToolStripMenuItem.Name = "diferenciaDeImagenesToolStripMenuItem";
+            this.diferenciaDeImagenesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.diferenciaDeImagenesToolStripMenuItem.Text = "Diferencia de imagenes";
             // 
             // MainForm
             // 
@@ -730,6 +749,8 @@
         private System.Windows.Forms.ToolStripMenuItem seleccionarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brilloYContrasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transformacionesNoLinealesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem porTramosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diferenciaDeImagenesToolStripMenuItem;
     }
 }
 

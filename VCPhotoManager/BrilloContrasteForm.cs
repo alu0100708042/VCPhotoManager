@@ -18,18 +18,19 @@ namespace VCPhotoManager
         private Bitmap m_Imagen;
         MainForm m_Parent;
 
-        public BrilloContrasteForm(Bitmap imagen)
+        public BrilloContrasteForm(Bitmap imagen, MainForm form)
         {
             InitializeComponent();
             m_manager = new Manager();
             m_Imagen = imagen;
+            m_Parent = form;
         }
 
         private void BrilloContrasteForm_Load(object sender, EventArgs e)
         {
             this.picImage.Image = m_Imagen;
-            this.ClientSize = this.picImage.Image.Size;
-            this.MaximumSize = this.Size;
+            
+           
             m_Parent = this.MdiParent as MainForm; 
             Int32[] valores = m_manager.brightnessAndContrast(m_Imagen);
             
@@ -37,7 +38,12 @@ namespace VCPhotoManager
             m_contraste = valores[1];
             this.trbBrillo.Value = m_brillo;
             this.trbContraste.Value = m_contraste;
-            
+
+            //this.splitContainer1.Panel2.Width = this.picImage.Width;
+            //this.splitContainer1.Panel2.Height = this.picImage.Height;
+
+            //this.ClientSize = this.picImage.Image.Size;
+            this.MinimumSize = this.Size;
             
         }
 
@@ -99,6 +105,7 @@ namespace VCPhotoManager
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             ImageForm f = new ImageForm(this.picImage.Image as Bitmap);
+            f.MdiParent = m_Parent;
             f.Show();
             
         }

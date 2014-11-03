@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcercaDeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcercaDeForm.Designer.cs">
+      <DependentUpon>AcercaDeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrilloContrasteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,18 @@
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Manager.cs" />
+    <Compile Include="DiferenciaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiferenciaForm.Designer.cs">
+      <DependentUpon>DiferenciaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GammaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GammaForm.Designer.cs">
+      <DependentUpon>GammaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HistogramaGraficsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,8 +94,23 @@
     <Compile Include="ImageForm.Designer.cs">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RangosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RangosForm.Designer.cs">
+      <DependentUpon>RangosForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AcercaDeForm.resx">
+      <DependentUpon>AcercaDeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BrilloContrasteForm.resx">
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiferenciaForm.resx">
+      <DependentUpon>DiferenciaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GammaForm.resx">
+      <DependentUpon>GammaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistogramaGraficsForm.resx">
       <DependentUpon>HistogramaGraficsForm.cs</DependentUpon>
@@ -96,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RangosForm.resx">
+      <DependentUpon>RangosForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
