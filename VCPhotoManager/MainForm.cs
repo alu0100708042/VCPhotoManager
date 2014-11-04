@@ -8,6 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using VCPhotoManager.Clases;
 using System.Text.RegularExpressions;
+using System.Speech.Synthesis;
+using System.Speech.Recognition;
+using System.Globalization;
+using System.Runtime.InteropServices;
+
 namespace VCPhotoManager
 {
     public partial class MainForm : Form
@@ -16,11 +21,21 @@ namespace VCPhotoManager
         Manager m_Manager;
         HistogramaGraficsForm m_HistogramaForm;
 
+        SpeechSynthesizer m_Synthesizer;
+        PromptBuilder m_Builder;
+        SpeechRecognitionEngine m_Engine;
+
+
         
         public MainForm()
         {
             InitializeComponent();
             m_Manager = new Manager();
+            m_Synthesizer = new SpeechSynthesizer();
+            m_Builder = new PromptBuilder();
+            m_Engine = new SpeechRecognitionEngine();
+
+
         }
 
         // Propiedad X para tener acceso a la etiqueta y mostrar su valor
@@ -57,10 +72,15 @@ namespace VCPhotoManager
         
         private void AbrirImagen(object sender, EventArgs e) 
         {
+            abrirImagen();
+        }
+
+        private void abrirImagen()
+        {
             OpenFileDialog o = new OpenFileDialog();
             o.Filter = "Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg|Imágenes sin pérdida (*.bmp, *.tiff)|*.bmp;*.tiff";
 
-            if (o.ShowDialog() == DialogResult.OK)
+            if(o.ShowDialog() == DialogResult.OK)
             {
                 String path = o.FileName;
                 m_SourceForm = new ImageForm(o.FileName);
@@ -69,32 +89,53 @@ namespace VCPhotoManager
             }
         }
 
-        private void GuardarImagen(object sender, EventArgs e)
+        private void guardarImagen(object sender, EventArgs e)
         {
-            String ruta =Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            guardarImagen();
+        }
+
+        private void guardarImagen()
+        {
+            String ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             String formats = "(.jpg|.gif |.bmp|.tiff)";
-           
+
             if(this.ActiveMdiChild is ImageForm)
             {
                 String path = m_SourceForm.PhotoPath;
                 String[] subStrings = Regex.Split(path, formats);
                 String format = "";
                 Int16 cont = 0;
-                foreach (String aux in subStrings)
+                foreach(String aux in subStrings)
                 {
-                    if (cont == 1)
+                    if(cont == 1)
                     {
                         format = aux;
                     }
                     cont++;
                 }
-                ImageForm  s = this.ActiveMdiChild as ImageForm;
+                ImageForm s = this.ActiveMdiChild as ImageForm;
                 String imageName = Regex.Replace(path, formats, String.Empty);
-                s.getPictureBox().Image.Save(imageName + "-copia" + format);
+                imageName = imageName + "-copia" + format;
+                try
+                {
+                    s.getPictureBox().Image.Save(imageName);
+                    MessageBox.Show("Se ha guardado el archivo con exito." + Environment.NewLine + Environment.NewLine +
+                        imageName, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch(ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch(ExternalException ex)
+                {
+                    MessageBox.Show(ex.Message, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
-            else  
+            else
             {
-                MessageBox.Show("Para almacenar una imagen hay que hacer click sobre la misma");
+                MessageBox.Show("Para guardar una imagen debe tener seleccionado un formulario de imagen", 
+                    "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -106,6 +147,60 @@ namespace VCPhotoManager
             //System.Threading.Thread.Sleep(500);
             ///*m_TargetForm = new TargetForm(m_Manager.changeToGrayScale((m_SourceForm.getPictureBox().Image as Bitmap)));
             //m_TargetForm.Show();*/
+
+
+            m_Builder.ClearContent();
+            m_Builder.AppendText("Hello Oliver & Ricky");
+            m_Synthesizer.Speak(m_Builder);
+            m_Builder.ClearContent();
+
+
+            Choices lista = new Choices();
+            lista.Add(new String[] {"histograma de frecuencias", "histograma acumulativo", "abrir imagen",
+                "cargar imagen", "abrir", "guardar imagen", "grabar imagen", "guardar", "grabar", 
+                "negativizar", "negativizar imagen"});
+            Grammar gr = new Grammar(new GrammarBuilder(lista));
+            try
+            {
+                m_Engine.RequestRecognizerUpdate();
+                m_Engine.LoadGrammar(gr);
+                m_Engine.SpeechRecognized += m_Engine_SpeechRecognized;
+                m_Engine.SetInputToDefaultAudioDevice();
+                m_Engine.RecognizeAsync(RecognizeMode.Multiple);
+            }
+            catch
+            {
+                return;
+            }
+
+
+
+        }
+
+        void m_Engine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            String result = e.Result.Text;
+
+            if(result == "histograma de frecuencias")
+            {
+                histogramaFrecencias();
+            }
+            else if(result == "histograma acumulativo")
+            {
+                histogramaAcumulativo();
+            }
+            else if((result == "abrir imagen") || (result == "cargar imagen") || (result == "abrir"))
+            {
+                abrirImagen();
+            }
+            else if((result == "guardar imagen") || (result == "grabar imagen") || (result == "guardar") || (result == "grabar"))
+            {
+                guardarImagen();
+            }
+            else if((result == "negativizar") || (result == "negativizar imagen"))
+            {
+                negativizar();
+            }           
 
         }
 
@@ -150,10 +245,15 @@ namespace VCPhotoManager
 
         private void acumulativoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild is ImageForm)
+            histogramaAcumulativo();
+        }
+
+        private void histogramaAcumulativo()
+        {
+            if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                
+
                 //Int32[] vector = m_Manager.getNormalizeHistogram(m_Manager.getHistogram(f.getPictureBox().Image as Bitmap));
                 //m_HistogramaForm = new HistogramaGraficsForm(vector, null);
 
@@ -167,7 +267,7 @@ namespace VCPhotoManager
                         max = aux[i];
                     }
                 }
-                
+
                 //Int32[] vector = m_Manager.getNormalizeHistogram(aux);
                 //m_HistogramaForm = new HistogramaGraficsForm(vector, null,max);
 
@@ -187,12 +287,17 @@ namespace VCPhotoManager
 
         private void frecuenciasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            histogramaFrecencias();
+        }
+
+        private void histogramaFrecencias()
+        {
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                Int32 max = -99999; 
+                Int32 max = -99999;
                 Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
-                for (int i = 0; i < 256; i++)
+                for(int i = 0; i < 256; i++)
                 {
                     if(max < aux[i])
                     {
@@ -200,18 +305,23 @@ namespace VCPhotoManager
                     }
                 }
                 Int32[] vector = m_Manager.getNormalizeHistogram(aux);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, null,max);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, null, max);
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas", 
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        
+
         private void negativizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            negativizar();
+        }
+
+        private void negativizar()
         {
             if(this.ActiveMdiChild is ImageForm)
             {
@@ -228,7 +338,6 @@ namespace VCPhotoManager
                 MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
         }
 
         private void seleccionarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -344,6 +453,13 @@ namespace VCPhotoManager
         private void acercadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AcercaDeForm f = new AcercaDeForm();
+            f.Show();
+        }
+
+        private void diferenciaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DiferenciaForm f = new DiferenciaForm(this);
+            f.MdiParent = this;
             f.Show();
         }
     }

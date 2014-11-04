@@ -336,6 +336,40 @@ namespace VCPhotoManager.Clases
                 return null;
             }
         }
+
+        public Bitmap getImageDifference(Bitmap img1, Bitmap img2, Int32 precision)
+        {
+            Bitmap result = null;
+            Color color;
+            Int32 R = 0, G = 0, B = 0;
+            if(img1 != null && img2 != null)
+            {
+                if(img1.Size == img2.Size)
+                {
+                    result = new Bitmap(img1);
+                    for(int y = 0; y < img1.Size.Height; y++)
+                    {
+                        for(int x = 0; x < img1.Size.Width; x++)
+                        {
+                            R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
+                            G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
+                            B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
+
+                            if(R != 0 || G != 0 || B != 0)
+                            {
+                                if(R >= precision || G >= precision || B >= precision)
+                                {
+                                    color = Color.Red;
+                                    result.SetPixel(x, y, color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return result;
+        }
         
     }   
 }

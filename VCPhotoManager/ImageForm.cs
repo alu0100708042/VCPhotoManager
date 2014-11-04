@@ -52,9 +52,12 @@ namespace VCPhotoManager
         
         private void ImageForm_Load(object sender, EventArgs e)
         {
-            this.ClientSize = this.picSource.Image.Size;
-            this.MaximumSize = this.Size;
-            m_Parent = this.MdiParent as MainForm;           
+            if(this.picSource.Image != null)
+            {
+                this.ClientSize = this.picSource.Image.Size;
+                this.MaximumSize = this.Size;
+            }
+            m_Parent = this.MdiParent as MainForm;       
         }
                 
         public PictureBox getPictureBox()
@@ -99,7 +102,7 @@ namespace VCPhotoManager
         }
 
         private void picSource_MouseDown(object sender, MouseEventArgs e)
-        {   
+        {
             if(m_Seleccionar)
             {
                 if(e.Button != System.Windows.Forms.MouseButtons.Left)
@@ -118,6 +121,10 @@ namespace VCPhotoManager
                 m_Pt2 = m_Pt1;
                 m_Bloqueado = true;
             }
+            else
+            {
+                this.picSource.DoDragDrop(this.picSource.Image as Bitmap, DragDropEffects.Copy);
+            }
 
         }
          
@@ -133,12 +140,19 @@ namespace VCPhotoManager
             }
 
             Bitmap mapa = this.picSource.Image as Bitmap;
-            Color color = mapa.GetPixel(e.X, e.Y);
-            m_Parent.X = e.X;
-            m_Parent.Y = e.Y;
-            m_Parent.R = color.R;
-            m_Parent.G = color.G;
-            m_Parent.B = color.B;
+            Color color;
+            try
+            {
+                color = mapa.GetPixel(e.X, e.Y);
+                m_Parent.X = e.X;
+                m_Parent.Y = e.Y;
+                m_Parent.R = color.R;
+                m_Parent.G = color.G;
+                m_Parent.B = color.B;
+            }
+            catch(ArgumentOutOfRangeException) { }
+            
+            
         }
 
         /// <summary>
@@ -171,6 +185,10 @@ namespace VCPhotoManager
                 g.DrawRectangle(new Pen(m_lineColor), m_Rectangulo);
             }
         }
+        
+
+
+        
 
 
     }
