@@ -148,12 +148,20 @@ namespace VCPhotoManager
             ///*m_TargetForm = new TargetForm(m_Manager.changeToGrayScale((m_SourceForm.getPictureBox().Image as Bitmap)));
             //m_TargetForm.Show();*/
 
+            initSpeech();
 
+
+
+        }
+
+        private void initSpeech()
+        {
+            /*
             m_Builder.ClearContent();
             m_Builder.AppendText("Hello Oliver & Ricky");
             m_Synthesizer.Speak(m_Builder);
             m_Builder.ClearContent();
-
+            */
 
             Choices lista = new Choices();
             lista.Add(new String[] {"histograma de frecuencias", "histograma acumulativo", "abrir imagen",
@@ -172,12 +180,9 @@ namespace VCPhotoManager
             {
                 return;
             }
-
-
-
         }
 
-        void m_Engine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        private void m_Engine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             String result = e.Result.Text;
 

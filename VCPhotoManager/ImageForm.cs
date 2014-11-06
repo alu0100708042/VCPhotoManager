@@ -29,6 +29,7 @@ namespace VCPhotoManager
             InitializeComponent();
             m_Historico = new List<Bitmap>();
             m_Manager = new Manager();
+            Cursor = Cursors.Cross;
         }
 
         public ImageForm(String path) : this()
