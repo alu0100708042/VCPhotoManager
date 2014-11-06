@@ -24,6 +24,7 @@ namespace VCPhotoManager
         private Manager m_Manager = null;
         private Bitmap m_Recorte = null;
         
+        
         private ImageForm()
         {
             InitializeComponent();
@@ -60,11 +61,19 @@ namespace VCPhotoManager
             }
             m_Parent = this.MdiParent as MainForm;       
         }
-                
-        public PictureBox getPictureBox()
+
+        public Bitmap Imagen
         {
-            return this.picSource;
+            get { return this.picSource.Image as Bitmap; }
+            set { this.picSource.Image = value; }
         }
+
+
+        //public PictureBox getPictureBox()
+        //{
+        //    return this.picSource;
+        //}
+
 
         public String PhotoPath
         {

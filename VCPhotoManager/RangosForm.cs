@@ -34,17 +34,17 @@ namespace VCPhotoManager
                 y1 = Int32.Parse(this.txtY1.Text);
                 y2 = Int32.Parse(this.txtY2.Text);
             }
-            catch(ArgumentNullException ex)
+            catch(ArgumentNullException)
             {
                 MessageBox.Show("Todos los campos deben estan rellenos.", "Transformaciones lineales.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(FormatException ex)
+            catch(FormatException)
             {
                 MessageBox.Show("El formato de entrada.", "Transformaciones lineales.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (OverflowException ex){
+            catch (OverflowException){
                 MessageBox.Show("Se ha sobrepasado la capacidad de procesamiento.", "Transformaciones lineales.",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -83,7 +83,7 @@ namespace VCPhotoManager
                 {
                     value = Int32.Parse(tb.Text.ToString());
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {}
                 if(value < 0)
                 {

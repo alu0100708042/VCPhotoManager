@@ -25,7 +25,8 @@ namespace VCPhotoManager
         PromptBuilder m_Builder;
         SpeechRecognitionEngine m_Engine;
 
-
+        private Int32 m_MinValue;
+        private Int32 m_MaxValue;
         
         public MainForm()
         {
@@ -38,14 +39,24 @@ namespace VCPhotoManager
 
         }
 
-        // Propiedad X para tener acceso a la etiqueta y mostrar su valor
+        public Int32 MinValue
+        {
+            get { return Int32.Parse(this.lbMinVal.Text); }
+            set { this.lbMinVal.Text = value.ToString(); }
+        }
+
+        public Int32 MaxValue
+        {
+            get { return Int32.Parse(this.lbMaxVal.Text); }
+            set { this.lbMaxVal.Text = value.ToString(); }
+        }
+
         public Int32 X
         {
             get { return Int32.Parse(this.lbX.Text); }
             set { this.lbX.Text = value.ToString(); }
         }
 
-        // Propiedad Y para tener acceso a la etiqueta y mostrar su valor
         public Int32 Y
         {
             get { return Int32.Parse(this.lbY.Text); }
@@ -118,7 +129,7 @@ namespace VCPhotoManager
                 imageName = imageName + "-copia" + format;
                 try
                 {
-                    s.getPictureBox().Image.Save(imageName);
+                    s.Imagen.Save(imageName);
                     MessageBox.Show("Se ha guardado el archivo con exito." + Environment.NewLine + Environment.NewLine +
                         imageName, "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -212,7 +223,7 @@ namespace VCPhotoManager
         public void CambiaraEscalaDeGrises(object sender, EventArgs e) 
         {
             Manager m = new Manager();
-            Bitmap b = new Bitmap(this.m_SourceForm.getPictureBox().Image as Bitmap);
+            Bitmap b = new Bitmap(this.m_SourceForm.Imagen);
             ImageForm s= new ImageForm(m.changeToGrayScale(b));
             s.MdiParent = this;
             s.Show();
@@ -225,7 +236,7 @@ namespace VCPhotoManager
             if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                entropy = m_Manager.Entropia(f.getPictureBox().Image as Bitmap);
+                entropy = m_Manager.Entropia(f.Imagen);
                 MessageBox.Show("El valor de la entropía de la imagen es: " + Math.Round(entropy, 2).ToString(),
                     "Entropia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -240,7 +251,7 @@ namespace VCPhotoManager
         private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_SourceForm.Historico.RemoveAt(m_SourceForm.Historico.Count - 1);
-            m_SourceForm.getPictureBox().Image = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
+            m_SourceForm.Imagen = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
         }
 
         private void copiarToolStripButton_Click(object sender, EventArgs e)
@@ -264,7 +275,7 @@ namespace VCPhotoManager
 
                 Int32 max = -9999;
 
-                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                Int32[] aux = m_Manager.getHistogram(f.Imagen);
                 for(int i = 0; i < 256; i++)
                 {
                     if(max < aux[i])
@@ -301,7 +312,7 @@ namespace VCPhotoManager
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
                 Int32 max = -99999;
-                Int32[] aux = m_Manager.getHistogram(f.getPictureBox().Image as Bitmap);
+                Int32[] aux = m_Manager.getHistogram(f.Imagen as Bitmap);
                 for(int i = 0; i < 256; i++)
                 {
                     if(max < aux[i])
@@ -334,7 +345,7 @@ namespace VCPhotoManager
                 List<Point> point = new List<Point>();
                 point.Add(new Point(0, 255));
                 point.Add(new Point(255, 0));
-                ImageForm s = new ImageForm(m_Manager.linearTransformation(point, f.getPictureBox().Image as Bitmap));
+                ImageForm s = new ImageForm(m_Manager.linearTransformation(point, f.Imagen));
                 s.MdiParent = this;
                 s.Show();
             }
@@ -398,7 +409,7 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                BrilloContrasteForm bcForm = new BrilloContrasteForm(f.getPictureBox().Image as Bitmap,this);
+                BrilloContrasteForm bcForm = new BrilloContrasteForm(f.Imagen, this);
                 bcForm.MdiParent = this;
                 bcForm.Show();
               /*  
@@ -418,12 +429,17 @@ namespace VCPhotoManager
            // MessageBox.Show("El brillo de la imagen es:" + brillo[0].ToString() + " y el contraste:" + brillo[1].ToString());
         }
 
-        private void transformacionesNoLinealesToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+
+
+
+        private void gammaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.ActiveMdiChild is ImageForm)
+            if(this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                GammaForm g = new GammaForm(f.getPictureBox().Image as Bitmap, this);
+                GammaForm g = new GammaForm(f.Imagen, this);
                 g.MdiParent = this;
                 g.Show();
             }
@@ -434,6 +450,19 @@ namespace VCPhotoManager
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+        
+
         private void ayudaToolStripButton_Click(object sender, EventArgs e)
         {
           
@@ -443,10 +472,10 @@ namespace VCPhotoManager
         {
             if(this.ActiveMdiChild is ImageForm)
             {
-                ImageForm s = this.ActiveMdiChild as ImageForm;
-                RangosForm f = new RangosForm(s.getPictureBox().Image as Bitmap, this);
-                f.MdiParent = this;
-                f.Show();
+                ImageForm imgForm = this.ActiveMdiChild as ImageForm;
+                RangosForm rangForm = new RangosForm(imgForm.Imagen, this);
+                rangForm.MdiParent = this;
+                rangForm.Show();
             }
             else
             {
@@ -467,5 +496,7 @@ namespace VCPhotoManager
             f.MdiParent = this;
             f.Show();
         }
+
+        
     }
 }
