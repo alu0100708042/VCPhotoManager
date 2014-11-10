@@ -65,6 +65,7 @@
             this.gammaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diferenciaDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ecualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diferenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.diferenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -406,6 +406,13 @@
             this.ecualizarToolStripMenuItem.Text = "Ecualizar";
             this.ecualizarToolStripMenuItem.Click += new System.EventHandler(this.ecualizarToolStripMenuItem_Click);
             // 
+            // diferenciaToolStripMenuItem
+            // 
+            this.diferenciaToolStripMenuItem.Name = "diferenciaToolStripMenuItem";
+            this.diferenciaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.diferenciaToolStripMenuItem.Text = "Resta absoluta";
+            this.diferenciaToolStripMenuItem.Click += new System.EventHandler(this.diferenciaToolStripMenuItem_Click);
+            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -705,13 +712,6 @@
             this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(25, 17);
             this.toolStripStatusLabel9.Text = "      ";
-            // 
-            // diferenciaToolStripMenuItem
-            // 
-            this.diferenciaToolStripMenuItem.Name = "diferenciaToolStripMenuItem";
-            this.diferenciaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.diferenciaToolStripMenuItem.Text = "Diferencia";
-            this.diferenciaToolStripMenuItem.Click += new System.EventHandler(this.diferenciaToolStripMenuItem_Click);
             // 
             // MainForm
             // 

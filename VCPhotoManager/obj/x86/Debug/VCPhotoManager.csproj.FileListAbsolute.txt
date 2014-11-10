@@ -44,7 +44,6 @@ D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\VCPhot
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DifAbsolutaForm.resources
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
-<<<<<<< HEAD
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.exe
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.pdb
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
@@ -65,5 +64,5 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\V
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DiferenciaForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.GammaForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RangosForm.resources
-=======
 >>>>>>> Ecualizacion y resta absoluta
+C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DifAbsolutaForm.resources

@@ -25,9 +25,7 @@ namespace VCPhotoManager
         PromptBuilder m_Builder;
         SpeechRecognitionEngine m_Engine;
 
-        private Int32 m_MinValue;
-        private Int32 m_MaxValue;
-        
+               
         public MainForm()
         {
             InitializeComponent();
@@ -159,11 +157,11 @@ namespace VCPhotoManager
             ///*m_TargetForm = new TargetForm(m_Manager.changeToGrayScale((m_SourceForm.getPictureBox().Image as Bitmap)));
             //m_TargetForm.Show();*/
 
-<<<<<<< HEAD
+
             //initSpeech();
-=======
-            initSpeech();
->>>>>>> Ecualizacion y resta absoluta
+
+            //initSpeech();
+
 
 
 
@@ -493,11 +491,7 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-<<<<<<< HEAD
                 ImageForm s = new ImageForm(m_Manager.EcualizeImage(f.Imagen, f.getMaxValue(), f.getMinValue()));
-=======
-                ImageForm s = new ImageForm(m_Manager.EcualizeImage(f.Imagen));
->>>>>>> Ecualizacion y resta absoluta
                 s.MdiParent = this;
                 s.Show();
             }
