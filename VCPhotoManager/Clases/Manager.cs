@@ -500,12 +500,22 @@ namespace VCPhotoManager.Clases
                     for (int y = 0; y < img1.Size.Height; y++)
                     {
                         for (int x = 0; x < img1.Size.Width; x++)
-                        {
+                        {/*
                             R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
                             G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
                             B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
                             color = Color.FromArgb(R, G, B);
-                            result.SetPixel(x,y,color);
+                            result.SetPixel(x,y,color);*/
+
+                            R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
+                            if (R > 0)
+                            {
+                                result.SetPixel(x, y, Color.Black);
+                            }
+                            else 
+                            {
+                                result.SetPixel(x, y, Color.White);
+                            }
                         }
                     }
                 }
