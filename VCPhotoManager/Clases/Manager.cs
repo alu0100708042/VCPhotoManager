@@ -462,13 +462,15 @@ namespace VCPhotoManager.Clases
         public Bitmap getImageDifference(Bitmap img1, Bitmap img2, Int32 precision)
         {
             Bitmap result = null;
-            Color color;
+            Color color = Color.Red;
             Int32 R = 0, G = 0, B = 0;
             if(img1 != null && img2 != null)
             {
                 if(img1.Size == img2.Size)
                 {
-                    result = new Bitmap(img1);
+                    //result = new Bitmap(img1);
+                    result = new Bitmap(img1.Width, img1.Height);
+
                     for(int y = 0; y < img1.Size.Height; y++)
                     {
                         for(int x = 0; x < img1.Size.Width; x++)
@@ -481,7 +483,7 @@ namespace VCPhotoManager.Clases
                             {
                                 if(R >= precision || G >= precision || B >= precision)
                                 {
-                                    color = Color.Red;
+                                    color = Color.FromArgb(R, G, B);
                                     result.SetPixel(x, y, color);
                                 }
                             }
@@ -489,7 +491,6 @@ namespace VCPhotoManager.Clases
                     }
                 }
             }
-            
             return result;
         }
 
@@ -508,9 +509,9 @@ namespace VCPhotoManager.Clases
                         for (int x = 0; x < img1.Size.Width; x++)
                         {
 
-                            R = 255- Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
-                            G = 255 - Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
-                            B = 255 - Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
+                            R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
+                            G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
+                            B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
                             color = Color.FromArgb(R, G, B);
 
                             result.SetPixel(x,y,color);

@@ -12,13 +12,15 @@ namespace VCPhotoManager
     public partial class HistogramaGraficsForm : Form
     {
         private Int32[] m_Vector;
-        private Pen m_Pen; 
+        private Pen m_Pen;
+        private MainForm m_Parent;
                 
-        public HistogramaGraficsForm(Int32[] vector, String titulo, Int32 maximo)
+        public HistogramaGraficsForm(Int32[] vector, String titulo, Int32 maximo, MainForm parent)
         {
+            InitializeComponent();
             if (vector != null)
             {
-                InitializeComponent();
+                m_Parent = parent;
                 this.MaximumSize = this.Size;
                 m_Vector = vector;
                 if(!String.IsNullOrEmpty(titulo))
@@ -68,6 +70,15 @@ namespace VCPhotoManager
         private void HistogramaGraficsForm_Paint(object sender, PaintEventArgs e)
         {
             paintHistogram(this.CreateGraphics());
+        }
+
+        private void HistogramaGraficsForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            Int32 value = e.X - 47;
+            if(value >= 0 && value <= 512)
+            {
+                m_Parent.X = value/2;
+            }
         }
 
     }

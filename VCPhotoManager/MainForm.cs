@@ -291,7 +291,7 @@ namespace VCPhotoManager
 
 
                 Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo", max);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo", max, this);
 
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
@@ -314,7 +314,7 @@ namespace VCPhotoManager
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
                 Int32 max = -99999;
-                Int32[] aux = m_Manager.getHistogram(f.Imagen as Bitmap);
+                Int32[] aux = m_Manager.getHistogram(f.Imagen);
                 for(int i = 0; i < 256; i++)
                 {
                     if(max < aux[i])
@@ -323,7 +323,7 @@ namespace VCPhotoManager
                     }
                 }
                 Int32[] vector = m_Manager.getNormalizeHistogram(aux);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, null, max);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, null, max, this);
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
             }

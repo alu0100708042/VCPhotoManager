@@ -37,8 +37,8 @@
             // 
             // lbTitulo
             // 
-            this.lbTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitulo.Location = new System.Drawing.Point(12, 9);
             this.lbTitulo.Name = "lbTitulo";
@@ -89,6 +89,7 @@
             this.Text = "HistogramaGraficsForm";
             this.Load += new System.EventHandler(this.HistogramaGraficsForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.HistogramaGraficsForm_Paint);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HistogramaGraficsForm_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
