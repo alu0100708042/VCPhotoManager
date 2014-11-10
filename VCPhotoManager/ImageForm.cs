@@ -23,12 +23,15 @@ namespace VCPhotoManager
         private Int32[] m_Histograma = null;
         private Manager m_Manager = null;
         private Bitmap m_Recorte = null;
+        private Int32 m_MinValue;
+        private Int32 m_MaxValue;
         
         private ImageForm()
         {
             InitializeComponent();
             m_Historico = new List<Bitmap>();
             m_Manager = new Manager();
+            Cursor = Cursors.Cross;
         }
 
         public ImageForm(String path) : this()
@@ -52,16 +55,75 @@ namespace VCPhotoManager
         
         private void ImageForm_Load(object sender, EventArgs e)
         {
+            if(this.picSource.Image != null)
+            {
+                this.ClientSize = this.picSource.Image.Size;
+                this.MaximumSize = this.Size;
+            }
+            m_Parent = this.MdiParent as MainForm;
+            MaxMinValueLoad();
+           
             this.ClientSize = this.picSource.Image.Size;
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
             m_Parent = this.MdiParent as MainForm;           
         }
-                
-        public PictureBox getPictureBox()
+
+        private void MaxMinValueLoad()
         {
-            return this.picSource;
+            int i = 0;
+            bool load = false;
+            while (load == false)
+            {
+                if (m_Histograma[i] != 0)
+                {
+                    m_MinValue = i;
+                    load = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            i = 255;
+            load = false;
+            while (load == false)
+            {
+                if (m_Histograma[i] != 0)
+                {
+                    m_MaxValue = i;
+                    load = true;
+                }
+                else
+                {
+                    i--;
+                }
+                
+            }
         }
+        public Bitmap Imagen
+        {
+            get { return this.picSource.Image as Bitmap; }
+            set { this.picSource.Image = value; }
+        }
+
+        public Int32 getMinValue()
+        {
+            return m_MinValue;
+        }
+
+        public Int32 getMaxValue()
+        {
+            return m_MaxValue;
+        }
+
+
+            //public PictureBox getPictureBox()
+        //{
+        //    return this.picSource;
+        //}
+
 
         public String PhotoPath
         {
@@ -100,7 +162,7 @@ namespace VCPhotoManager
         }
 
         private void picSource_MouseDown(object sender, MouseEventArgs e)
-        {   
+        {
             if(m_Seleccionar)
             {
                 if(e.Button != System.Windows.Forms.MouseButtons.Left)
@@ -119,6 +181,10 @@ namespace VCPhotoManager
                 m_Pt2 = m_Pt1;
                 m_Bloqueado = true;
             }
+            else
+            {
+                this.picSource.DoDragDrop(this.picSource.Image as Bitmap, DragDropEffects.Copy);
+            }
 
         }
          
@@ -134,12 +200,21 @@ namespace VCPhotoManager
             }
 
             Bitmap mapa = this.picSource.Image as Bitmap;
-            Color color = mapa.GetPixel(e.X, e.Y);
-            m_Parent.X = e.X;
-            m_Parent.Y = e.Y;
-            m_Parent.R = color.R;
-            m_Parent.G = color.G;
-            m_Parent.B = color.B;
+            Color color;
+            try
+            {
+                color = mapa.GetPixel(e.X, e.Y);
+                m_Parent.X = e.X;
+                m_Parent.Y = e.Y;
+                m_Parent.R = color.R;
+                m_Parent.G = color.G;
+                m_Parent.B = color.B;
+                m_Parent.MinValue = m_MinValue;
+                m_Parent.MaxValue = m_MaxValue;
+            }
+            catch(ArgumentOutOfRangeException) { }
+            
+            
         }
 
         /// <summary>
@@ -172,6 +247,10 @@ namespace VCPhotoManager
                 g.DrawRectangle(new Pen(m_lineColor), m_Rectangulo);
             }
         }
+        
+
+
+        
 
 
     }
