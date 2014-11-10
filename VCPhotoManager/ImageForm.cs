@@ -54,6 +54,7 @@ namespace VCPhotoManager
         {
             this.ClientSize = this.picSource.Image.Size;
             this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             m_Parent = this.MdiParent as MainForm;           
         }
                 

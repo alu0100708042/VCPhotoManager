@@ -306,7 +306,7 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                ImageForm s = new ImageForm(m_Manager.noLinearTransformation(f.getPictureBox().Image as Bitmap,.25));
+                ImageForm s = new ImageForm(m_Manager.noLinearTransformation(f.getPictureBox().Image as Bitmap,0.5));
                 s.MdiParent = this;
                 s.Show();
             }
