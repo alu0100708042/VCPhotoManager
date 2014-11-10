@@ -26,6 +26,7 @@ namespace VCPhotoManager
         private Int32 m_MinValue;
         private Int32 m_MaxValue;
         
+        
         private ImageForm()
         {
             InitializeComponent();
@@ -60,6 +61,7 @@ namespace VCPhotoManager
                 this.ClientSize = this.picSource.Image.Size;
                 this.MaximumSize = this.Size;
             }
+<<<<<<< HEAD
             m_Parent = this.MdiParent as MainForm;
             MaxMinValueLoad();
            
@@ -102,12 +104,18 @@ namespace VCPhotoManager
                 
             }
         }
+=======
+            m_Parent = this.MdiParent as MainForm;       
+        }
+
+>>>>>>> Ecualizacion y resta absoluta
         public Bitmap Imagen
         {
             get { return this.picSource.Image as Bitmap; }
             set { this.picSource.Image = value; }
         }
 
+<<<<<<< HEAD
         public Int32 getMinValue()
         {
             return m_MinValue;
@@ -120,6 +128,10 @@ namespace VCPhotoManager
 
 
             //public PictureBox getPictureBox()
+=======
+
+        //public PictureBox getPictureBox()
+>>>>>>> Ecualizacion y resta absoluta
         //{
         //    return this.picSource;
         //}
@@ -209,8 +221,11 @@ namespace VCPhotoManager
                 m_Parent.R = color.R;
                 m_Parent.G = color.G;
                 m_Parent.B = color.B;
+<<<<<<< HEAD
                 m_Parent.MinValue = m_MinValue;
                 m_Parent.MaxValue = m_MaxValue;
+=======
+>>>>>>> Ecualizacion y resta absoluta
             }
             catch(ArgumentOutOfRangeException) { }
             

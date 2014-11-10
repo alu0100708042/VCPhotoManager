@@ -257,6 +257,7 @@ namespace VCPhotoManager.Clases
 
           return result;
         }
+<<<<<<< HEAD
 
         public Bitmap EcualizeImage(Bitmap Image, Int32 maxValue, Int32 minValue)
         {
@@ -285,16 +286,69 @@ namespace VCPhotoManager.Clases
                 Vout[i] = (Int32)(Math.Max(0, Math.Round((Double)(((Double)m/(Double)size)*AcumulativeHistogram[i] -1))));
             }
 
+=======
+
+        public Bitmap EcualizeImage(Bitmap Image)
+        {
+            Decimal acumulado = 0;
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            Int32[] AcumulativeHistogram = new Int32[256];            
+            Int32[] Histogram = getHistogram(Image);
+            Int32[] EcualizedHistogram = new Int32[256];
+            Int32[] pixelTransform = new Int32[256];
+            Decimal a, b;
+            int ifuente = 0, idestino = 0;
+            
+            for (int i = 0; i < 256; i++)
+            {
+                pixelTransform[i] = 0;
+                acumulado += Histogram[i];
+                AcumulativeHistogram[i] = (Int32)acumulado;
+            }
+
+            // Crear Histograma Destino
+            a = AcumulativeHistogram[255] / 255;
+            b = AcumulativeHistogram[255] - (a * 255);
+            for (int i = 0; i < 256; i++)
+            {
+                EcualizedHistogram[i] = (Int32)((a * i) + b);  
+            }
+
+            while (ifuente < 256)
+            {
+                if ((idestino < 256) && (EcualizedHistogram[idestino] > AcumulativeHistogram[ifuente]))
+                {
+                    pixelTransform[ifuente] = idestino;
+                    ifuente++;
+                }
+                else
+                {
+                    if(ifuente != 0)
+                        pixelTransform[ifuente] = pixelTransform[ifuente - 1];
+                    idestino++;
+                }
+                if (idestino >= 256)
+                {
+                    ifuente ++;
+                }
+            }
+
+>>>>>>> Ecualizacion y resta absoluta
             for (int i = 0; i < Image.Width; i++)
             {
                 for (int j = 0; j < Image.Height; j++)
                 {
                     Color aux = Image.GetPixel(i, j);
+<<<<<<< HEAD
                     byte transcolor = (byte)Vout[aux.R];
+=======
+                    byte transcolor = (byte)pixelTransform[aux.R];
+>>>>>>> Ecualizacion y resta absoluta
                     Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
                     result.SetPixel(i, j, newaux);
                 }
             }
+<<<<<<< HEAD
                 //// Crear Histograma Destino
                 //a = AcumulativeHistogram[255] / 255;
                 //b = AcumulativeHistogram[255] - (a * 255);
@@ -329,6 +383,9 @@ namespace VCPhotoManager.Clases
                 //    }
                 //}
 
+=======
+
+>>>>>>> Ecualizacion y resta absoluta
                 return result;
         }
         /// <summary>
@@ -500,11 +557,16 @@ namespace VCPhotoManager.Clases
                     for (int y = 0; y < img1.Size.Height; y++)
                     {
                         for (int x = 0; x < img1.Size.Width; x++)
+<<<<<<< HEAD
                         {/*
+=======
+                        {
+>>>>>>> Ecualizacion y resta absoluta
                             R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
                             G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
                             B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
                             color = Color.FromArgb(R, G, B);
+<<<<<<< HEAD
                             result.SetPixel(x,y,color);*/
 
                             R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
@@ -516,6 +578,9 @@ namespace VCPhotoManager.Clases
                             {
                                 result.SetPixel(x, y, Color.White);
                             }
+=======
+                            result.SetPixel(x,y,color);
+>>>>>>> Ecualizacion y resta absoluta
                         }
                     }
                 }
