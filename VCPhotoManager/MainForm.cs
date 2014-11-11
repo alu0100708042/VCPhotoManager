@@ -491,7 +491,7 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                ImageForm s = new ImageForm(m_Manager.EcualizeImage(f.Imagen, f.getMaxValue(), f.getMinValue()));
+                ImageForm s = new ImageForm(m_Manager.EcualizeImage(f.Imagen, f.MaxValue, f.MinValue));
                 s.MdiParent = this;
                 s.Show();
             }

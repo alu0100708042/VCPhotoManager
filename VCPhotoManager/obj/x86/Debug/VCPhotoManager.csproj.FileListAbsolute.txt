@@ -58,7 +58,6 @@ D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practi
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.ImageForm.resources
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RangosForm.resources
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\Practicas\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csproj.GenerateResource.Cache
-<<<<<<< HEAD
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.AcercaDeForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.BrilloContrasteForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DifAbsolutaForm.resources
@@ -67,5 +66,4 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\V
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RangosForm.resources
 >>>>>>> Ecualizacion y resta absoluta
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DifAbsolutaForm.resources
-=======
 >>>>>>>  Añadiendo valores min y max

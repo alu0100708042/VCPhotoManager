@@ -258,8 +258,6 @@ namespace VCPhotoManager.Clases
           return result;
         }
 
-
-
         public Bitmap EcualizeImage(Bitmap Image, Int32 maxValue, Int32 minValue)
         {
             Decimal acumulado = 0;
@@ -336,6 +334,7 @@ namespace VCPhotoManager.Clases
 
                 return result;
         }
+
         /// <summary>
         /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
         /// </summary>

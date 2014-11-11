@@ -56,85 +56,22 @@ namespace VCPhotoManager
         
         private void ImageForm_Load(object sender, EventArgs e)
         {
-            
             if(this.picSource.Image != null)
             {
                 this.ClientSize = this.picSource.Image.Size;
                 this.MaximumSize = this.Size;
             }
-<<<<<<< HEAD
 
-            m_Parent = this.MdiParent as MainForm;
-            MaxMinValueLoad();
-           
             this.ClientSize = this.picSource.Image.Size;
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
-            m_Parent = this.MdiParent as MainForm;           
-=======
             m_Parent = this.MdiParent as MainForm;
-            MaxMinValueLoad();
-           
->>>>>>>  Añadiendo valores min y max
+            m_MinValue = m_Manager.getMinValue(this.Imagen);
+            m_MaxValue = m_Manager.getMaxValue(this.Imagen);
+            m_Parent.MinValue = m_MinValue;
+            m_Parent.MaxValue = m_MaxValue;
         }
-
-        private void MaxMinValueLoad()
-        {
-            int i = 0;
-            bool load = false;
-            while (load == false)
-            {
-                if (m_Histograma[i] != 0)
-                {
-<<<<<<< HEAD
-                    m_MinValue = i;
-=======
-                    m_Parent.MinValue = i;
->>>>>>>  Añadiendo valores min y max
-                    load = true;
-                }
-                else
-                {
-                    i++;
-                }
-            }
-
-            i = 255;
-            load = false;
-<<<<<<< HEAD
-            while (!load)
-            {
-                if (m_Histograma[i] != 0)
-                {
-                    m_MaxValue = i;
-=======
-            while (load == false)
-            {
-                if (m_Histograma[i] != 0)
-                {
-                    m_Parent.MaxValue = i;
->>>>>>>  Añadiendo valores min y max
-                    load = true;
-                }
-                else
-                {
-                    i--;
-                }
-<<<<<<< HEAD
-               
-            }
-            m_Parent = this.MdiParent as MainForm;    
-        }
-
-               
         
-
-
-=======
-                
-            }
-        }
->>>>>>>  Añadiendo valores min y max
         public Bitmap Imagen
         {
             get { return this.picSource.Image as Bitmap; }
@@ -142,25 +79,17 @@ namespace VCPhotoManager
         }
 
 
-        public Int32 getMinValue()
+        public Int32 MinValue
         {
-            return m_MinValue;
+            get { return m_MinValue; }
+            set { this.m_MinValue = value; }
         }
 
-        public Int32 getMaxValue()
+        public Int32 MaxValue
         {
-            return m_MaxValue;
+            get { return m_MaxValue; }
+            set { this.m_MaxValue = value; }
         }
-
-
-            //public PictureBox getPictureBox()
-
-        //public PictureBox getPictureBox()
-
-        //{
-        //    return this.picSource;
-        //}
-
 
         public String PhotoPath
         {
