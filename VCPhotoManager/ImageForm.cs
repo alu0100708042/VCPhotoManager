@@ -56,11 +56,13 @@ namespace VCPhotoManager
         
         private void ImageForm_Load(object sender, EventArgs e)
         {
+            
             if(this.picSource.Image != null)
             {
                 this.ClientSize = this.picSource.Image.Size;
                 this.MaximumSize = this.Size;
             }
+<<<<<<< HEAD
 
             m_Parent = this.MdiParent as MainForm;
             MaxMinValueLoad();
@@ -69,6 +71,11 @@ namespace VCPhotoManager
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
             m_Parent = this.MdiParent as MainForm;           
+=======
+            m_Parent = this.MdiParent as MainForm;
+            MaxMinValueLoad();
+           
+>>>>>>>  Añadiendo valores min y max
         }
 
         private void MaxMinValueLoad()
@@ -79,7 +86,11 @@ namespace VCPhotoManager
             {
                 if (m_Histograma[i] != 0)
                 {
+<<<<<<< HEAD
                     m_MinValue = i;
+=======
+                    m_Parent.MinValue = i;
+>>>>>>>  Añadiendo valores min y max
                     load = true;
                 }
                 else
@@ -90,17 +101,26 @@ namespace VCPhotoManager
 
             i = 255;
             load = false;
+<<<<<<< HEAD
             while (!load)
             {
                 if (m_Histograma[i] != 0)
                 {
                     m_MaxValue = i;
+=======
+            while (load == false)
+            {
+                if (m_Histograma[i] != 0)
+                {
+                    m_Parent.MaxValue = i;
+>>>>>>>  Añadiendo valores min y max
                     load = true;
                 }
                 else
                 {
                     i--;
                 }
+<<<<<<< HEAD
                
             }
             m_Parent = this.MdiParent as MainForm;    
@@ -110,6 +130,11 @@ namespace VCPhotoManager
         
 
 
+=======
+                
+            }
+        }
+>>>>>>>  Añadiendo valores min y max
         public Bitmap Imagen
         {
             get { return this.picSource.Image as Bitmap; }
