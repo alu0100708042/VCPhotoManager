@@ -63,6 +63,15 @@
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Manager.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="DifAbsolutaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DifAbsolutaForm.Designer.cs">
+      <DependentUpon>DifAbsolutaForm.cs</DependentUpon>
+    </Compile>
+>>>>>>> Ultima
     <Compile Include="DiferenciaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +116,12 @@
     <EmbeddedResource Include="BrilloContrasteForm.resx">
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="DifAbsolutaForm.resx">
+      <DependentUpon>DifAbsolutaForm.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> Ultima
     <EmbeddedResource Include="DiferenciaForm.resx">
       <DependentUpon>DiferenciaForm.cs</DependentUpon>
     </EmbeddedResource>

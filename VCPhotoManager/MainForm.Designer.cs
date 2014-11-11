@@ -64,6 +64,11 @@
             this.transformacionesNoLinealesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gammaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diferenciaDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+<<<<<<< HEAD
+=======
+            this.ecualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diferenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+>>>>>>> Ultima
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +90,10 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbMinVal = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbMaxVal = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbX = new System.Windows.Forms.ToolStripStatusLabel();
@@ -97,11 +106,15 @@
             this.lbG = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
+<<<<<<< HEAD
             this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbMinVal = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbMaxVal = new System.Windows.Forms.ToolStripStatusLabel();
+=======
+            this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+>>>>>>> Ultima
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -303,7 +316,13 @@
             this.personalizarToolStripMenuItem,
             this.transformacionesLinealesToolStripMenuItem,
             this.transformacionesNoLinealesToolStripMenuItem,
+<<<<<<< HEAD
             this.diferenciaDeImagenesToolStripMenuItem});
+=======
+            this.diferenciaDeImagenesToolStripMenuItem,
+            this.ecualizarToolStripMenuItem,
+            this.diferenciaToolStripMenuItem});
+>>>>>>> Ultima
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -369,7 +388,11 @@
             // porTramosToolStripMenuItem
             // 
             this.porTramosToolStripMenuItem.Name = "porTramosToolStripMenuItem";
+<<<<<<< HEAD
             this.porTramosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+=======
+            this.porTramosToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+>>>>>>> Ultima
             this.porTramosToolStripMenuItem.Text = "Por tramos";
             this.porTramosToolStripMenuItem.Click += new System.EventHandler(this.porTramosToolStripMenuItem_Click);
             // 
@@ -395,6 +418,23 @@
             this.diferenciaDeImagenesToolStripMenuItem.Text = "Diferencia de imagenes";
             this.diferenciaDeImagenesToolStripMenuItem.Click += new System.EventHandler(this.diferenciaDeImagenesToolStripMenuItem_Click);
             // 
+<<<<<<< HEAD
+=======
+            // ecualizarToolStripMenuItem
+            // 
+            this.ecualizarToolStripMenuItem.Name = "ecualizarToolStripMenuItem";
+            this.ecualizarToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.ecualizarToolStripMenuItem.Text = "Ecualizar";
+            this.ecualizarToolStripMenuItem.Click += new System.EventHandler(this.ecualizarToolStripMenuItem_Click);
+            // 
+            // diferenciaToolStripMenuItem
+            // 
+            this.diferenciaToolStripMenuItem.Name = "diferenciaToolStripMenuItem";
+            this.diferenciaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.diferenciaToolStripMenuItem.Text = "Resta absoluta";
+            this.diferenciaToolStripMenuItem.Click += new System.EventHandler(this.diferenciaToolStripMenuItem_Click);
+            // 
+>>>>>>> Ultima
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -593,6 +633,30 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel8
+            // 
+            this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
+            this.toolStripStatusLabel8.Size = new System.Drawing.Size(47, 17);
+            this.toolStripStatusLabel8.Text = "MinVal:";
+            // 
+            // lbMinVal
+            // 
+            this.lbMinVal.Name = "lbMinVal";
+            this.lbMinVal.Size = new System.Drawing.Size(13, 17);
+            this.lbMinVal.Text = "0";
+            // 
+            // toolStripStatusLabel10
+            // 
+            this.toolStripStatusLabel10.Name = "toolStripStatusLabel10";
+            this.toolStripStatusLabel10.Size = new System.Drawing.Size(48, 17);
+            this.toolStripStatusLabel10.Text = "MaxVal:";
+            // 
+            // lbMaxVal
+            // 
+            this.lbMaxVal.Name = "lbMaxVal";
+            this.lbMaxVal.Size = new System.Drawing.Size(13, 17);
+            this.lbMaxVal.Text = "0";
+            // 
             // toolStripStatusLabel7
             // 
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
@@ -665,6 +729,7 @@
             this.lbB.Size = new System.Drawing.Size(13, 17);
             this.lbB.Text = "0";
             // 
+<<<<<<< HEAD
             // toolStripStatusLabel8
             // 
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
@@ -694,6 +759,13 @@
             this.lbMaxVal.Name = "lbMaxVal";
             this.lbMaxVal.Size = new System.Drawing.Size(13, 17);
             this.lbMaxVal.Text = "0";
+=======
+            // toolStripStatusLabel9
+            // 
+            this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(25, 17);
+            this.toolStripStatusLabel9.Text = "      ";
+>>>>>>> Ultima
             // 
             // MainForm
             // 
@@ -797,6 +869,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel10;
         private System.Windows.Forms.ToolStripStatusLabel lbMaxVal;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
+<<<<<<< HEAD
+=======
+        private System.Windows.Forms.ToolStripMenuItem ecualizarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diferenciaToolStripMenuItem;
+>>>>>>> Ultima
     }
 }
 

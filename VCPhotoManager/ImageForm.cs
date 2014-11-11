@@ -23,6 +23,9 @@ namespace VCPhotoManager
         private Int32[] m_Histograma = null;
         private Manager m_Manager = null;
         private Bitmap m_Recorte = null;
+        private Int32 m_MinValue;
+        private Int32 m_MaxValue;
+        
         
         
         private ImageForm()
@@ -59,6 +62,7 @@ namespace VCPhotoManager
                 this.ClientSize = this.picSource.Image.Size;
                 this.MaximumSize = this.Size;
             }
+<<<<<<< HEAD
             m_Parent = this.MdiParent as MainForm;       
         }
 
@@ -66,6 +70,36 @@ namespace VCPhotoManager
         {
             get { return this.picSource.Image as Bitmap; }
             set { this.picSource.Image = value; }
+=======
+
+            this.ClientSize = this.picSource.Image.Size;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+            m_Parent = this.MdiParent as MainForm;
+            m_MinValue = m_Manager.getMinValue(this.Imagen);
+            m_MaxValue = m_Manager.getMaxValue(this.Imagen);
+            m_Parent.MinValue = m_MinValue;
+            m_Parent.MaxValue = m_MaxValue;
+        }
+        
+        public Bitmap Imagen
+        {
+            get { return this.picSource.Image as Bitmap; }
+            set { this.picSource.Image = value; }
+        }
+
+
+        public Int32 MinValue
+        {
+            get { return m_MinValue; }
+            set { this.m_MinValue = value; }
+        }
+
+        public Int32 MaxValue
+        {
+            get { return m_MaxValue; }
+            set { this.m_MaxValue = value; }
+>>>>>>> Ultima
         }
 
 
@@ -159,6 +193,13 @@ namespace VCPhotoManager
                 m_Parent.R = color.R;
                 m_Parent.G = color.G;
                 m_Parent.B = color.B;
+<<<<<<< HEAD
+=======
+
+                m_Parent.MinValue = m_MinValue;
+                m_Parent.MaxValue = m_MaxValue;
+
+>>>>>>> Ultima
             }
             catch(ArgumentOutOfRangeException) { }
             

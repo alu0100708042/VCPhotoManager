@@ -36,6 +36,7 @@ namespace VCPhotoManager.Clases
                 }
             }
             return aux;
+<<<<<<< HEAD
         }
 
         public Int32 getMinValue(Bitmap imagen)
@@ -91,6 +92,92 @@ namespace VCPhotoManager.Clases
                         catch(DivideByZeroException)
                         {
                             result.SetPixel(x, y, Color.FromArgb(0, 0, 0));
+=======
+        }
+
+        public Int32 getMinValue(Bitmap imagen)
+        {
+            Int32 result = Int32.MaxValue;
+            for(int x = 0; x < imagen.Width; x++)
+            {
+                for(int y = 0; y < imagen.Height; y++)
+                {
+                    if(imagen.GetPixel(x, y).R < result)
+                    {
+                        result = imagen.GetPixel(x, y).R;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public Int32 getMaxValue(Bitmap imagen)
+        {
+            Int32 result = Int32.MinValue;
+            for(int x = 0; x < imagen.Width; x++)
+            {
+                for(int y = 0; y < imagen.Height; y++)
+                {
+                    if(imagen.GetPixel(x, y).R > result)
+                    {
+                        result = imagen.GetPixel(x, y).R;
+                    }
+                }
+            }
+            return result;
+        }
+
+        private Bitmap funcionPruebaLinear(List<Point> puntos, Bitmap image)
+        {
+            Bitmap result = new Bitmap(image.Width, image.Height);
+            Point p1, p2;
+            Int32 color = 0;
+            for(int r = 0; r < puntos.Count; r += 2)
+            {
+                p1 = puntos[r];
+                p2 = puntos[r + 1];
+                for(int x = 0; x < result.Width; x++)
+                {
+                    for(int y = 0; y < result.Height; y++)
+                    {
+                        try
+                        {
+                            color = ((p2.Y - p1.Y) * image.GetPixel(x, y).R) / (p2.X - p1.X);
+                            result.SetPixel(x, y, Color.FromArgb(color, color, color));
+                        }
+                        catch(DivideByZeroException)
+                        {
+                            result.SetPixel(x, y, Color.FromArgb(0, 0, 0));
+                        }
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        public Bitmap linearTransformation(List<Point> puntos, Bitmap image)
+        {
+            //return funcionPruebaLinear(puntos, image);
+
+            Bitmap result = new Bitmap(image.Width, image.Height);
+            for (int i = 0; i < puntos.Count; i+=2)
+            {
+                Double a = (Double)(puntos[i+1].Y - puntos[i].Y) / (puntos[i+1].X - puntos[i].X);
+                Double b = (Double)(puntos[i+1].Y - a * puntos[i+1].X);
+
+                for (int x = 0; x < image.Width; x++)
+                {
+                    for (int y = 0; y < image.Height; y++)
+                    {
+                        Color aux = image.GetPixel(x, y);
+                        if (aux.R >= puntos[i].X && aux.R <= puntos[i+1].X)
+                        {
+                            byte transcolor = (byte)(a * aux.R + b);
+
+                            Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                            result.SetPixel(x, y, newaux);
+>>>>>>> Ultima
                         }
                     }
                 }
@@ -211,7 +298,7 @@ namespace VCPhotoManager.Clases
         {
             Int32[] bac = new Int32[2];
             bac[0] = 0;
-            bac[1] = 1;
+            bac[1] = 0;
             Int32[] n_pixels = getHistogram(Image);
             //Brillo
             for (int i = 0; i < 256; i++) 
@@ -255,27 +342,86 @@ namespace VCPhotoManager.Clases
                     }
                 }
 
+          return result;
+        }
 
-            /*for (int i = 0; i < Image.Width; i++)
+        public Bitmap EcualizeImage(Bitmap Image, Int32 maxValue, Int32 minValue)
+        {
+            Decimal acumulado = 0;
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            Int32[] AcumulativeHistogram = new Int32[256];
+            Int32[] Histogram = getHistogram(Image);
+            Int32[] Vout = new Int32[256];
+            Int32 m = maxValue - minValue;
+            Int32 size = Image.Width * Image.Height;
+
+            // Vout = max[0, rount(M/Size*Co(Vin)) -1 ]
+            // M niveles de gris que haya
+            //Size tamaño imagen
+            //Co histograma acumulativo de Ii
+
+            // Calculamos el histograma acumulativo de la imagen actual
+            for(int i = 0; i < 256; i++)
             {
+                acumulado += Histogram[i];
+                AcumulativeHistogram[i] = (Int32)acumulado;
+            }
 
-                for (int j = 0; j < Image.Height; j++)
+            for(int i = 0; i < 256; i++)
+            {
+                Vout[i] = (Int32)(Math.Max(0, Math.Round((Double)(((Double)m / (Double)size) * AcumulativeHistogram[i] - 1))));
+            }
+
+            for(int i = 0; i < Image.Width; i++)
+            {
+                for(int j = 0; j < Image.Height; j++)
                 {
                     Color aux = Image.GetPixel(i, j);
-                    int n_byte = aux.R + a;
-                    if (n_byte > 255)
-                        n_byte = 255;
-                    if (n_byte < 0)
-                        n_byte = 0;
 
-                    byte transcolor = (byte)(n_byte);
+                    byte transcolor = (byte)Vout[aux.R];
                     Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
                     result.SetPixel(i, j, newaux);
                 }
-            }*/
+            }
 
-          return result;
+                //// Crear Histograma Destino
+                //a = AcumulativeHistogram[255] / 255;
+                //b = AcumulativeHistogram[255] - (a * 255);
+                //for (int i = 0; i < 256; i++)
+                //{
+                //    EcualizedHistogram[i] = (Int32)((a * i) + b);  
+                //}
+
+                //while (ifuente < 256 && idestino < 256)
+                //{
+                //    if (EcualizedHistogram[idestino] > AcumulativeHistogram[ifuente])
+                //    {
+                //        pixelTransform[ifuente] = idestino;
+                //        ifuente++;
+                //    }
+                //    else 
+                //    {
+                //        if(ifuente != 0)
+                //            pixelTransform[ifuente] = pixelTransform[ifuente - 1];
+                //        idestino++;
+                //    }
+                //}
+
+                //for (int i = 0; i < Image.Width; i++)
+                //{
+                //    for (int j = 0; j < Image.Height; j++)
+                //    {
+                //        Color aux = Image.GetPixel(i, j);
+                //        byte transcolor = (byte)pixelTransform[aux.R];
+                //        Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
+                //        result.SetPixel(i, j, newaux);
+                //    }
+                //}
+
+
+                return result;
         }
+
         /// <summary>
         /// Función que se le pasará el vector del histograma para normalizarlo a la hora de dibujar
         /// </summary>
@@ -402,13 +548,23 @@ namespace VCPhotoManager.Clases
         public Bitmap getImageDifference(Bitmap img1, Bitmap img2, Int32 precision)
         {
             Bitmap result = null;
+<<<<<<< HEAD
             Color color;
+=======
+            Color color = Color.Red;
+>>>>>>> Ultima
             Int32 R = 0, G = 0, B = 0;
             if(img1 != null && img2 != null)
             {
                 if(img1.Size == img2.Size)
                 {
+<<<<<<< HEAD
                     result = new Bitmap(img1);
+=======
+                    //result = new Bitmap(img1);
+                    result = new Bitmap(img1.Width, img1.Height);
+
+>>>>>>> Ultima
                     for(int y = 0; y < img1.Size.Height; y++)
                     {
                         for(int x = 0; x < img1.Size.Width; x++)
@@ -421,7 +577,11 @@ namespace VCPhotoManager.Clases
                             {
                                 if(R >= precision || G >= precision || B >= precision)
                                 {
+<<<<<<< HEAD
                                     color = Color.Red;
+=======
+                                    color = Color.FromArgb(R, G, B);
+>>>>>>> Ultima
                                     result.SetPixel(x, y, color);
                                 }
                             }
@@ -429,7 +589,50 @@ namespace VCPhotoManager.Clases
                     }
                 }
             }
+<<<<<<< HEAD
             
+=======
+            return result;
+        }
+
+        public Bitmap getDiference(Bitmap img1, Bitmap img2)
+        {
+            Bitmap result = new Bitmap(img1.Width,img1.Height);
+            Color color = new Color();
+            Int32 R = 0, G = 0, B = 0;
+
+            if (img1 != null && img2 != null)
+            {
+                if (img1.Size == img2.Size)
+                {
+                    for (int y = 0; y < img1.Size.Height; y++)
+                    {
+                        for (int x = 0; x < img1.Size.Width; x++)
+                        {
+
+                            R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
+                            G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
+                            B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
+                            color = Color.FromArgb(R, G, B);
+
+                            result.SetPixel(x,y,color);
+
+                            //R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
+                            //if (R > 0)
+                            //{
+                            //    result.SetPixel(x, y, Color.Black);
+                            //}
+                            //else 
+                            //{
+                            //    result.SetPixel(x, y, Color.White);
+                            //}
+
+                        }
+                    }
+                }
+            }
+
+>>>>>>> Ultima
             return result;
         }
         

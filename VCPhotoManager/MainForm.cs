@@ -25,9 +25,13 @@ namespace VCPhotoManager
         PromptBuilder m_Builder;
         SpeechRecognitionEngine m_Engine;
 
+<<<<<<< HEAD
         private Int32 m_MinValue;
         private Int32 m_MaxValue;
         
+=======
+               
+>>>>>>> Ultima
         public MainForm()
         {
             InitializeComponent();
@@ -89,7 +93,7 @@ namespace VCPhotoManager
         private void abrirImagen()
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg|Imágenes sin pérdida (*.bmp, *.tiff)|*.bmp;*.tiff";
+            o.Filter = "Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg|Imágenes sin pérdida (*.bmp, *.tif)|*.bmp;*.tif";
 
             if(o.ShowDialog() == DialogResult.OK)
             {
@@ -159,7 +163,15 @@ namespace VCPhotoManager
             ///*m_TargetForm = new TargetForm(m_Manager.changeToGrayScale((m_SourceForm.getPictureBox().Image as Bitmap)));
             //m_TargetForm.Show();*/
 
+<<<<<<< HEAD
             initSpeech();
+=======
+
+            //initSpeech();
+
+            //initSpeech();
+
+>>>>>>> Ultima
 
 
 
@@ -289,7 +301,7 @@ namespace VCPhotoManager
 
 
                 Int32[] vector = m_Manager.getCumulativeHistogram(f.Histograma);
-                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo", max);
+                m_HistogramaForm = new HistogramaGraficsForm(vector, "Histograma acumulativo", max, this);
 
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
@@ -312,7 +324,11 @@ namespace VCPhotoManager
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
                 Int32 max = -99999;
+<<<<<<< HEAD
                 Int32[] aux = m_Manager.getHistogram(f.Imagen as Bitmap);
+=======
+                Int32[] aux = m_Manager.getHistogram(f.Imagen);
+>>>>>>> Ultima
                 for(int i = 0; i < 256; i++)
                 {
                     if(max < aux[i])
@@ -321,7 +337,11 @@ namespace VCPhotoManager
                     }
                 }
                 Int32[] vector = m_Manager.getNormalizeHistogram(aux);
+<<<<<<< HEAD
                 m_HistogramaForm = new HistogramaGraficsForm(vector, null, max);
+=======
+                m_HistogramaForm = new HistogramaGraficsForm(vector, null, max, this);
+>>>>>>> Ultima
                 m_HistogramaForm.MdiParent = this;
                 m_HistogramaForm.Show();
             }
@@ -435,6 +455,8 @@ namespace VCPhotoManager
 
 
         private void gammaToolStripMenuItem_Click(object sender, EventArgs e)
+<<<<<<< HEAD
+=======
         {
             if(this.ActiveMdiChild is ImageForm)
             {
@@ -450,6 +472,65 @@ namespace VCPhotoManager
             }
         }
 
+        private void ayudaToolStripButton_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void porTramosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm imgForm = this.ActiveMdiChild as ImageForm;
+                RangosForm rangForm = new RangosForm(imgForm.Imagen, this);
+                rangForm.MdiParent = this;
+                rangForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void acercadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AcercaDeForm f = new AcercaDeForm();
+            f.Show();
+        }
+
+        private void diferenciaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DiferenciaForm f = new DiferenciaForm(this);
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void ecualizarToolStripMenuItem_Click(object sender, EventArgs e)
+>>>>>>> Ultima
+        {
+            if(this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+<<<<<<< HEAD
+                GammaForm g = new GammaForm(f.Imagen, this);
+                g.MdiParent = this;
+                g.Show();
+=======
+                ImageForm s = new ImageForm(m_Manager.EcualizeImage(f.Imagen, f.MaxValue, f.MinValue));
+                s.MdiParent = this;
+                s.Show();
+>>>>>>> Ultima
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Ecualización de Imagen",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+<<<<<<< HEAD
 
 
 
@@ -493,6 +574,11 @@ namespace VCPhotoManager
         private void diferenciaDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DiferenciaForm f = new DiferenciaForm(this);
+=======
+        private void diferenciaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DifAbsolutaForm f = new DifAbsolutaForm(this);
+>>>>>>> Ultima
             f.MdiParent = this;
             f.Show();
         }

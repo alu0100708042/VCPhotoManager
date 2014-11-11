@@ -10,11 +10,10 @@ using VCPhotoManager.Clases;
 
 namespace VCPhotoManager
 {
-    public partial class DiferenciaForm : Form
+    public partial class DifAbsolutaForm : Form
     {
         private MainForm m_Parent;
-
-        public DiferenciaForm(MainForm parent)
+        public DifAbsolutaForm(MainForm parent)
         {
             InitializeComponent();
             this.pictureBox1.AllowDrop = true;
@@ -24,7 +23,7 @@ namespace VCPhotoManager
 
         private void pictureBox1_DragEnter(object sender, DragEventArgs e)
         {
-            if(e.Data.GetDataPresent(DataFormats.Bitmap))
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -42,7 +41,7 @@ namespace VCPhotoManager
 
         private void pictureBox2_DragEnter(object sender, DragEventArgs e)
         {
-            if(e.Data.GetDataPresent(DataFormats.Bitmap))
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -57,6 +56,19 @@ namespace VCPhotoManager
             this.pictureBox2.Image = e.Data.GetData(DataFormats.Bitmap) as Image;
         }
 
+        private void DifAbsolutaForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Manager m = new Manager();
+            Bitmap result = m.getDiference(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap);
+            ImageForm f = new ImageForm(result);
+            f.MdiParent = m_Parent;
+            f.Show();
+        }
 
         private void btnElimnar1_Click(object sender, EventArgs e)
         {
@@ -67,29 +79,5 @@ namespace VCPhotoManager
         {
             this.pictureBox2.Image = null;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Manager m = new Manager();
-            Bitmap result = m.getImageDifference(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap, Int32.Parse(this.lbPrecision.Text));
-            ImageForm f = new ImageForm(result);
-            f.MdiParent = m_Parent;
-            f.Show();
-        }
-
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            this.lbPrecision.Text = this.trackBar1.Value.ToString();
-        }
-
-<<<<<<< HEAD
-=======
-        private void DiferenciaForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
->>>>>>> Ultima
-        
     }
 }
