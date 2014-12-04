@@ -14,12 +14,20 @@ namespace VCPhotoManager
     {
         private MainForm m_Parent;
 
-        public DiferenciaForm(MainForm parent)
+        public DiferenciaForm(MainForm parent, string option)
         {
             InitializeComponent();
             this.pictureBox1.AllowDrop = true;
             this.pictureBox2.AllowDrop = true;
             this.m_Parent = parent;
+            if (option == "HistogramSpecification")
+            {
+                this.button1.Visible = false;
+            }
+            else if (option == null)
+            {
+                this.button2.Visible = false;
+            }
         }
 
         private void pictureBox1_DragEnter(object sender, DragEventArgs e)
@@ -71,7 +79,15 @@ namespace VCPhotoManager
         private void button1_Click(object sender, EventArgs e)
         {
             Manager m = new Manager();
-            Bitmap result = m.getImageDifference(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap, Int32.Parse(this.lbPrecision.Text));
+            String precision = this.lbPrecision.Text;
+            Bitmap result = new Bitmap(this.pictureBox1.Image.Width, this.pictureBox2.Image.Height);
+            if (Convert.ToInt32(precision) != 0)
+            {
+                result = m.getImageDifference(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap, Int32.Parse(this.lbPrecision.Text));
+            }
+            else{
+                result = m.getDiference(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap);
+            }
             ImageForm f = new ImageForm(result);
             f.MdiParent = m_Parent;
             f.Show();
@@ -82,14 +98,18 @@ namespace VCPhotoManager
             this.lbPrecision.Text = this.trackBar1.Value.ToString();
         }
 
-<<<<<<< HEAD
-=======
         private void DiferenciaForm_Load(object sender, EventArgs e)
         {
 
         }
 
->>>>>>> Ultima
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Manager m = new Manager();
+            Bitmap result = m.HistogramSpecification(this.pictureBox1.Image as Bitmap, this.pictureBox2.Image as Bitmap);
+            ImageForm f = new ImageForm(result);
+            f.MdiParent = m_Parent;
+            f.Show();
+        }
     }
 }

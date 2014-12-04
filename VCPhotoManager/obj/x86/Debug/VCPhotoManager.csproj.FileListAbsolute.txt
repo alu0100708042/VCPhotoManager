@@ -26,8 +26,6 @@ C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoMana
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.AcercaDeForm.resources
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.GammaForm.resources
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DiferenciaForm.resources
-<<<<<<< HEAD
-=======
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
 D:\Documentos XP\Mis Documentos\Universidad\Cuarto\Visión Por Computador\VCPhotoManager\VCPhotoManager\bin\Debug\VCPhotoManager.exe
@@ -70,3 +68,18 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Práctica\V
 C:\Users\Oliver\Documents\Visual Studio 2010\Projects\VCPhotoManager\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DifAbsolutaForm.resources
 >>>>>>>  Añadiendo valores min y max
 >>>>>>> Ultima
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.exe
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.pdb
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csprojResolveAssemblyReference.cache
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.AcercaDeForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.BrilloContrasteForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DiferenciaForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.GammaForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.HistogramaGraficsForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.MainForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.Properties.Resources.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.ImageForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RangosForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.csproj.GenerateResource.Cache
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\bin\Debug\VCPhotoManager.exe
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\bin\Debug\VCPhotoManager.pdb

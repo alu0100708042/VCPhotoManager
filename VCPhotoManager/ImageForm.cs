@@ -61,26 +61,13 @@ namespace VCPhotoManager
             {
                 this.ClientSize = this.picSource.Image.Size;
                 this.MaximumSize = this.Size;
+                m_MaxValue = m_Manager.getMaxValue(this.Imagen);
             }
-<<<<<<< HEAD
-            m_Parent = this.MdiParent as MainForm;       
-        }
-
-        public Bitmap Imagen
-        {
-            get { return this.picSource.Image as Bitmap; }
-            set { this.picSource.Image = value; }
-=======
-
-            this.ClientSize = this.picSource.Image.Size;
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
-            m_Parent = this.MdiParent as MainForm;
-            m_MinValue = m_Manager.getMinValue(this.Imagen);
-            m_MaxValue = m_Manager.getMaxValue(this.Imagen);
+            m_Parent = this.MdiParent as MainForm;   
             m_Parent.MinValue = m_MinValue;
             m_Parent.MaxValue = m_MaxValue;
         }
+
         
         public Bitmap Imagen
         {
@@ -99,7 +86,6 @@ namespace VCPhotoManager
         {
             get { return m_MaxValue; }
             set { this.m_MaxValue = value; }
->>>>>>> Ultima
         }
 
 
@@ -193,13 +179,6 @@ namespace VCPhotoManager
                 m_Parent.R = color.R;
                 m_Parent.G = color.G;
                 m_Parent.B = color.B;
-<<<<<<< HEAD
-=======
-
-                m_Parent.MinValue = m_MinValue;
-                m_Parent.MaxValue = m_MaxValue;
-
->>>>>>> Ultima
             }
             catch(ArgumentOutOfRangeException) { }
             
