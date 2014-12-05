@@ -420,7 +420,7 @@
             // 
             this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
             this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.pruebaToolStripMenuItem.Text = "prueba";
+            this.pruebaToolStripMenuItem.Text = "Digitalización";
             this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem

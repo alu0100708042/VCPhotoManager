@@ -69,6 +69,12 @@
     <Compile Include="DiferenciaForm.Designer.cs">
       <DependentUpon>DiferenciaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DigitalizarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitalizarForm.Designer.cs">
+      <DependentUpon>DigitalizarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GammaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DiferenciaForm.resx">
       <DependentUpon>DiferenciaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalizarForm.resx">
+      <DependentUpon>DigitalizarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GammaForm.resx">
       <DependentUpon>GammaForm.cs</DependentUpon>

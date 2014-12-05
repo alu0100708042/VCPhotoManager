@@ -276,8 +276,10 @@ namespace VCPhotoManager
 
         private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_SourceForm.Historico.RemoveAt(m_SourceForm.Historico.Count - 1);
-            m_SourceForm.Imagen = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
+            // Lo comente porque siempre peta creo que no tiene lógica porque siempre que se hace un cambio
+            // se genera una imagen nueva
+            //m_SourceForm.Historico.RemoveAt(m_SourceForm.Historico.Count - 1);
+            //m_SourceForm.Imagen = m_SourceForm.Historico[m_SourceForm.Historico.Count - 1];
         }
 
         private void copiarToolStripButton_Click(object sender, EventArgs e)
@@ -540,13 +542,12 @@ namespace VCPhotoManager
             if (this.ActiveMdiChild is ImageForm)
             {
                 ImageForm f = this.ActiveMdiChild as ImageForm;
-                ImageForm s = new ImageForm(m_Manager.DigitalSimulation(f.Imagen,2,6));
-                s.MdiParent = this;
-                s.Show();
+                DigitalizarForm d = new DigitalizarForm(f.Imagen, this);
+                d.Show();
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una imagen.", "Ecualización de Imagen",
+                MessageBox.Show("Debe seleccionar una imagen.", "Digitalización",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

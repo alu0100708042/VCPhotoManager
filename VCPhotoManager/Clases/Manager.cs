@@ -269,43 +269,8 @@ namespace VCPhotoManager.Clases
                     result.SetPixel(i, j, newaux);
                 }
             }
-
-                //// Crear Histograma Destino
-                //a = AcumulativeHistogram[255] / 255;
-                //b = AcumulativeHistogram[255] - (a * 255);
-                //for (int i = 0; i < 256; i++)
-                //{
-                //    EcualizedHistogram[i] = (Int32)((a * i) + b);  
-                //}
-
-                //while (ifuente < 256 && idestino < 256)
-                //{
-                //    if (EcualizedHistogram[idestino] > AcumulativeHistogram[ifuente])
-                //    {
-                //        pixelTransform[ifuente] = idestino;
-                //        ifuente++;
-                //    }
-                //    else 
-                //    {
-                //        if(ifuente != 0)
-                //            pixelTransform[ifuente] = pixelTransform[ifuente - 1];
-                //        idestino++;
-                //    }
-                //}
-
-                //for (int i = 0; i < Image.Width; i++)
-                //{
-                //    for (int j = 0; j < Image.Height; j++)
-                //    {
-                //        Color aux = Image.GetPixel(i, j);
-                //        byte transcolor = (byte)pixelTransform[aux.R];
-                //        Color newaux = Color.FromArgb(transcolor, transcolor, transcolor);
-                //        result.SetPixel(i, j, newaux);
-                //    }
-                //}
-
-
-                return result;
+            
+            return result;
         }
 
         /// <summary>
