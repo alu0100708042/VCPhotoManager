@@ -309,6 +309,94 @@ namespace VCPhotoManager.Clases
         }
 
         /// <summary>
+        /// Función que simula la digitalización de una imagen
+        /// </summary>
+        /// <param name="Image">Imagen sobre la que se desea simular</param>
+        /// <param name="desplazamiento">Valor de muestreo</param>
+        /// <param name="bits">Número de bits de la imagen resultado</param>
+        /// <returns></returns>
+        public Bitmap DigitalSimulation(Bitmap Image, Int32 desplazamiento, Int32 bits) 
+        {
+            Bitmap result = new Bitmap(Image.Width, Image.Height);
+            Int32 v_medio;
+            Color color= new Color();
+            List<Point> cuantizar = new List<Point>();
+            for (int x = 0; x < Image.Width; x+= desplazamiento)
+            {
+                for (int y = 0; y < Image.Height; y+= desplazamiento)
+                {
+                    v_medio = 0;
+                    if (x + desplazamiento < Image.Width && y + desplazamiento < Image.Height -1)
+                    {
+                        for (int z = x; z < x + desplazamiento; z++)
+                        {
+                            for (int w = y; w < y + desplazamiento; w++)
+                            {
+                                color = Image.GetPixel(z, w);
+                                v_medio += (Int32)color.R;
+                            }
+                        }
+                        v_medio = Convert.ToInt32(Math.Round((Double)v_medio / (Double)(desplazamiento * desplazamiento), MidpointRounding.AwayFromZero)); // Se multiplica por dos porque se desplaza en forma de matriz
+                        for (int z = x; z < x + desplazamiento; z++)
+                        {
+                            for (int w = y; w < y + desplazamiento; w++)
+                            {
+                                result.SetPixel(z, w, Color.FromArgb(v_medio, v_medio, v_medio));
+                            }
+
+                        }
+                    }
+                    else // Si es mayor 
+                    {
+                        if (x + desplazamiento > Image.Width && y + desplazamiento < Image.Height)
+                        {
+                            for (int w = y; w < y + desplazamiento; w++)
+                            {
+                                color = Image.GetPixel(x, w);
+                                v_medio += (Int32)color.R;
+                            }
+                            v_medio = v_medio / desplazamiento;
+                            for (int w = y; w < y + desplazamiento; w++)
+                            {
+                                result.SetPixel(x, w, Color.FromArgb(v_medio, v_medio, v_medio));
+                            }
+                        }
+                        else if (x + desplazamiento < Image.Width && y + desplazamiento > Image.Height)
+                        {
+                            for (int w = x; w < x + desplazamiento; w++)
+                            {
+                                color = Image.GetPixel(w, y);
+                                v_medio += (Int32)color.R;
+                            }
+                            v_medio = v_medio / desplazamiento;
+                            for (int w = x; w < x + desplazamiento; w++)
+                            {
+                                result.SetPixel(w, y, Color.FromArgb(v_medio, v_medio, v_medio));
+                            }
+                        }
+                        else // Si se pasas los dos se pone el pixel original 
+                        {
+                            color = Image.GetPixel(x, y);
+                            v_medio = color.R;
+                            result.SetPixel(x, y, Color.FromArgb(v_medio, v_medio, v_medio));
+                        }
+                    }
+               }
+            }
+            //Cuantizar
+            cuantizar.Add(new Point(0, 0));
+            cuantizar.Add(new Point(255,Convert.ToInt32(Math.Pow(2,bits))));
+            result = linearTransformation(cuantizar, result);
+            cuantizar.RemoveAt(1);
+            cuantizar.RemoveAt(0);
+            cuantizar.Add(new Point(0, 0));
+            cuantizar.Add(new Point(Convert.ToInt32(Math.Pow(2, bits)),255 ));
+            result = linearTransformation(cuantizar, result);
+            return result;
+        }
+
+
+        /// <summary>
         /// Función a la cual se le pasan dos imágenes y devuelve la primera con el histograma acumulativo de la segunda
         /// </summary>
         /// <param name="img1"></param>

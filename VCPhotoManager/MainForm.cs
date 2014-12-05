@@ -12,6 +12,7 @@ using System.Speech.Synthesis;
 using System.Speech.Recognition;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
 
 namespace VCPhotoManager
 {
@@ -150,6 +151,33 @@ namespace VCPhotoManager
             }
         }
 
+
+        private void GuardarComo( ImageForm f)
+        {
+            SaveFileDialog s = new SaveFileDialog();
+            s.Filter = "Imágenes con pérdida (*.gif, *.jpg)|*.gif;*.jpg|Imágenes sin pérdida (*.bmp, *.tif)|*.bmp;*.tif";
+            ImageFormat format = ImageFormat.Jpeg;
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                string ext = System.IO.Path.GetExtension(s.FileName);
+                switch (ext)
+                {
+                    case ".jpg":
+                        format = ImageFormat.Jpeg;
+                        break;
+                    case ".gif":
+                        format = ImageFormat.Gif;
+                        break;
+                    case ".tif":
+                        format = ImageFormat.Tiff;
+                        break;
+                    case ".bmp":
+                        format = ImageFormat.Bmp;
+                        break;
+                }
+                f.Imagen.Save(s.FileName, format);
+            }
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             //m_Manager = new Manager();
@@ -505,6 +533,36 @@ namespace VCPhotoManager
             DiferenciaForm f = new DiferenciaForm(this, "HistogramSpecification");
             f.MdiParent = this;
             f.Show();
+        }
+
+        private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                ImageForm s = new ImageForm(m_Manager.DigitalSimulation(f.Imagen,2,6));
+                s.MdiParent = this;
+                s.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Ecualización de Imagen",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void guardarcomoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                GuardarComo(f);
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Guardar Como",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }  
     }
 }

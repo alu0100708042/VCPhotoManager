@@ -65,6 +65,8 @@
             this.gammaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diferenciaDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ecualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.especificaciónDelHistogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +105,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.especificaciónDelHistogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -180,6 +181,7 @@
             this.guardarcomoToolStripMenuItem.Name = "guardarcomoToolStripMenuItem";
             this.guardarcomoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.guardarcomoToolStripMenuItem.Text = "G&uardar como";
+            this.guardarcomoToolStripMenuItem.Click += new System.EventHandler(this.guardarcomoToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -307,7 +309,8 @@
             this.transformacionesNoLinealesToolStripMenuItem,
             this.diferenciaDeImagenesToolStripMenuItem,
             this.ecualizarToolStripMenuItem,
-            this.especificaciónDelHistogramaToolStripMenuItem});
+            this.especificaciónDelHistogramaToolStripMenuItem,
+            this.pruebaToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -315,7 +318,7 @@
             // cambiarAEscalaDeGrisesToolStripMenuItem
             // 
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Name = "cambiarAEscalaDeGrisesToolStripMenuItem";
-            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.cambiarAEscalaDeGrisesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Text = "&Cambiar a escala de grises";
             this.cambiarAEscalaDeGrisesToolStripMenuItem.Click += new System.EventHandler(this.CambiaraEscalaDeGrises);
             // 
@@ -325,7 +328,7 @@
             this.acumulativoToolStripMenuItem,
             this.frecuenciasToolStripMenuItem1});
             this.histogramaToolStripMenuItem.Name = "histogramaToolStripMenuItem";
-            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.histogramaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.histogramaToolStripMenuItem.Text = "Histogramas";
             // 
             // acumulativoToolStripMenuItem
@@ -345,13 +348,13 @@
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.opcionesToolStripMenuItem.Text = "&Opciones";
             // 
             // personalizarToolStripMenuItem
             // 
             this.personalizarToolStripMenuItem.Name = "personalizarToolStripMenuItem";
-            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.personalizarToolStripMenuItem.Text = "&Personalizar";
             // 
             // transformacionesLinealesToolStripMenuItem
@@ -360,7 +363,7 @@
             this.negativizarToolStripMenuItem,
             this.porTramosToolStripMenuItem});
             this.transformacionesLinealesToolStripMenuItem.Name = "transformacionesLinealesToolStripMenuItem";
-            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.transformacionesLinealesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.transformacionesLinealesToolStripMenuItem.Text = "Transformaciones Lineales";
             // 
             // negativizarToolStripMenuItem
@@ -382,7 +385,7 @@
             this.transformacionesNoLinealesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gammaToolStripMenuItem});
             this.transformacionesNoLinealesToolStripMenuItem.Name = "transformacionesNoLinealesToolStripMenuItem";
-            this.transformacionesNoLinealesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.transformacionesNoLinealesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.transformacionesNoLinealesToolStripMenuItem.Text = "Transformaciones no Lineales";
             // 
             // gammaToolStripMenuItem
@@ -395,16 +398,30 @@
             // diferenciaDeImagenesToolStripMenuItem
             // 
             this.diferenciaDeImagenesToolStripMenuItem.Name = "diferenciaDeImagenesToolStripMenuItem";
-            this.diferenciaDeImagenesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.diferenciaDeImagenesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.diferenciaDeImagenesToolStripMenuItem.Text = "Diferencia de imagenes";
             this.diferenciaDeImagenesToolStripMenuItem.Click += new System.EventHandler(this.diferenciaDeImagenesToolStripMenuItem_Click);
             // 
             // ecualizarToolStripMenuItem
             // 
             this.ecualizarToolStripMenuItem.Name = "ecualizarToolStripMenuItem";
-            this.ecualizarToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.ecualizarToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.ecualizarToolStripMenuItem.Text = "Ecualizar";
             this.ecualizarToolStripMenuItem.Click += new System.EventHandler(this.ecualizarToolStripMenuItem_Click);
+            // 
+            // especificaciónDelHistogramaToolStripMenuItem
+            // 
+            this.especificaciónDelHistogramaToolStripMenuItem.Name = "especificaciónDelHistogramaToolStripMenuItem";
+            this.especificaciónDelHistogramaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.especificaciónDelHistogramaToolStripMenuItem.Text = "Especificación del Histograma";
+            this.especificaciónDelHistogramaToolStripMenuItem.Click += new System.EventHandler(this.especificaciónDelHistogramaToolStripMenuItem_Click);
+            // 
+            // pruebaToolStripMenuItem
+            // 
+            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
+            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.pruebaToolStripMenuItem.Text = "prueba";
+            this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -706,13 +723,6 @@
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(25, 17);
             this.toolStripStatusLabel9.Text = "      ";
             // 
-            // especificaciónDelHistogramaToolStripMenuItem
-            // 
-            this.especificaciónDelHistogramaToolStripMenuItem.Name = "especificaciónDelHistogramaToolStripMenuItem";
-            this.especificaciónDelHistogramaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.especificaciónDelHistogramaToolStripMenuItem.Text = "Especificación del Histograma";
-            this.especificaciónDelHistogramaToolStripMenuItem.Click += new System.EventHandler(this.especificaciónDelHistogramaToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -817,6 +827,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
         private System.Windows.Forms.ToolStripMenuItem ecualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem especificaciónDelHistogramaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
 
     }
 }
