@@ -26,6 +26,9 @@ namespace VCPhotoManager
 
         private void DigitalizarForm_Load(object sender, EventArgs e)
         {
+            this.MdiParent = m_Parent;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
             comboBox1.SelectedIndex = 0;
             rb2x2.Select();
         }

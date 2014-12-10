@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Collections;
 
 namespace VCPhotoManager.Clases
 {
@@ -349,6 +350,60 @@ namespace VCPhotoManager.Clases
                }
             }
             //Cuantizar
+
+            Int32 original = 255;
+            Int32  destino = (Int32)((Math.Pow(2, bits) - 1));
+            Int32 rango = (original / destino);
+
+
+            for (var y = 0; y < result.Height; y++)
+            {
+                for (var x = 0; x < result.Width; x++)
+                {
+
+
+                    Int32 lugar = (Int32)(Math.Floor((Double)(result.GetPixel(x,y).R / rango)));
+                    Int32 redondear;
+
+                    if (result.GetPixel(x,y).R % rango >= rango / 2)
+                    {
+                        //console.log("REDONDEO ARRIBA");
+                        redondear = rango;
+                    }
+                    else
+                    {
+                        redondear = 0;
+                        //console.log("REDONDEO ABAJO");
+                    }
+                    byte cfinal = Convert.ToByte((rango * lugar) + redondear);
+                    result.SetPixel(x, y, Color.FromArgb(cfinal, cfinal, cfinal));
+                }
+            }
+            /*Int32 v_med = (Int32)(255 / Math.Pow(2, bits));
+            for(int x = 0;  x < result.Width; x++)
+            {
+                for (int y = 0; y < result.Height; y++)
+                {
+                    for (int z = 0; z < Math.Pow(2,bits); z++) 
+                    {
+                        Color aux = result.GetPixel(x, y);
+                        Int32 tr =(Int32)(Math.Truncate((Double)(aux.R / v_med))); // lugar donde se encuentra
+                        byte anterior = Convert.ToByte(v_med * tr);
+                        byte posterior = Convert.ToByte(v_med * (tr + 2));
+                        if (aux.R > posterior/2)
+                        {
+                            result.SetPixel(x, y, Color.FromArgb(posterior, posterior, posterior));
+                        }
+                        else 
+                        {
+                            result.SetPixel(x, y, Color.FromArgb(anterior,anterior,anterior));
+                        }
+
+                    }
+                }
+            }*/
+
+            /*
             cuantizar.Add(new Point(0, 0));
             cuantizar.Add(new Point(255,Convert.ToInt32(Math.Pow(2,bits))));
             result = linearTransformation(cuantizar, result);
@@ -356,7 +411,9 @@ namespace VCPhotoManager.Clases
             cuantizar.RemoveAt(0);
             cuantizar.Add(new Point(0, 0));
             cuantizar.Add(new Point(Convert.ToInt32(Math.Pow(2, bits)),255 ));
-            result = linearTransformation(cuantizar, result);
+            cuantizar.Add(new Point(Convert.ToInt32(Math.Pow(2,bits))+1, 255));
+            cuantizar.Add(new Point(255, 255));
+            result = linearTransformation(cuantizar, result);*/
             return result;
         }
 
@@ -465,7 +522,8 @@ namespace VCPhotoManager.Clases
                 for(int j = 0; j < mapa.Height; j++)
                 {
                     Color pixel = mapa.GetPixel(i, j);
-                    result[pixel.R] = result[pixel.R] + 1;
+                    if(pixel.A != 0)
+                        result[pixel.R] = result[pixel.R] + 1;
                 }
             }
 
@@ -590,24 +648,11 @@ namespace VCPhotoManager.Clases
                     {
                         for (int x = 0; x < img1.Size.Width; x++)
                         {
-
                             R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
                             G = Math.Abs(img1.GetPixel(x, y).G - img2.GetPixel(x, y).G);
                             B = Math.Abs(img1.GetPixel(x, y).B - img2.GetPixel(x, y).B);
                             color = Color.FromArgb(R, G, B);
-
                             result.SetPixel(x,y,color);
-
-                            //R = Math.Abs(img1.GetPixel(x, y).R - img2.GetPixel(x, y).R);
-                            //if (R > 0)
-                            //{
-                            //    result.SetPixel(x, y, Color.Black);
-                            //}
-                            //else 
-                            //{
-                            //    result.SetPixel(x, y, Color.White);
-                            //}
-
                         }
                     }
                 }
@@ -615,6 +660,346 @@ namespace VCPhotoManager.Clases
 
             return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public Bitmap EspejoHorizontal(Bitmap image)
+        {
+            Bitmap result = image.Clone() as Bitmap;
+            result.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public Bitmap EspejoVertical(Bitmap image)
+        {
+            Bitmap result = image.Clone() as Bitmap;
+            result.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            return result;    
+        }
+
+        public Bitmap ZoomVMP(Bitmap image, float nwidth, float nheigth)
+        {
+            Bitmap result = new Bitmap((Int32)nwidth, (Int32)nheigth);
+            float factorX =(nwidth / image.Width);
+            float factorY = (nheigth / image.Height);
+            for (int x = 0; x < result.Width; x++)
+            {
+                for (int y = 0; y < result.Height; y++)
+                { 
+                    result.SetPixel(x,y,image.GetPixel((Int32)(x/factorX),(Int32)(y/factorY)));
+                }
+            }
+                return result;
+        }
+
+        public Bitmap ZoomBilineal(Bitmap image, Int32 nwidth, Int32 nheigth)
+        {
+            Bitmap result = new Bitmap(nwidth, nheigth);
+            Double factorEscalaX = Convert.ToDouble((Double)result.Width / (Double)image.Width);
+            Double factorEscalaY = Convert.ToDouble((Double)result.Height / (Double)image.Height);
+            Double p = 0.0, q = 0.0;
+            Double[] pTi = new Double[2]; // Variables que almacenan el punto de transformacion inversa
+            Int32[] ul = new Int32[2];
+            Int32[] ur = new Int32[2];
+            Int32[] dl = new Int32[2];
+            Int32[] dr = new Int32[2];
+            byte ncolor;
+            for (int x = 0; x < result.Width; x++)
+            {
+                for (int y = 0; y < result.Height; y++)
+                {
+                    pTi[0] = x / factorEscalaX;
+                    pTi[1] = y / factorEscalaY;
+                    ul[0] = Convert.ToInt32(Math.Truncate(pTi[0]));
+                    ul[1] = Convert.ToInt32(Math.Truncate(pTi[1]));
+                    if (ul[0] == image.Width-1)
+                    {
+                        ur[0] = ul[0];
+                        dl[0] = ul[0];
+                        dr[0] = ul[0];
+                        p = 0.0;
+                    }
+                    else 
+                    {
+                        ur[0] = ul[0] + 1;
+                        dl[0] = ul[0];
+                        dr[0] = ul[0] + 1;
+                        p = pTi[0] - dl[0];
+                    }
+                    if (ul[1] == image.Height-1)
+                    {
+                        ur[1] = ul[1];
+                        dl[1] = ul[1];
+                        dr[1] = ul[1];
+                        q = 0.0;
+                    }
+                    else
+                    {
+                        ur[1] = ul[1];
+                        dl[1] = ul[1] + 1;
+                        dr[1] = ul[1] + 1;
+                        q = dl[1] - pTi[1];
+                    }
+
+                    Color A = image.GetPixel(ul[0],ul[1]);
+                    Color B = image.GetPixel(ur[0],ur[1]);
+                    Color C = image.GetPixel(dl[0],dl[1]);
+                    Color D = image.GetPixel(dr[0], dr[1]);
+                    ncolor = Convert.ToByte(C.R + (D.R - C.R) * p + (A.R - C.R) * q + (B.R + C.R - A.R - D.R) * p * q);
+                    result.SetPixel(x, y, Color.FromArgb(ncolor, ncolor, ncolor));
+                }
+            }
+                return result;
+        }
+
+
+        public Bitmap RotateImageTD(Bitmap Image, Int32 angulo)
+        {
+            Bitmap result = null;
+            Double radianes = (angulo * Math.PI)/ 180; // Paso a radianes
+            Double cosT =Math.Round(Math.Cos(radianes),3);
+            Double senT = Math.Round(Math.Sin(radianes),3);
+            Int32[] nValores = new Int32[2];
+            Int32 transX, transY;
+               
+            Int32 ny, nx; //Auxiliares
+            Int32 nWidth, nHeight;
+            // Calculo de las esquinas para las dimensiones de la nueva imagen
+            //xcos-ysen = x
+            //xsen + ycos = y
+            if (Image.Width * cosT < 0)
+            {
+                nWidth = Math.Abs((Int32)(-Image.Width * cosT + Image.Height * senT)); // Alto nueva imagen
+                nHeight = Math.Abs((Int32)(Image.Width * senT + Image.Height * cosT)); // Nuevo ancho
+            }
+            else 
+            {
+                nWidth = Math.Abs((Int32)(Image.Width * cosT + Image.Height * senT)); // Alto nueva imagen
+                nHeight = Math.Abs((Int32)(Image.Width * senT + Image.Height * cosT)); // Nuevo ancho
+            }
+            
+            result = new Bitmap(nWidth, nHeight);
+                if (angulo >= 0 && angulo <= 270)
+                {
+                    transX = Math.Abs((Int32)(Image.Height * senT));
+                }
+                else 
+                {
+                    transX = 0;
+                }
+                if (angulo >= 180 && angulo <= 360)
+                {
+                    transY = Math.Abs((Int32)(Image.Height * cosT) - 1);
+                }
+                else
+                {
+                    transY = 0;
+                }
+               
+                result = new Bitmap(nWidth, nHeight);
+                for (int x = 0; x < Image.Width; x++)
+                {
+                    for (int y = 0; y < Image.Height; y++)
+                    { 
+                
+                        nx = (Int32)(x*cosT - y*senT);
+                        ny = (Int32)(x*senT+y*cosT);
+                        if ((Math.Abs(ny + transY) >= result.Height) && (Math.Abs(nx + transX) >= result.Width))
+                        {
+                            result.SetPixel(Math.Abs(result.Width - 1), Math.Abs(result.Height - 1), Image.GetPixel(x, y));
+                        }
+                        else if (Math.Abs(ny + transY) >= result.Height)
+                        {
+                            result.SetPixel(Math.Abs(nx + transX), Math.Abs(result.Height - 1), Image.GetPixel(x, y));
+                        }
+                        else if (Math.Abs(nx + transX) >= result.Width)
+                        {
+                            result.SetPixel(Math.Abs(result.Width - 1), Math.Abs(ny + transY), Image.GetPixel(x, y)); 
+                        }
+                        else
+                        {
+                            result.SetPixel(Math.Abs(nx + transX), Math.Abs(ny + transY), Image.GetPixel(x, y));
+                        }
+                    }
+                }
+                return result;
+        }
+
+
+     
+        public Bitmap rotarBasico(Bitmap Image, Int32 grados)
+        {
+
+            Bitmap result = null;
+
+            switch(grados){
+                    case 90:
+                            result = new Bitmap(Image.Height,Image.Width);  
+
+                            for(int y = 0; y < result.Height; y++) { 
+                                    for(int x = 0; x < result.Width; x++) {
+                                        result.SetPixel(x,y,Image.GetPixel(y,x));
+                                    }
+                            }
+                        
+
+
+                    break;
+
+                    case 180:
+                            result = new Bitmap(Image.Width,Image.Height);
+
+                            for(int y = 0; y < result.Height; y++) 
+                            { 
+                                    for(var x = 0; x < result.Width; x++) 
+                                    {
+                                        
+                                        result.SetPixel(x,y,Image.GetPixel(Image.Width-1-x,Image.Height-1-y));
+
+                                    }
+                            }
+                        
+                
+                    break;
+
+                    case 270:
+                            result = new Bitmap (Image.Height,Image.Width);
+                            for(int y = 0; y < result.Height; y++) { 
+                                    for(int x = 0; x < result.Width; x++) {
+                                        result.SetPixel(x,y,Image.GetPixel(Image.Height-1-y,Image.Width-1-x));
+                                    }
+                            }
+                
+                    break;
+
+
+                    default:
+
+                    break;
+            }
         
-    }   
+
+           return result;
+        }
+
+        private Int32[] calcularNuevosPixelesRotacion(Int32 antiguoPixelX, Int32 antiguoPixelY, Int32 puntoAnclajeX, Int32 puntoAnclajeY, Double angulo)
+        { //Pasar el angulo en radianes
+             Int32[] nuevosPixel= new Int32[2];
+             nuevosPixel[0] = Convert.ToInt32(puntoAnclajeX + 
+                 ((antiguoPixelX-puntoAnclajeX)*Math.Cos(angulo)) - ((antiguoPixelY - puntoAnclajeY)*Math.Sin(angulo)));
+             nuevosPixel[1] = Convert.ToInt32(puntoAnclajeY + 
+                 ((antiguoPixelX-puntoAnclajeX)*Math.Sin(angulo)) + ((antiguoPixelY - puntoAnclajeY)*Math.Cos(angulo)));
+
+            return nuevosPixel;
+        }
+
+        private bool estaContenidoEn(Int32 x, Int32 y,Int32[] UL, Int32[] UR, Int32[] DL,Int32[] DR)
+        { //TODO: Comprobar que en todos los casos el pixel x,y se encuentra dentro del recinto formado por las rectas que unen los 4 puntos
+        
+            Int32 aY = (DL[1]-UL[1]);
+            Int32 aX = (DL[0]-UL[0]);
+            //Claramente separado
+            Int32 uY = (UR[1] - UL[1]);
+            Int32 uX = (UR[0] - UL[0]);
+            Double constanteArriba = (uX * UL[1]) - (uY * UL[0]);
+            Double rectaArriba = (x * uY) + constanteArriba - (uX * y);
+
+
+            Double constante = (aX*UL[1])-(aY*UL[0]);
+
+            Double rectaIzquierda = (x*aY) + constante - (aX*y);
+
+            Int32 bY = (DR[1]-UR[1]);
+            Int32 bX = (DR[0]-UR[0]);
+
+            Double consta = (bX*UR[1])-(bY*UR[0]);
+
+            Double rectaDerecha = (x*bY) + consta - (bX*y);
+
+            if( (rectaIzquierda >= 0) && (rectaDerecha <= 0 && rectaArriba <= 0)){
+                    return true;
+            }
+            return false;
+        
+        }
+
+        private Int32[] calcularViejosPixelesRotacion(Int32 nuevoPixelX,Int32 nuevoPixelY,Int32 puntoAnclajeX,Int32  puntoAnclajeY,Double angulo){ //Pasar el angulo en radianes
+            Int32[] viejosPixels= new Int32[2];
+            viejosPixels[0] = Convert.ToInt32(puntoAnclajeX + ((nuevoPixelX-puntoAnclajeX)*Math.Cos(angulo)) + ((nuevoPixelY - puntoAnclajeY)*Math.Sin(angulo)));
+            viejosPixels[1] = Convert.ToInt32(puntoAnclajeY - ((nuevoPixelX-puntoAnclajeX)*Math.Sin(angulo)) + ((nuevoPixelY - puntoAnclajeY)*Math.Cos(angulo)));
+
+            return viejosPixels;
+        }       
+        public Bitmap rotarInterpolar(Bitmap image, Int32 puntoAnclajeX, Int32 puntoAnclajeY, Int32 angulo){ //Pasar el angulo en radianes
+
+                Bitmap result = null;
+                Double angle = (angulo * Math.PI) / 180;
+                List<Int32> posiblesExtremosX = new List<Int32>();
+                List<Int32> posiblesExtremosY = new List<Int32>();
+
+                Int32[] aux_UL = calcularNuevosPixelesRotacion(0, 0, puntoAnclajeX, puntoAnclajeY, angle);
+                Int32[] aux_UR = calcularNuevosPixelesRotacion(image.Width-1, 0, puntoAnclajeX, puntoAnclajeY, angle);
+                Int32[] aux_DL = calcularNuevosPixelesRotacion(0, image.Height-1, puntoAnclajeX, puntoAnclajeY, angle);
+                Int32[] aux_DR = calcularNuevosPixelesRotacion(image.Width-1, image.Height-1, puntoAnclajeX, puntoAnclajeY, angle);
+
+                posiblesExtremosX.Add(aux_UL[0]);
+                posiblesExtremosY.Add(aux_UL[1]);
+                posiblesExtremosX.Add(aux_UR[0]);
+                posiblesExtremosY.Add(aux_UR[1]);
+                posiblesExtremosX.Add(aux_DL[0]);
+                posiblesExtremosY.Add(aux_DL[1]);
+                posiblesExtremosX.Add(aux_DR[0]);
+                posiblesExtremosY.Add(aux_DR[1]);
+
+                Int32 maximoX = posiblesExtremosX.Max();
+                Int32 maximoY = posiblesExtremosY.Max();
+                Int32 minimoX = posiblesExtremosX.Min();
+                Int32 minimoY = posiblesExtremosY.Min();
+                result = new Bitmap(maximoX-minimoX + 2, maximoY - minimoY + 2);
+        
+                Int32 desplazamientoY = minimoY;
+
+                Int32 desplazamientoX;
+
+                if(minimoX < 0)
+                {
+                    desplazamientoX = minimoX-1;
+                }else
+                {
+                    desplazamientoX = 0;
+                }
+
+                for(Int32 y = 0; y < result.Height; y++) { 
+                        for(Int32 x = 0; x < result.Width; x++){
+
+                                //Si esta contenido 
+                                if(estaContenidoEn(x+desplazamientoX, y+desplazamientoY, aux_UL, aux_UR, aux_DL, aux_DR)){
+
+                                        Int32[] viejosPixeles = calcularViejosPixelesRotacion(x+desplazamientoX, y+desplazamientoY, puntoAnclajeX, puntoAnclajeY, angle);
+                                        Int32[] viejosPixelesRedondeado = new Int32[2];
+                                        viejosPixelesRedondeado[0] = viejosPixeles[0];
+                                        viejosPixelesRedondeado[1] = viejosPixeles[1];
+
+                                        Int32 pesoX = viejosPixeles[0] - viejosPixelesRedondeado[0];
+		                                Int32 pesoY = viejosPixeles[1] - viejosPixelesRedondeado[1];
+                                        if(viejosPixeles[0] < image.Width && viejosPixeles[1] < image.Height )
+                                            result.SetPixel(x, y, image.GetPixel(Math.Abs(viejosPixeles[0]), Math.Abs(viejosPixeles[1])));
+		                                   
+                            }
+
+                        }
+                }
+
+                return result;
+        }
+    }  
+ 
 }

@@ -67,6 +67,10 @@
             this.ecualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.especificaciónDelHistogramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.espejoVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.espejoVerticalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +109,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.rotarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -310,7 +315,9 @@
             this.diferenciaDeImagenesToolStripMenuItem,
             this.ecualizarToolStripMenuItem,
             this.especificaciónDelHistogramaToolStripMenuItem,
-            this.pruebaToolStripMenuItem});
+            this.pruebaToolStripMenuItem,
+            this.rotacionesToolStripMenuItem,
+            this.zoomToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -422,6 +429,37 @@
             this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.pruebaToolStripMenuItem.Text = "Digitalización";
             this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
+            // 
+            // rotacionesToolStripMenuItem
+            // 
+            this.rotacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.espejoVerticalToolStripMenuItem,
+            this.espejoVerticalToolStripMenuItem1,
+            this.rotarToolStripMenuItem});
+            this.rotacionesToolStripMenuItem.Name = "rotacionesToolStripMenuItem";
+            this.rotacionesToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.rotacionesToolStripMenuItem.Text = "Rotaciones";
+            // 
+            // espejoVerticalToolStripMenuItem
+            // 
+            this.espejoVerticalToolStripMenuItem.Name = "espejoVerticalToolStripMenuItem";
+            this.espejoVerticalToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.espejoVerticalToolStripMenuItem.Text = "Espejo Horizontal";
+            this.espejoVerticalToolStripMenuItem.Click += new System.EventHandler(this.espejoVerticalToolStripMenuItem_Click);
+            // 
+            // espejoVerticalToolStripMenuItem1
+            // 
+            this.espejoVerticalToolStripMenuItem1.Name = "espejoVerticalToolStripMenuItem1";
+            this.espejoVerticalToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
+            this.espejoVerticalToolStripMenuItem1.Text = "Espejo Vertical";
+            this.espejoVerticalToolStripMenuItem1.Click += new System.EventHandler(this.espejoVerticalToolStripMenuItem1_Click);
+            // 
+            // zoomToolStripMenuItem
+            // 
+            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.zoomToolStripMenuItem.Text = "Zoom";
+            this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -723,6 +761,13 @@
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(25, 17);
             this.toolStripStatusLabel9.Text = "      ";
             // 
+            // rotarToolStripMenuItem
+            // 
+            this.rotarToolStripMenuItem.Name = "rotarToolStripMenuItem";
+            this.rotarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.rotarToolStripMenuItem.Text = "Rotar";
+            this.rotarToolStripMenuItem.Click += new System.EventHandler(this.rotarToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -828,6 +873,11 @@
         private System.Windows.Forms.ToolStripMenuItem ecualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem especificaciónDelHistogramaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rotacionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem espejoVerticalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem espejoVerticalToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rotarToolStripMenuItem;
 
     }
 }

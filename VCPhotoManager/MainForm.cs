@@ -564,6 +564,69 @@ namespace VCPhotoManager
                 MessageBox.Show("Debe seleccionar una imagen.", "Guardar Como",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }  
+        }
+
+        private void espejoVerticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                ImageForm n = new ImageForm(m_Manager.EspejoHorizontal(f.Imagen));
+                n.MdiParent = this;
+                n.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Guardar Espejo Horizontal",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void espejoVerticalToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                ImageForm n = new ImageForm(m_Manager.EspejoVertical(f.Imagen));
+                n.MdiParent = this;
+                n.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Guardar Espejo Horizontal",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                ZoomForm n = new ZoomForm(f.Imagen, this);
+                n.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Zoom",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
+        }
+
+        private void rotarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                RotacionForm n = new RotacionForm(f.Imagen, this);
+                n.Show();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Rotación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

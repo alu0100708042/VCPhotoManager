@@ -63,6 +63,18 @@
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Manager.cs" />
+    <Compile Include="RotacionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RotacionForm.Designer.cs">
+      <DependentUpon>RotacionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZoomForm.Designer.cs">
+      <DependentUpon>ZoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DiferenciaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BrilloContrasteForm.resx">
       <DependentUpon>BrilloContrasteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RotacionForm.resx">
+      <DependentUpon>RotacionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZoomForm.resx">
+      <DependentUpon>ZoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DiferenciaForm.resx">
       <DependentUpon>DiferenciaForm.cs</DependentUpon>
