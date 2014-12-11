@@ -367,13 +367,11 @@ namespace VCPhotoManager.Clases
 
                     if (result.GetPixel(x,y).R % rango >= rango / 2)
                     {
-                        //console.log("REDONDEO ARRIBA");
                         redondear = rango;
                     }
                     else
                     {
                         redondear = 0;
-                        //console.log("REDONDEO ABAJO");
                     }
                     byte cfinal = Convert.ToByte((rango * lugar) + redondear);
                     result.SetPixel(x, y, Color.FromArgb(cfinal, cfinal, cfinal));
@@ -632,6 +630,165 @@ namespace VCPhotoManager.Clases
                 }
             }
             return result;
+        }
+
+
+        public Int32[] CrossSection(Bitmap image ,Point[] linea)
+        {
+            Int32[] result = null;
+            List<Point> puntosRecta = new List<Point>();
+            puntosRecta = BRESENHAM(linea[0].X, linea[1].X, linea[0].Y, linea[1].Y);
+            result = new Int32[puntosRecta.Count()];
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (puntosRecta[i].X >= 0 && puntosRecta[i].X < image.Width && puntosRecta[i].Y < image.Height && puntosRecta[i].Y >= 0)
+                    result[i] = image.GetPixel(puntosRecta[i].X, puntosRecta[i].Y).R;
+            }
+
+            //Poner perfil en la recta
+
+                return result;
+        }
+
+        public Int32[] perfilDerivada(Int32[]vICS)
+        {
+            Int32[] perfil = new Int32[vICS.Length];
+            perfil[0] = vICS[0];
+            for (int i = 1; i < perfil.Length; i++) 
+            {
+                perfil[i] = vICS[i] - vICS[i-1];
+            }
+            return perfil;
+        }
+
+        public Int32[] perfilSuavizado(Int32[] perfil, int vecinos)  
+        {
+            Int32[] result = new Int32[perfil.Length];
+            Int32 valorpixel;
+            for (int i = 0; i < result.Length; i++)
+            {
+                valorpixel = 0;
+                for (int j = 1; j < vecinos; j++)
+                {
+                    if (j % 2 == 0)
+                    {
+                        if (i < result.Length - vecinos)
+                        {
+                            valorpixel += perfil[i + j * 1];
+                        }
+                    }
+                    else 
+                    {
+                        if (i > vecinos)
+                        {
+                            valorpixel += perfil[i + j * -1];
+                        }
+                    }
+                    result[i] = (Int32)valorpixel / vecinos;
+                }
+            }
+                return result;
+        }
+        private List<Point> BRESENHAM(int Bx1, int By1, int Bx2, int By2)
+        {
+            List<Point> puntosRecta = new List<Point>();
+            float e, ax, ay, temp;
+            int s1, s2, intercambio, i, x, y;
+            x = Bx1;
+
+            y = By1;
+
+            ax = Math.Abs(Bx2 - Bx1);
+
+            ay = Math.Abs(By2 - By1);
+
+            s1 = signo(Bx2 - Bx1);
+
+            s2 = signo(By2 - By1);
+
+            if (ay > ax)
+            {
+
+                temp = ax;
+
+                ax = ay;
+
+                ay = temp;
+
+                intercambio = 1;
+
+            }
+
+            else
+            {
+
+                intercambio = 0;
+
+            }
+
+            e = 2 * ay - ax;
+
+            for (i = 1; i <= ax; i++)
+            {
+
+                puntosRecta.Add(new Point(x,y));
+                //putpixel((319 + x), (239 - y), 4);
+
+                if (e >= 0)
+                {
+
+                    if (intercambio == 1)
+                    {
+
+                        x = x + s1;
+
+                    }
+
+                    else
+                    {
+
+                        y = y + s2;
+
+                    }
+
+                    e = e - (2 * ax);
+
+                }
+
+                if (intercambio == 1)
+                {
+
+                    y = y + s2;
+
+                }
+
+                else
+                {
+
+                    x = x + s1;
+
+                }
+
+                e = e + 2 * ay;
+
+            }
+
+        
+            return puntosRecta;
+        }
+
+
+        int signo(int num)
+        {
+            int resultado = 0;
+            if (num < 0)
+                resultado = -1;
+            if (num > 0)
+                resultado = 1;
+            if (num == 0)
+                resultado = 0;
+
+            return resultado;
         }
 
         public Bitmap getDiference(Bitmap img1, Bitmap img2)

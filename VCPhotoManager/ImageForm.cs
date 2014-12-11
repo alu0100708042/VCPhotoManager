@@ -14,10 +14,12 @@ namespace VCPhotoManager
     {
         private String m_PhotoPath;
         private Rectangle m_Rectangulo;
+        private Point[] m_Linea = new Point[2];
         private Point m_Pt1, m_Pt2;
         private Color m_lineColor = Color.Red;
         private Boolean m_Seleccionar;
         private Boolean m_Bloqueado = false;
+        private Boolean m_CrossSection;
         private MainForm m_Parent = null;
         private List<Bitmap> m_Historico = null;
         private Int32[] m_Histograma = null;
@@ -25,7 +27,7 @@ namespace VCPhotoManager
         private Bitmap m_Recorte = null;
         private Int32 m_MinValue;
         private Int32 m_MaxValue;
-        
+        private Int32[] m_VectorCross = null;
         
         
         private ImageForm()
@@ -114,6 +116,12 @@ namespace VCPhotoManager
             set { m_Seleccionar = value; }
         }
 
+        public Boolean ModoCrossSection
+        {
+            get { return m_CrossSection; }
+            set { m_CrossSection = value; }
+        }
+        
         public Int32[] Histograma
         {
             get { return m_Histograma; }
@@ -151,6 +159,22 @@ namespace VCPhotoManager
                 m_Pt1 = new Point(e.X, e.Y);
                 m_Pt2 = m_Pt1;
                 m_Bloqueado = true;
+            }
+            else if(m_CrossSection)
+            {
+                if (e.Button != System.Windows.Forms.MouseButtons.Left)
+                {
+                    return;
+                }
+                //if (m_Linea[0] != null || m_Linea[1] != null)
+                //{
+                    m_Linea[0] = Point.Empty;
+                    m_Linea[1] = Point.Empty;
+                    this.picSource.Refresh();
+                    m_Pt1 = new Point(e.X, e.Y);
+                    m_Linea[0] = m_Pt1;
+                    m_Bloqueado = true;
+                //}
             }
             else
             {
@@ -197,30 +221,70 @@ namespace VCPhotoManager
             {
                 return;
             }
-                        
-            m_Rectangulo = m_Manager.getRectangle(m_Pt1, new Point(e.X, e.Y));
-                        
-            m_Bloqueado = false;
-            m_Recorte = m_Manager.createSubBitmap(this.picSource.Image as Bitmap, m_Rectangulo);
+
+            if (m_Seleccionar)
+            {
+                m_Rectangulo = m_Manager.getRectangle(m_Pt1, new Point(e.X, e.Y));
+
+                m_Bloqueado = false;
+                m_Recorte = m_Manager.createSubBitmap(this.picSource.Image as Bitmap, m_Rectangulo);
+            }
+            if (m_CrossSection)
+            {
+                m_Linea[1] = new Point(e.X, e.Y);
+                m_Bloqueado = false;
+                m_VectorCross = perfilCrossSection(m_Linea);
+                m_Parent.vectorCross = m_VectorCross;
+                m_Parent.vectorPerfilDerivada = perfilDerivada(m_VectorCross);
+                m_Parent.controlCross = true;
+            }
         }
 
         private void picSource_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            if(m_Bloqueado)
+            if(!m_Bloqueado && m_Seleccionar)
             {
                 g.DrawRectangle(new Pen(m_lineColor), m_Manager.getRectangle(m_Pt1, m_Pt2));
+            }
+            else if (!m_Bloqueado && m_CrossSection)
+            {
+                g.DrawLine(new Pen(m_lineColor), m_Linea[0],m_Linea[1]);
             }
             else
             {
                 g.DrawRectangle(new Pen(m_lineColor), m_Rectangulo);
             }
         }
-        
 
+        private Int32[] perfilCrossSection(Point[] Linea)
+        {
+            Int32[] result = m_Manager.CrossSection(this.picSource.Image as Bitmap, Linea);
+            Int32[] perfil = m_Manager.perfilDerivada(result);
+            return result;
+        }
 
-        
+        private Int32[] perfilDerivada(Int32[] vector)
+        {
+            Int32[] perfil = m_Manager.perfilDerivada(vector);
+            return perfil;
+        }
 
+        public Int32[] perfilSuavizado() 
+        {
+            Int32[] result = m_Manager.perfilSuavizado(perfilCrossSection(m_Linea), 3);
+            return result;
+        }
 
+        public Int32[] derivadaSuavizado(Int32[] pSuav)
+        {
+            Int32[] result = new Int32[pSuav.Length];
+            result[0] = pSuav[0];
+            for (int i = 1; i < pSuav.Length; i++)
+            {
+                result[i] = pSuav[i] - pSuav[i - 1];
+            }
+                return result;
+        }
     }
 }

@@ -25,6 +25,8 @@ namespace VCPhotoManager
                 m_Vector = vector;
                 if(!String.IsNullOrEmpty(titulo))
                 {
+                    if (titulo == "crossSection")
+                        label1.Visible = false;
                     this.lbTitulo.Text = titulo;
                     this.lbMaximo.Text = maximo.ToString();
                 }
@@ -50,19 +52,36 @@ namespace VCPhotoManager
             m_Pen = new Pen(Color.Black);
             m_Pen.Width = 3;
 
-
-            
-            g.DrawLine(m_Pen, 44, 350, 562, 350);
-            g.DrawLine(m_Pen, 44, 350, 44, 50);
-            m_Pen.Color = Color.Blue;
-            m_Pen.Width = 2;
-            for(int i = 0; i < 256; i++)
+            if (lbTitulo.Text != "crossSection")
             {
-                p1.X = 47 + i * 2;
-                p1.Y = 349;
-                p2.X = 47 + i * 2;
-                p2.Y = (349 - m_Vector[i]);
-                g.DrawLine(m_Pen, p1, p2);
+
+                g.DrawLine(m_Pen, 44, 350, 562, 350);
+                g.DrawLine(m_Pen, 44, 350, 44, 50);
+                m_Pen.Color = Color.Blue;
+                m_Pen.Width = 2;
+                for (int i = 0; i < 256; i++)
+                {
+                    p1.X = 47 + i * 2;
+                    p1.Y = 349;
+                    p2.X = 47 + i * 2;
+                    p2.Y = (349 - m_Vector[i]);
+                    g.DrawLine(m_Pen, p1, p2);
+                }
+            }
+            else 
+            {
+                g.DrawLine(m_Pen, 44, 350, 562, 350);
+                g.DrawLine(m_Pen, 44, 350, 44, 50);
+                m_Pen.Color = Color.Blue;
+
+                for (int x = 0; x < m_Vector.Length; x++)
+                {
+                    p1.X = 47 + x * 2;
+                    p1.Y = 349;
+                    p2.X = 47 + x * 2;
+                    p2.Y = (349 - m_Vector[x]);
+                    g.DrawLine(m_Pen, p1, p2);
+                }
             }
 
         }

@@ -70,7 +70,11 @@
             this.rotacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.espejoVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.espejoVerticalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perfilSuavizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contenidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.índiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +113,6 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbB = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.rotarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -317,7 +320,10 @@
             this.especificaciónDelHistogramaToolStripMenuItem,
             this.pruebaToolStripMenuItem,
             this.rotacionesToolStripMenuItem,
-            this.zoomToolStripMenuItem});
+            this.zoomToolStripMenuItem,
+            this.crossSectionToolStripMenuItem,
+            this.perfilToolStripMenuItem,
+            this.perfilSuavizadoToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -454,12 +460,40 @@
             this.espejoVerticalToolStripMenuItem1.Text = "Espejo Vertical";
             this.espejoVerticalToolStripMenuItem1.Click += new System.EventHandler(this.espejoVerticalToolStripMenuItem1_Click);
             // 
+            // rotarToolStripMenuItem
+            // 
+            this.rotarToolStripMenuItem.Name = "rotarToolStripMenuItem";
+            this.rotarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.rotarToolStripMenuItem.Text = "Rotar";
+            this.rotarToolStripMenuItem.Click += new System.EventHandler(this.rotarToolStripMenuItem_Click);
+            // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
             this.zoomToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
+            // 
+            // crossSectionToolStripMenuItem
+            // 
+            this.crossSectionToolStripMenuItem.Name = "crossSectionToolStripMenuItem";
+            this.crossSectionToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.crossSectionToolStripMenuItem.Text = "Cross Section";
+            this.crossSectionToolStripMenuItem.Click += new System.EventHandler(this.crossSectionToolStripMenuItem_Click);
+            // 
+            // perfilToolStripMenuItem
+            // 
+            this.perfilToolStripMenuItem.Name = "perfilToolStripMenuItem";
+            this.perfilToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.perfilToolStripMenuItem.Text = "Perfil";
+            this.perfilToolStripMenuItem.Click += new System.EventHandler(this.perfilToolStripMenuItem_Click);
+            // 
+            // perfilSuavizadoToolStripMenuItem
+            // 
+            this.perfilSuavizadoToolStripMenuItem.Name = "perfilSuavizadoToolStripMenuItem";
+            this.perfilSuavizadoToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.perfilSuavizadoToolStripMenuItem.Text = "Perfil Suavizado";
+            this.perfilSuavizadoToolStripMenuItem.Click += new System.EventHandler(this.perfilSuavizadoToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -761,13 +795,6 @@
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(25, 17);
             this.toolStripStatusLabel9.Text = "      ";
             // 
-            // rotarToolStripMenuItem
-            // 
-            this.rotarToolStripMenuItem.Name = "rotarToolStripMenuItem";
-            this.rotarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.rotarToolStripMenuItem.Text = "Rotar";
-            this.rotarToolStripMenuItem.Click += new System.EventHandler(this.rotarToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,6 +905,9 @@
         private System.Windows.Forms.ToolStripMenuItem espejoVerticalToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem zoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rotarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crossSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem perfilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem perfilSuavizadoToolStripMenuItem;
 
     }
 }

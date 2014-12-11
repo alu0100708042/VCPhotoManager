@@ -25,7 +25,10 @@ namespace VCPhotoManager
         SpeechSynthesizer m_Synthesizer;
         PromptBuilder m_Builder;
         SpeechRecognitionEngine m_Engine;
-
+        Int32[] vectorCrossSection = null;
+        bool m_controlCross = false;
+        Int32[] vectorPerfil = null;
+        bool m_perfilsuavizado = false;
         //private Int32 m_MinValue;
         //private Int32 m_MaxValue;
         
@@ -81,7 +84,30 @@ namespace VCPhotoManager
             get { return Int32.Parse(this.lbB.Text); }
             set { this.lbB.Text = value.ToString(); }
         }
-        
+
+        public Int32[] vectorCross
+        {
+            get { return vectorCrossSection; }
+            set { this.vectorCrossSection = value; }
+        }
+
+        public Int32[] vectorPerfilDerivada
+        {
+            get { return vectorPerfil; }
+            set { this.vectorPerfil = value; }
+        }
+
+        public bool controlCross
+        {
+            get { return m_controlCross; }
+            set { this.m_controlCross = value; }
+        }
+
+        public bool controlSuavizado
+        {
+            get { return m_perfilsuavizado; }
+            set { this.m_perfilsuavizado = value; }
+        }
         private void AbrirImagen(object sender, EventArgs e) 
         {
             abrirImagen();
@@ -441,27 +467,22 @@ namespace VCPhotoManager
                 BrilloContrasteForm bcForm = new BrilloContrasteForm(f.Imagen, this);
                 bcForm.MdiParent = this;
                 bcForm.Show();
-              /*  
-                Int32[] brillo = m_Manager.brightnessAndContrast(f.getPictureBox().Image as Bitmap);
-                MessageBox.Show("El brillo de la imagen es:" + brillo[0] + " y el constraste:" + brillo[1]);
-                // Ojo el primer valor que pasamos a la funcion de brillo es la diferencia entre el nuevo y el actual
-                ImageForm s = new ImageForm(m_Manager.changeBrightnessAndContrast(200,69, f.getPictureBox().Image as Bitmap));
-                s.MdiParent = this;
-                s.Show();
-               * */
+                /*  
+                  Int32[] brillo = m_Manager.brightnessAndContrast(f.getPictureBox().Image as Bitmap);
+                  MessageBox.Show("El brillo de la imagen es:" + brillo[0] + " y el constraste:" + brillo[1]);
+                  // Ojo el primer valor que pasamos a la funcion de brillo es la diferencia entre el nuevo y el actual
+                  ImageForm s = new ImageForm(m_Manager.changeBrightnessAndContrast(200,69, f.getPictureBox().Image as Bitmap));
+                  s.MdiParent = this;
+                  s.Show();
+                 * */
             }
             else
             {
                 MessageBox.Show("Debe seleccionar una imagen.", "Generación de Histogramas",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-           // MessageBox.Show("El brillo de la imagen es:" + brillo[0].ToString() + " y el contraste:" + brillo[1].ToString());
+            // MessageBox.Show("El brillo de la imagen es:" + brillo[0].ToString() + " y el contraste:" + brillo[1].ToString());
         }
-
-
-
-
-
 
         private void gammaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -626,6 +647,39 @@ namespace VCPhotoManager
                 MessageBox.Show("Debe seleccionar una imagen.", "Rotación",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void crossSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                f.ModoCrossSection = true;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una imagen.", "Cross Section",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void perfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CrossSectionForm h = new CrossSectionForm(this,vectorCrossSection, vectorPerfil);
+            h.MdiParent = this;
+            h.Show();
+        }
+
+        private void perfilSuavizadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild is ImageForm)
+            {
+                ImageForm f = this.ActiveMdiChild as ImageForm;
+                CrossSectionForm h = new CrossSectionForm(this,f.perfilSuavizado(), f.derivadaSuavizado(f.perfilSuavizado()));
+                h.MdiParent = this;
+                h.Show();
+            }
+            
         }
 
     }

@@ -79,3 +79,4 @@ C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VC
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.DigitalizarForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.ZoomForm.resources
 C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.RotacionForm.resources
+C:\Users\Ricardo\Documents\Universidad\Cuarto\Visión Por Computador\Proyecto\VCPhotoManager\obj\x86\Debug\VCPhotoManager.CrossSectionForm.resources
